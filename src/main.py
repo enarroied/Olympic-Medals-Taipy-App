@@ -6,8 +6,8 @@ from taipy.gui import Gui
 ###########################################################
 ###                    Load Datasets                    ###
 ###########################################################
-olympic_cities_df = pd.read_csv("./data/olympic_cities.csv")
-olympic_medals_df = pd.read_csv("./data/olympic_medals.csv")
+df_olympic_cities = pd.read_csv("./src/data/olympic_cities.csv")
+df_olympic_medals = pd.read_csv("./src/data/olympic_medals.csv")
 
 ###########################################################
 ###                      Functions                      ###
@@ -27,7 +27,7 @@ with tgb.Page() as page:
                 class_name="h2",
             )
             tgb.text(
-                "{int(olympic_medals_df[olympic_medals_df['Medal_type']=='Gold']['Medal_type'].count())}",
+                "{int(df_olympic_medals[df_olympic_medals['Medal_type']=='Gold']['Medal_type'].count())}",
                 class_name="h3",
             )
 
@@ -37,7 +37,7 @@ with tgb.Page() as page:
                 class_name="h2",
             )
             tgb.text(
-                "{int(olympic_medals_df[olympic_medals_df['Medal_type']=='Silver']['Medal_type'].count())}",
+                "{int(df_olympic_medals[df_olympic_medals['Medal_type']=='Silver']['Medal_type'].count())}",
                 class_name="h3",
             )
 
@@ -47,7 +47,7 @@ with tgb.Page() as page:
                 class_name="h2",
             )
             tgb.text(
-                "{int(olympic_medals_df[olympic_medals_df['Medal_type']=='Bronze']['Medal_type'].count())}",
+                "{int(df_olympic_medals[df_olympic_medals['Medal_type']=='Bronze']['Medal_type'].count())}",
                 class_name="h3",
             )
 
@@ -56,7 +56,7 @@ with tgb.Page() as page:
                 "Total Medals 🏟",
                 class_name="h2",
             )
-            tgb.text("{int(len(olympic_medals_df))}", class_name="h3")
+            tgb.text("{int(len(df_olympic_medals))}", class_name="h3")
 
 ###########################################################
 ###                       Run App                       ###
