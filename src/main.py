@@ -3,13 +3,20 @@ import plotly.express as px
 import taipy.gui.builder as tgb
 from taipy.gui import Gui
 
-olympic_cities_df = pd.read_csv("data/olympic_cities.csv")
-olympic_medals_df = pd.read_csv("data/olympic_medals.csv")
-print("hi")
-print(
-    olympic_medals_df[olympic_medals_df["Medal_type"] == "Silver"]["Medal_type"].count()
-)
+###########################################################
+###                    Load Datasets                    ###
+###########################################################
+olympic_cities_df = pd.read_csv("./data/olympic_cities.csv")
+olympic_medals_df = pd.read_csv("./data/olympic_medals.csv")
 
+###########################################################
+###                      Functions                      ###
+###########################################################
+
+
+###########################################################
+###                      Design Page                    ###
+###########################################################
 with tgb.Page() as page:
     tgb.text("Olympic medals 🥇🥈🥉", class_name="h1")
 
@@ -51,6 +58,10 @@ with tgb.Page() as page:
             )
             tgb.text("{int(len(olympic_medals_df))}", class_name="h3")
 
+###########################################################
+###                       Run App                       ###
+###########################################################
+
 if __name__ == "__main__":
     gui = Gui(page)
-    gui.run(title="Olympic medals 🥇", port=2452)
+    gui.run(use_reloader=True, title="Olympic medals 🥇", port=2452)
