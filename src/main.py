@@ -58,6 +58,16 @@ df_medals_by_olympiad.reset_index(drop=True, inplace=True)
 ###                      Functions                      ###
 ###########################################################
 def create_bar_medals(df_medals_by_olympiad, season):
+    """Creates a plotly bar chart with total olympic medals (broken by medal color).
+        The dataframe is previously filtered by season (summer / winter).
+
+    Args:
+        df_medals_by_olympiad (pd.DataFrame): data with all the olympic medals.
+        season (str): ""All", "winter" or "summer".
+
+    Returns:
+       px.bar: A plotly bar chart to display in the Taipy app
+    """
     # Define colors for each medal type
     medal_colors = {"Gold": "#FFD700", "Silver": "#C0C0C0", "Bronze": "#CD7F32"}
 
@@ -107,13 +117,22 @@ def create_bar_medals(df_medals_by_olympiad, season):
     return fig
 
 
-def create_bar_by_committee(df_medals, Olympiad="All"):
+def create_bar_by_committee(df_medals, olympiad="All"):
+    """Creates a plotly bar chart with total olympic medals (medal colorS by each other).
+        The dataframe is previously filtered by season (summer / winter).
 
+    Args:
+        df_medals (pd.DataFrame): data with all the olympic medals.
+        olympiad (str): ""All", or name of the Olympiad.
+
+    Returns:
+       px.bar: A plotly bar chart to display in the Taipy app
+    """
     df_medals_by_committee = df_medals.copy()
 
-    if Olympiad != "All":
+    if olympiad != "All":
         df_medals_by_committee = df_medals_by_committee[
-            df_medals_by_committee["Olympiad"] == Olympiad
+            df_medals_by_committee["Olympiad"] == olympiad
         ]
 
     # Define medal colors
@@ -231,7 +250,10 @@ def on_selector(state):
 ###########################################################
 ###                      Design Page                    ###
 ###########################################################
-with tgb.Page() as page:
+
+
+with tgb.Page() as all_time_medals:
+
     tgb.text("Olympic medals 🥇🥈🥉", class_name="h1")
 
     with tgb.layout("1 1 1 1"):
@@ -296,11 +318,24 @@ with tgb.Page() as page:
             )
             tgb.chart(figure="{bar_medals_by_committee}")
 
-    tgb.table("{df_olympic_cities_simplified}")
+    tgb.table(
+        "{df_olympic_cities_simplified}",
+        filter=True,
+    )
 ###########################################################
 ###                       Run App                       ###
 ###########################################################
+with tgb.Page() as root_page:
+    tgb.navbar()
+
+pages = {"/": root_page, "all_time_medals": all_time_medals}
+gui_multi_pages = Gui(pages=pages)
 
 if __name__ == "__main__":
-    gui = Gui(page)
-    gui.run(use_reloader=True, title="Olympic medals 🥇", port=2452)
+    gui_multi_pages.run(
+        use_reloader=True,
+        title="Olympic medals 🥇",
+        port=2452,
+        dark_mode=False,
+        # stylekit=stylekit,
+    )
