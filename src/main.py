@@ -155,7 +155,7 @@ bar_medals_by_committee = create_bar_by_committee(df_olympic_medals, "All")
 ###########################################################
 
 list_seasons = ["All", "summer", "winter"]
-list_oympiads = [
+list_olympiads = [
     "All",
     "Athina 1896",
     "Paris 1900",
@@ -288,7 +288,7 @@ with tgb.Page() as page:
         with tgb.part():
             tgb.selector(
                 value="{selected_olympiad}",
-                lov=list_oympiads,
+                lov=list_olympiads,
                 dropdown=True,
                 label="Select Olympiad",
                 class_name="fullwidth",
