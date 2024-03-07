@@ -78,6 +78,32 @@ def create_bar_medals(df_medals_by_olympiad, season):
         labels={"Medal_count": "Medal Count", "Olympiad": "Olympiad"},
         category_orders={"Olympiad": df_medals_season["Olympiad"].unique()},
     )
+    if season != "winter":
+        stockholm_annotation_y = 800  # Stockholm 1956 there are 18 medals total, but 800 will weep box out of othe chart elements
+        stockholm_annotation_x = (
+            df_medals_season[df_medals_season["Olympiad"] == "Stockholm 1956"].index[0]
+            / 3
+        ) + 1  # Divide by 3 because 3 types of medals
+
+        fig.add_annotation(
+            x=stockholm_annotation_x,
+            y=stockholm_annotation_y,
+            text=str("Stockholm 1956 only had equestrian games"),
+            showarrow=True,
+            arrowhead=1,
+            arrowcolor="#FF0066",
+            arrowwidth=1,
+            arrowsize=1,
+            ax=0,
+            ay=-100,
+            font=dict(color="black", size=12),
+            align="center",
+            bordercolor="#c7c7c7",
+            borderwidth=2,
+            borderpad=4,
+            bgcolor="#ff7f0e",
+            opacity=0.8,
+        )
     return fig
 
 
