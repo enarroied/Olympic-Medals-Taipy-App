@@ -162,11 +162,70 @@ def create_bar_by_committee(df_medals, olympiad="All"):
     return fig
 
 
+def plot_olympic_medals_by_country(df_olympic_cities, season, medal_type):
+    """
+    Plot a choropleth map of Olympic medals by country for a specified season and medal type.
+
+    Args:
+        df_olympic_medals (pandas.DataFrame): DataFrame containing Olympic medals data.
+        season (str): The season for which to plot the medals. Should be either "winter" or "summer".
+        medal_type (str): The type of medal to count. Should be one of "All", "Gold", "Silver", or "Bronze".
+
+    Returns:
+        None
+    """
+    if medal_type == "All":
+        medal_column = "total_medals"
+    elif medal_type == "Gold":
+        medal_column = "total_medals_gold"
+    elif medal_type == "Silver":
+        medal_column = "total_medals_silver"
+    elif medal_type == "Bronze":
+        medal_column = "total_medals_bronze"
+    else:
+        raise ValueError(
+            "Invalid medal_type. Should be one of 'All', 'Gold', 'Silver', or 'Bronze'."
+        )
+
+    if season != "All":
+        df_olympic_cities = df_olympic_cities[
+            df_olympic_cities["Olympic_season"] == season
+        ]
+
+    country_counts = (
+        df_olympic_cities.groupby(["Country", "ISO_code_mapping"])[medal_column]
+        .sum()
+        .reset_index(name="Number of Medals")
+    )
+
+    fig = px.choropleth(
+        country_counts,
+        locations="ISO_code_mapping",
+        color="Number of Medals",
+        hover_name="Country",
+        color_continuous_scale=px.colors.sequential.Plasma,
+        title=f"{medal_type.capitalize()} Olympic Medals awarded by Host Country ({season.capitalize()})",
+        projection="natural earth",
+    )
+
+    fig.update_geos(
+        showcountries=True,
+        showland=True,
+        landcolor="lightgray",
+        countrycolor="white",
+    )
+
+    return fig
+
+
 ###########################################################
 ###                  Displayed objects                  ###
 ###########################################################
 bar_medals = create_bar_medals(df_medals_by_olympiad, "All")
 bar_medals_by_committee = create_bar_by_committee(df_olympic_medals, "All")
+map_medals = plot_olympic_medals_by_country(
+    df_olympic_cities, season="All", medal_type="All"
+)
 
 ###########################################################
 ###         Initial variables and selector lists        ###
@@ -231,9 +290,12 @@ list_olympiads = [
     "Tokyo 2020",
     "Beijing 2022",
 ]
-
+list_seasons_map = ["All", "summer", "winter"]
+list_medal_colors = ["All", "Gold", "Silver", "Bronze"]
 season = "All"
 selected_olympiad = "All"
+selected_season_map = "All"
+selected_medal_color = "All"
 
 
 ###########################################################
@@ -243,6 +305,11 @@ def on_selector(state):
     state.bar_medals = create_bar_medals(df_medals_by_olympiad, state.season)
     state.bar_medals_by_committee = create_bar_by_committee(
         df_olympic_medals, state.selected_olympiad
+    )
+    state.map_medals = plot_olympic_medals_by_country(
+        df_olympic_cities,
+        season=state.selected_season_map,
+        medal_type=state.selected_medal_color,
     )
 
 
@@ -316,6 +383,27 @@ with tgb.Page() as all_time_medals:
                 on_change=on_selector,
             )
             tgb.chart(figure="{bar_medals_by_committee}")
+        with tgb.part():
+            with tgb.layout("1 1"):
+                with tgb.part():
+                    tgb.selector(
+                        value="{selected_season_map}",
+                        lov=list_seasons_map,
+                        dropdown=True,
+                        label="Select season for map",
+                        class_name="fullwidth",
+                        on_change=on_selector,
+                    )
+                with tgb.part():
+                    tgb.selector(
+                        value="{selected_medal_color}",
+                        lov=list_medal_colors,
+                        dropdown=True,
+                        label="Select medal color",
+                        class_name="fullwidth",
+                        on_change=on_selector,
+                    )
+            tgb.chart(figure="{map_medals}")
 
     tgb.table(
         "{df_olympic_cities_simplified}",
