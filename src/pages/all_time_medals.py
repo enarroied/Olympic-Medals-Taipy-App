@@ -218,6 +218,27 @@ def plot_olympic_medals_by_country(df_olympic_cities, season, medal_type):
     return fig
 
 
+def create_sunburnst_medals(df_olympic_medals, selected_olympiad_for_sunburst):
+    gender_category_colors = {
+        "Men": "#6baed6",  # Light blue
+        "Women": "#fb6a4a",  # Light red
+        "Open": "#74c476",  # Light green
+        "Mixed": "#9e9ac8",  # Light purple
+    }
+    if selected_olympiad_for_sunburst != "All":
+        df_olympic_medals = df_olympic_medals[
+            df_olympic_medals["Olympiad"] == selected_olympiad_for_sunburst
+        ]
+    fig = px.sunburst(
+        df_olympic_medals,
+        path=["Gender", "Discipline", "Event"],
+        color="Gender",
+        color_discrete_map=gender_category_colors,
+        title=f"Total Medals by Gender, Discipline, and Event - {selected_olympiad_for_sunburst}",
+    )
+    return fig
+
+
 ###########################################################
 ###                  Displayed objects                  ###
 ###########################################################
@@ -225,6 +246,9 @@ bar_medals = create_bar_medals(df_medals_by_olympiad, "All")
 bar_medals_by_committee = create_bar_by_committee(df_olympic_medals, "All")
 map_medals = plot_olympic_medals_by_country(
     df_olympic_cities, season="All", medal_type="All"
+)
+sunburnst_medals = create_sunburnst_medals(
+    df_olympic_medals, selected_olympiad_for_sunburst="All"
 )
 
 ###########################################################
@@ -247,6 +271,7 @@ list_olympiads = [
     "Berlin 1936",
     "London 1948",
     "Helsinki 1952",
+    "Stockholm 1956",
     "Melbourne 1956",
     "Roma 1960",
     "Tokyo 1964",
@@ -260,6 +285,10 @@ list_olympiads = [
     "Atlanta 1996",
     "Sydney 2000",
     "Athina 2004",
+    "Beijing 2008",
+    "London 2012",
+    "Rio de Janeiro 2016",
+    "Tokyo 2020",
     "Chamonix 1924",
     "Sankt Moritz 1928",
     "Lake Placid 1932",
@@ -279,15 +308,10 @@ list_olympiads = [
     "Lillehammer 1994",
     "Nagano 1998",
     "Salt Lake City 2002",
-    "Stockholm 1956",
     "Torino 2006",
-    "Beijing 2008",
-    "London 2012",
     "Vancouver 2010",
     "Sochi 2014",
-    "Rio de Janeiro 2016",
     "PyeongChang 2018",
-    "Tokyo 2020",
     "Beijing 2022",
 ]
 list_seasons_map = ["All", "summer", "winter"]
@@ -296,6 +320,7 @@ season = "All"
 selected_olympiad = "All"
 selected_season_map = "All"
 selected_medal_color = "All"
+selected_olympiad_for_sunburst = "All"
 
 
 ###########################################################
@@ -311,6 +336,9 @@ def on_selector(state):
         season=state.selected_season_map,
         medal_type=state.selected_medal_color,
     )
+    state.sunburnst_medals = create_sunburnst_medals(
+        df_olympic_medals, state.selected_olympiad_for_sunburst
+    )
 
 
 ###########################################################
@@ -321,6 +349,9 @@ def on_selector(state):
 with tgb.Page() as all_time_medals:
 
     tgb.text("Olympic medals 🥇🥈🥉", class_name="h1")
+    tgb.text(
+        "This dashboard shows aggregated data for the medals that have been awarded across the Olympics, from Athens 1896 to Beijing 2022."
+    )
 
     with tgb.layout("1 1 1 1"):
         with tgb.part("card card-bg"):
@@ -404,6 +435,16 @@ with tgb.Page() as all_time_medals:
                         on_change=on_selector,
                     )
             tgb.chart(figure="{map_medals}")
+        with tgb.part():
+            tgb.selector(
+                value="{selected_olympiad_for_sunburst}",
+                lov=list_olympiads,
+                dropdown=True,
+                label="Select Olympiad",
+                class_name="fullwidth",
+                on_change=on_selector,
+            )
+            tgb.chart(figure="{sunburnst_medals}")
 
     tgb.table(
         "{df_olympic_cities_simplified}",
