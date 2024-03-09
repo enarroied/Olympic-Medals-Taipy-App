@@ -348,7 +348,7 @@ def on_selector(state):
 
 with tgb.Page() as all_time_medals:
 
-    tgb.text("Olympic medals 🥇🥈🥉", class_name="h1")
+    tgb.text("Medals awarded at all Olympic games", class_name="h2")
     tgb.text(
         "This dashboard shows aggregated data for the medals that have been awarded across the Olympics, from Athens 1896 to Beijing 2022."
     )
@@ -357,7 +357,7 @@ with tgb.Page() as all_time_medals:
         with tgb.part("card card-bg"):
             tgb.text(
                 "Total Gold Medals 🥇 ",
-                class_name="h2",
+                class_name="h3",
             )
             tgb.text(
                 "{int(df_olympic_medals[df_olympic_medals['Medal_type']=='Gold']['Medal_type'].count())}",
@@ -367,7 +367,7 @@ with tgb.Page() as all_time_medals:
         with tgb.part("card card-bg"):
             tgb.text(
                 "Total Silver Medals 🥈",
-                class_name="h2",
+                class_name="h3",
             )
             tgb.text(
                 "{int(df_olympic_medals[df_olympic_medals['Medal_type']=='Silver']['Medal_type'].count())}",
@@ -377,7 +377,7 @@ with tgb.Page() as all_time_medals:
         with tgb.part("card card-bg"):
             tgb.text(
                 "Total Bronze Medals 🥉 ",
-                class_name="h2",
+                class_name="h3",
             )
             tgb.text(
                 "{int(df_olympic_medals[df_olympic_medals['Medal_type']=='Bronze']['Medal_type'].count())}",
@@ -387,7 +387,7 @@ with tgb.Page() as all_time_medals:
         with tgb.part("card card-bg"):
             tgb.text(
                 "Total Medals 🏟",
-                class_name="h2",
+                class_name="h3",
             )
             tgb.text("{int(len(df_olympic_medals))}", class_name="h3")
 
