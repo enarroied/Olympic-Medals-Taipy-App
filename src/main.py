@@ -16,7 +16,6 @@ pages = {
     "/": root_page,
     "all_time_medals": all_time_medals,
     "medals_awarded_to_committees": committee_medals,
-    "medals_awarded_to_athletes": athlete_medals,
 }
 gui_multi_pages = Gui(pages=pages)
 
@@ -26,5 +25,5 @@ if __name__ == "__main__":
         title="Olympic medals 🥇",
         port=2452,
         dark_mode=False,
-        # stylekit=stylekit,
+        stylekit=True,
     )
