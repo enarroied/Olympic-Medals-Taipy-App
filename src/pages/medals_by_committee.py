@@ -35,6 +35,9 @@ def plot_total_medals_by_country(df_medals, committee_list, season, medal_type="
     if medal_type != "All":
         df_filtered = df_filtered[df_filtered["Medal_type"] == medal_type]
 
+    # If a selected committee is not in the DataFrame, exclude from the list
+    committee_list = list(set(df_filtered["Committee"].to_list()))
+
     # Aggregating total medals for each Olympic year
     df_totals = (
         df_filtered.groupby(["Olympic_year", "Olympiad", "Committee"])
