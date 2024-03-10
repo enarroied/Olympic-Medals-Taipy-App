@@ -62,6 +62,49 @@ def plot_total_medals_by_country(df_medals, committee_list, season, medal_type="
     return fig
 
 
+def plot_medals_grid(df_medals, committee, season):
+    # Filter DataFrame by season
+    df_filtered = df_medals[(df_medals["Olympic_season"] == season)]
+
+    # Get all possible disciplines --> Like this, all disciplines appear for all countries
+    # Important to do this after filtering by season and before filtering by committee!
+    all_disciplines = df_filtered["Discipline"].unique()
+
+    # And then only filter the DataFrame by committee
+    df_filtered = df_filtered[(df_filtered["Committee"] == committee)]
+
+    # Group by Olympiad and Discipline, then count occurrences
+    df_grouped = (
+        df_filtered.groupby(["Olympiad", "Olympic_year", "Discipline"])
+        .size()
+        .unstack(fill_value=0)
+    )
+    # Sort the index by "Olympic_year"
+    df_grouped = df_grouped.sort_index(level=1)
+    ordered_olympiads = df_grouped.index.get_level_values("Olympiad").unique()
+
+    # Add all the disciplines of the selcted season, whether the Committee won a medals or not
+    df_grouped = df_grouped.reindex(columns=all_disciplines, fill_value=0)
+
+    # Plotting the data using Plotly Express
+    fig = px.imshow(
+        df_grouped,
+        labels=dict(x="Discipline", y="Olympiad", color="Total Medals"),
+        x=df_grouped.columns,
+        y=list(ordered_olympiads),
+        color_continuous_scale="viridis",
+    )
+    fig.update_layout(
+        xaxis=dict(tickfont=dict(size=9)),  # Reduce the font size of the x-axis labels
+        yaxis=dict(tickfont=dict(size=9)),  # Reduce the font size of the y-axis labels
+        coloraxis_colorbar=dict(
+            tickfont=dict(size=9),  # Set smaller font size for color scale
+        ),
+    )
+
+    return fig
+
+
 ###########################################################
 ###         Initial variables and selector lists        ###
 ###########################################################
@@ -261,6 +304,13 @@ bronze_medals_detail = int(
     ].iloc[0]
 )
 
+summer_medal_grid = plot_medals_grid(
+    df_olympic_medals, committee=committee_detail, season="summer"
+)
+winter_medal_grid = plot_medals_grid(
+    df_olympic_medals, committee=committee_detail, season="winter"
+)
+
 
 ###########################################################
 ###                  Selector Function                  ###
@@ -298,6 +348,12 @@ def on_selector(state):
         df_grouped_medals[df_grouped_medals["Committee"] == state.committee_detail][
             "Bronze"
         ].iloc[0]
+    )
+    state.summer_medal_grid = plot_medals_grid(
+        df_olympic_medals, committee=state.committee_detail, season="summer"
+    )
+    state.winter_medal_grid = plot_medals_grid(
+        df_olympic_medals, committee=state.committee_detail, season="winter"
     )
 
 
@@ -383,3 +439,8 @@ with tgb.Page() as committee_medals:
                 "{total_medals_detail}",
                 class_name="h4",
             )
+    with tgb.layout("1 1"):
+        with tgb.part():
+            tgb.chart(figure="{summer_medal_grid}")
+        with tgb.part():
+            tgb.chart(figure="{winter_medal_grid}")
