@@ -92,7 +92,7 @@ def plot_medals_grid(df_medals, committee, season):
         labels=dict(x="Discipline", y="Olympiad", color="Total Medals"),
         x=df_grouped.columns,
         y=list(ordered_olympiads),
-        color_continuous_scale="viridis",
+        color_continuous_scale="plasma",
     )
     fig.update_layout(
         xaxis=dict(tickfont=dict(size=9)),  # Reduce the font size of the x-axis labels
@@ -316,7 +316,6 @@ winter_medal_grid = plot_medals_grid(
 ###                  Selector Function                  ###
 ###########################################################
 def on_selector(state):
-    # state.bar_medals = create_bar_medals(df_medals_by_olympiad, state.season)
     state.summer_medal_by_committee = plot_total_medals_by_country(
         df_olympic_medals,
         committee_list=state.committees,
