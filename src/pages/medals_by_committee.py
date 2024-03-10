@@ -8,6 +8,21 @@ import taipy.gui.builder as tgb
 df_olympic_cities = pd.read_csv("./src/data/olympic_cities.csv")
 df_olympic_medals = pd.read_csv("./src/data/olympic_medals.csv")
 
+###########################################################
+###             Ceate transformed DataFrames            ###
+###########################################################
+df_grouped_medals = (
+    df_olympic_medals.groupby(["Committee", "Medal_type"])
+    .size()
+    .unstack(fill_value=0)
+    .reset_index()
+)
+df_grouped_medals["Total"] = (
+    df_grouped_medals["Gold"]
+    + df_grouped_medals["Silver"]
+    + df_grouped_medals["Bronze"]
+)
+
 
 ###########################################################
 ###                      Functions                      ###
@@ -27,7 +42,6 @@ def plot_total_medals_by_country(df_medals, committee_list, season, medal_type="
         .unstack(fill_value=0)
         .reset_index()
     )
-    print(df_totals.head())
 
     fig = px.line(
         df_totals,
@@ -212,6 +226,7 @@ list_committees = [
 ]
 
 committees = ["France", "United States"]
+committee_detail = "France"
 medal_type = "All"
 
 ###########################################################
@@ -222,6 +237,28 @@ summer_medal_by_committee = plot_total_medals_by_country(
 )
 winter_medal_by_committee = plot_total_medals_by_country(
     df_olympic_medals, committee_list=committees, season="winter", medal_type=medal_type
+)
+
+# For detail cards
+total_medals_detail = int(
+    df_grouped_medals[df_grouped_medals["Committee"] == committee_detail]["Total"].iloc[
+        0
+    ]
+)
+gold_medals_detail = int(
+    df_grouped_medals[df_grouped_medals["Committee"] == committee_detail]["Gold"].iloc[
+        0
+    ]
+)
+silver_medals_detail = int(
+    df_grouped_medals[df_grouped_medals["Committee"] == committee_detail][
+        "Silver"
+    ].iloc[0]
+)
+bronze_medals_detail = int(
+    df_grouped_medals[df_grouped_medals["Committee"] == committee_detail][
+        "Bronze"
+    ].iloc[0]
 )
 
 
@@ -241,6 +278,26 @@ def on_selector(state):
         committee_list=state.committees,
         season="winter",
         medal_type=state.medal_type,
+    )
+    state.total_medals_detail = int(
+        df_grouped_medals[df_grouped_medals["Committee"] == state.committee_detail][
+            "Total"
+        ].iloc[0]
+    )
+    state.gold_medals_detail = int(
+        df_grouped_medals[df_grouped_medals["Committee"] == state.committee_detail][
+            "Gold"
+        ].iloc[0]
+    )
+    state.silver_medals_detail = int(
+        df_grouped_medals[df_grouped_medals["Committee"] == state.committee_detail][
+            "Silver"
+        ].iloc[0]
+    )
+    state.bronze_medals_detail = int(
+        df_grouped_medals[df_grouped_medals["Committee"] == state.committee_detail][
+            "Bronze"
+        ].iloc[0]
     )
 
 
@@ -279,3 +336,50 @@ with tgb.Page() as committee_medals:
             tgb.chart(figure="{summer_medal_by_committee}")
         with tgb.part():
             tgb.chart(figure="{winter_medal_by_committee}")
+
+    tgb.text("Detailed information by committee", class_name="h2")
+    with tgb.layout("1 1 1 1 1"):
+        tgb.selector(
+            value="{committee_detail}",
+            lov=list_committees,
+            dropdown=True,
+            label="Select committee for detail",
+            class_name="fullwidth",
+            on_change=on_selector,
+        )
+        with tgb.part("card"):
+            tgb.text(
+                "Gold Medals 🥇",
+                class_name="h4",
+            )
+            tgb.text(
+                "{gold_medals_detail}",
+                class_name="h4",
+            )
+        with tgb.part("card"):
+            tgb.text(
+                "Silver Medals 🥈",
+                class_name="h4",
+            )
+            tgb.text(
+                "{silver_medals_detail}",
+                class_name="h4",
+            )
+        with tgb.part("card"):
+            tgb.text(
+                "Bronze Medals 🥉",
+                class_name="h4",
+            )
+            tgb.text(
+                "{bronze_medals_detail}",
+                class_name="h4",
+            )
+        with tgb.part("card"):
+            tgb.text(
+                "Total Medals 🏟",
+                class_name="h4",
+            )
+            tgb.text(
+                "{total_medals_detail}",
+                class_name="h4",
+            )
