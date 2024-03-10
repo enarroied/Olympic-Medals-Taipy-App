@@ -375,7 +375,7 @@ with tgb.Page() as all_time_medals:
 
         with tgb.part("card card-bg"):
             tgb.text(
-                "Total Bronze Medals 🥉 ",
+                "Total Bronze Medals 🥉",
                 class_name="h3",
             )
             tgb.text(
