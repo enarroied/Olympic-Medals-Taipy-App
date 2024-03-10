@@ -2,7 +2,6 @@ import taipy.gui.builder as tgb
 from taipy.gui import Gui
 
 from pages.all_time_medals import all_time_medals
-from pages.medals_by_athlete import athlete_medals
 from pages.medals_by_committee import committee_medals
 
 ###########################################################
