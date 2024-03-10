@@ -261,7 +261,6 @@ list_olympiads = [
     "Athina 1896",
     "Paris 1900",
     "St. Louis 1904",
-    "Athina 1906",
     "London 1908",
     "Stockholm 1912",
     "Antwerpen 1920",
