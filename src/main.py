@@ -24,5 +24,4 @@ if __name__ == "__main__":
         title="Olympic medals 🥇",
         port=2452,
         dark_mode=False,
-        stylekit=True,
     )
