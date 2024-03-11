@@ -5,7 +5,6 @@ import taipy.gui.builder as tgb
 ###########################################################
 ###                    Load Datasets                    ###
 ###########################################################
-df_olympic_cities = pd.read_csv("./src/data/olympic_cities.csv")
 df_olympic_medals = pd.read_csv("./src/data/olympic_medals.csv")
 
 ###########################################################
@@ -417,7 +416,13 @@ with tgb.Page() as committee_medals:
 
     tgb.text("Medals Awarded to committees", class_name="h2")
     tgb.text(
-        "This dashboard shows aggregated data for the medals awarded to committees"
+        "This dashboard shows aggregated data for the medals awarded to committees."
+    )
+    tgb.text(
+        "Compare as many committes as you need with multiple selction. You can choose to compare all medals or just one medal color."
+    )
+    tgb.text(
+        "you can show results as total medals or as percentage of totals medals per olympic game."
     )
 
     with tgb.layout("1 1 1"):
@@ -453,7 +458,12 @@ with tgb.Page() as committee_medals:
         with tgb.part():
             tgb.chart(figure="{winter_medal_by_committee}")
 
+    ########################################################
+
     tgb.text("Detailed information by committee", class_name="h2")
+    tgb.text(
+        "Select a country to see total medals and how they distribute accross Olympics and disciplines."
+    )
     with tgb.layout("1 1 1 1 1"):
         tgb.selector(
             value="{committee_detail}",
