@@ -32,6 +32,19 @@ df_grouped_medals["Total"] = (
 def plot_total_medals_by_country(
     df_medals, committee_list, season, medal_type="All", percentage="Total medals"
 ):
+    """
+    Plot total medals won by selected committees over Olympic years (by olympic season winter/summer).
+
+    Parameters:
+    - df_medals (DataFrame): DataFrame containing medal data.
+    - committee_list (list): List of committees to plot.
+    - season (str): Olympic season: "summer" or "winter".
+    - medal_type (str): Type of medal. Default is "All".
+    - percentage (str): Type of representation. Default is "Total medals". Other option is "Percentage"
+
+    Returns:
+    - fig: Plotly figure object showing total medals by year for selected committees.
+    """
 
     df_filtered = df_medals[df_medals["Olympic_season"] == season]
     if medal_type != "All":
@@ -89,6 +102,17 @@ def plot_total_medals_by_country(
 
 
 def plot_medals_grid(df_medals, committee, season):
+    """
+    Plot medals won by a committee across different disciplines and Olympiads.
+
+    Parameters:
+    - df_medals (DataFrame): DataFrame containing medal data.
+    - committee (str): Name of the committee.
+    - season (str): Olympic season: "summer" or "winter".
+
+    Returns:
+    - fig: Plotly figure object showing medals by Olympiad and discipline for the committee.
+    """
     # Filter DataFrame by season
     df_filtered = df_medals[(df_medals["Olympic_season"] == season)]
 
@@ -112,7 +136,6 @@ def plot_medals_grid(df_medals, committee, season):
     # Add all the disciplines of the selcted season, whether the Committee won a medals or not
     df_grouped = df_grouped.reindex(columns=all_disciplines, fill_value=0)
 
-    # Plotting the data using Plotly Express
     fig = px.imshow(
         df_grouped,
         labels=dict(x="Discipline", y="Olympiad", color="Total Medals"),
@@ -121,14 +144,14 @@ def plot_medals_grid(df_medals, committee, season):
         color_continuous_scale="plasma",
         title=f"Medals by Olympiad and discipline for {committee} | {season}",
     )
+    # reduce font size:
     fig.update_layout(
-        xaxis=dict(tickfont=dict(size=9)),  # Reduce the font size of the x-axis labels
-        yaxis=dict(tickfont=dict(size=9)),  # Reduce the font size of the y-axis labels
+        xaxis=dict(tickfont=dict(size=9)),
+        yaxis=dict(tickfont=dict(size=9)),
         coloraxis_colorbar=dict(
-            tickfont=dict(size=9),  # Set smaller font size for color scale
+            tickfont=dict(size=9),
         ),
     )
-
     return fig
 
 
