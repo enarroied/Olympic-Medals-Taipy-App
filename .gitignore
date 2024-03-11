@@ -24,3 +24,6 @@ Thumbs.db
 
 # Environment configuration
 .env
+
+#zip files
+*.zip
