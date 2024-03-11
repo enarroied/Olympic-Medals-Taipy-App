@@ -96,6 +96,7 @@ def plot_medals_grid(df_medals, committee, season):
         x=df_grouped.columns,
         y=list(ordered_olympiads),
         color_continuous_scale="plasma",
+        title=f"Medals by Olympiad and discipline for {committee} | {season}",
     )
     fig.update_layout(
         xaxis=dict(tickfont=dict(size=9)),  # Reduce the font size of the x-axis labels
@@ -273,6 +274,7 @@ list_committees = [
 committees = ["France", "United States"]
 committee_detail = "France"
 medal_type = "All"
+display_percent = "Percentage"
 
 ###########################################################
 ###                  Displayed objects                  ###
@@ -356,6 +358,7 @@ def on_selector(state):
     state.winter_medal_grid = plot_medals_grid(
         df_olympic_medals, committee=state.committee_detail, season="winter"
     )
+    print(state.display_percent)
 
 
 ###########################################################
@@ -369,7 +372,8 @@ with tgb.Page() as committee_medals:
     tgb.text(
         "This dashboard shows aggregated data for the medals awarded to committees"
     )
-    with tgb.layout("1 1"):
+
+    with tgb.layout("1 1 1"):
         with tgb.part():
             tgb.selector(
                 value="{committees}",
@@ -389,6 +393,14 @@ with tgb.Page() as committee_medals:
                 class_name="fullwidth",
                 on_change=on_selector,
             )
+        with tgb.part():
+            tgb.toggle(
+                value="{display_percent}",
+                lov=["Percentage", "Total medals"],
+                on_change=on_selector,
+            )
+
+    with tgb.layout("1 1 "):
         with tgb.part():
             tgb.chart(figure="{summer_medal_by_committee}")
         with tgb.part():
