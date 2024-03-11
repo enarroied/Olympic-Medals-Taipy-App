@@ -29,11 +29,23 @@ df_grouped_medals["Total"] = (
 ###########################################################
 
 
-def plot_total_medals_by_country(df_medals, committee_list, season, medal_type="All"):
-    df_filtered = df_medals[df_medals["Committee"].isin(committee_list)]
-    df_filtered = df_filtered[df_filtered["Olympic_season"] == season]
+def plot_total_medals_by_country(
+    df_medals, committee_list, season, medal_type="All", percentage="Total medals"
+):
+
+    df_filtered = df_medals[df_medals["Olympic_season"] == season]
     if medal_type != "All":
         df_filtered = df_filtered[df_filtered["Medal_type"] == medal_type]
+
+    # use df_max to calculate percentages:
+    df_max = df_filtered.groupby(["Olympic_year", "Olympiad", "Committee"]).size()
+    df_max = (
+        df_max.groupby(level=["Olympic_year", "Olympiad"])
+        .sum()
+        .reset_index(name="Total_medals")
+    )
+
+    df_filtered = df_filtered[df_filtered["Committee"].isin(committee_list)]
 
     # If a selected committee is not in the DataFrame, exclude from the list
     committee_list = list(set(df_filtered["Committee"].to_list()))
@@ -45,13 +57,24 @@ def plot_total_medals_by_country(df_medals, committee_list, season, medal_type="
         .unstack(fill_value=0)
         .reset_index()
     )
+    df_totals = df_totals.merge(df_max, on=["Olympic_year", "Olympiad"], how="left")
+
+    if percentage == "Percentage":
+        # Calculate the percentage for each committee in each year
+        for committee in committee_list:
+            df_totals[committee] = (
+                df_totals[committee] * 100 / df_totals["Total_medals"]
+            )
+        value_label = "Percentage of Medals"
+    else:
+        value_label = "Total Medals"
 
     fig = px.line(
         df_totals,
         x="Olympic_year",
         y=committee_list,
         labels={
-            "value": "Total Medals",
+            "value": value_label,
             "variable": "Committee",
             "Olympic_year": "Year",
             "Olympiad": "Olympiad",
@@ -274,7 +297,7 @@ list_committees = [
 committees = ["France", "United States"]
 committee_detail = "France"
 medal_type = "All"
-display_percent = "Percentage"
+display_percent = "Total medals"
 
 ###########################################################
 ###                  Displayed objects                  ###
@@ -325,12 +348,14 @@ def on_selector(state):
         committee_list=state.committees,
         season="summer",
         medal_type=state.medal_type,
+        percentage=state.display_percent,
     )
     state.winter_medal_by_committee = plot_total_medals_by_country(
         df_olympic_medals,
         committee_list=state.committees,
         season="winter",
         medal_type=state.medal_type,
+        percentage=state.display_percent,
     )
     state.total_medals_detail = int(
         df_grouped_medals[df_grouped_medals["Committee"] == state.committee_detail][
@@ -358,7 +383,6 @@ def on_selector(state):
     state.winter_medal_grid = plot_medals_grid(
         df_olympic_medals, committee=state.committee_detail, season="winter"
     )
-    print(state.display_percent)
 
 
 ###########################################################
@@ -396,11 +420,11 @@ with tgb.Page() as committee_medals:
         with tgb.part():
             tgb.toggle(
                 value="{display_percent}",
-                lov=["Percentage", "Total medals"],
+                lov=["Total medals", "Percentage"],
                 on_change=on_selector,
             )
 
-    with tgb.layout("1 1 "):
+    with tgb.layout("1 1"):
         with tgb.part():
             tgb.chart(figure="{summer_medal_by_committee}")
         with tgb.part():
