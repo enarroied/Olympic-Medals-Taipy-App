@@ -2,8 +2,8 @@ Olympiad,Olympic_city,Olympic_year,Olympic_season,total_medals,total_medals_gold
 Athina 1896,Athens,1896,summer,122,43,43,36,11,10,43,Greece,Europe,GRC,37.9755648,23.7348324
 Paris 1900,Paris,1900,summer,287,96,94,97,19,22,89,France,Europe,FRA,48.8534951,2.3483915
 St. Louis 1904,St. Louis,1904,summer,280,97,92,91,8,18,94,United States,North America,USA,38.6280278,-90.1910154
-London 1908,London,1908,summer,327,111,108,108,19,24,104,United Kingdom,Europe,GBR,51.5074456,-0.1277653
-Stockholm 1912,Stockholm,1912,summer,323,108,109,106,19,19,103,Sweden,Europe,SWE,59.3251172,18.0710935
+London 1908,London,1908,summer,322,110,106,106,19,24,104,United Kingdom,Europe,GBR,51.5074456,-0.1277653
+Stockholm 1912,Stockholm,1912,summer,316,106,107,103,19,19,103,Sweden,Europe,SWE,59.3251172,18.0710935
 Antwerpen 1920,Antwerp,1920,summer,449,158,152,139,22,29,143,Belgium,Europe,BEL,51.2211097,4.3997081
 Chamonix 1924,Chamonix,1924,winter,50,17,16,17,11,10,17,France,Europe,FRA,45.9246705,6.8727506
 Paris 1924,Paris,1924,summer,392,129,132,131,31,23,121,France,Europe,FRA,48.8534951,2.3483915
@@ -36,8 +36,8 @@ Sarajevo 1984,Sarajevo,1984,winter,117,39,39,39,17,10,37,Bosnia and Herzegovina,
 Los Angeles 1984,Los Angeles,1984,summer,686,226,217,243,47,28,205,United States,North America,USA,34.0536909,-118.242766
 Seoul 1988,Seoul,1988,summer,738,240,234,264,52,30,216,South Korea,Asia,KOR,37.5666791,126.9782914
 Calgary 1988,Calgary,1988,winter,138,46,46,46,17,10,44,Canada,North America,CAN,51.0456064,-114.057541
-Albertville 1992,Albertville,1992,winter,194,66,64,64,21,12,52,France,Europe,FRA,45.6754622,6.3925417
-Barcelona 1992,Barcelona,1992,summer,924,305,295,324,65,33,232,Spain,Europe,ESP,41.3828939,2.1774322
+Albertville 1992,Albertville,1992,winter,171,57,58,56,20,12,52,France,Europe,FRA,45.6754622,6.3925417
+Barcelona 1992,Barcelona,1992,summer,812,260,257,295,64,33,232,Spain,Europe,ESP,41.3828939,2.1774322
 Lillehammer 1994,Lillehammer,1994,winter,183,61,61,61,22,12,54,Norway,Europe,NOR,61.1145451,10.4670073
 Atlanta 1996,Atlanta,1996,summer,841,271,273,297,79,36,246,United States,North America,USA,33.7489924,-84.3902644
 Nagano 1998,Nagano,1998,winter,205,69,68,68,24,14,59,Japan,Asia,JPN,36.1143945,138.0319015
