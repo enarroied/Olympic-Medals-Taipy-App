@@ -5,8 +5,8 @@ import taipy.gui.builder as tgb
 ###########################################################
 ###                    Load Datasets                    ###
 ###########################################################
-df_olympic_cities = pd.read_csv("./src/data/olympic_cities.csv")
-df_olympic_medals = pd.read_csv("./src/data/olympic_medals.csv")
+df_olympic_cities = pd.read_csv("./data/olympic_cities.csv")
+df_olympic_medals = pd.read_csv("./data/olympic_medals.csv")
 
 ###########################################################
 ###             Ceate transformed DataFrames            ###
@@ -349,7 +349,7 @@ with tgb.Page() as all_time_medals:
 
     tgb.text("Medals awarded at all Olympic games", class_name="h2")
     tgb.text(
-        "This dashboard shows aggregated data for the medals that have been awarded across the Olympics, from Athens 1896 to Beijing 2022."
+        "This dashboard displays aggregated data for the medals awarded across the Olympics, from Athens 1896 to Beijing 2022."
     )
 
     with tgb.layout("1 1 1 1"):
