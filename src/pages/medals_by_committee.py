@@ -5,7 +5,7 @@ import taipy.gui.builder as tgb
 ###########################################################
 ###                    Load Datasets                    ###
 ###########################################################
-df_olympic_medals = pd.read_csv("./src/data/olympic_medals.csv")
+df_olympic_medals = pd.read_csv("./data/olympic_medals.csv")
 
 ###########################################################
 ###             Ceate transformed DataFrames            ###
@@ -414,15 +414,15 @@ def on_selector(state):
 
 with tgb.Page() as committee_medals:
 
-    tgb.text("Medals Awarded to committees", class_name="h2")
+    tgb.text("Medals Awarded to Committees", class_name="h2")
     tgb.text(
-        "This dashboard shows aggregated data for the medals awarded to committees."
+        "This dashboard presents aggregated data for the medals awarded to committees."
     )
     tgb.text(
-        "Compare as many committes as you need with multiple selction. You can choose to compare all medals or just one medal color."
+        "Compare as many committees as needed with multiple selections. You can choose to compare all medals or just one medal color."
     )
     tgb.text(
-        "you can show results as total medals or as percentage of totals medals per olympic game."
+        "Results can be shown as total medals or as a percentage of total medals per Olympic Games."
     )
 
     with tgb.layout("1 1 1"):
