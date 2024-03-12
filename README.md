@@ -10,6 +10,9 @@ Welcome to **Olympic Medals**, a simple Taipy dashboard that shows information a
 * A tab shows aggregated data for all Olympic medals
 * A second tab focuses on medals won by Olympic committees (countries, but also special committees, such as the Refugee committee and so on)
 
+The following video presents the dashboard:
+
+![YouTube presentation video](https://www.youtube.com/watch?v=_1X7etBFTk0)
 
 **Context**: This is a demonstration application. It uses **Taipy 3.1**, released a week before writing these lines. Coding this application allowed me to compare it with previous versions of Taipy, I coded a [similar dashboard about wine production in France](https://github.com/enarroied/taipy_wine_app) using Taipy 3.0.
 
