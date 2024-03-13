@@ -3,6 +3,8 @@
 ![Python Version](https://img.shields.io/badge/Python-3.11%2B-blue.svg)
 ![Taipy Version](https://img.shields.io/badge/Taipy-3.1-blue.svg)
 
+# 🥇🥈🥉 Olympic medals
+
 ## Introduction and context
 
 Welcome to **Olympic Medals**, a simple Taipy dashboard that shows information about Olympic medals awarded from the beginning of modern Olympic games until the beginning of the year 2024 (this is, the Paris Olympics 2024 are not included). The dashboard has two tabs:
@@ -12,7 +14,7 @@ Welcome to **Olympic Medals**, a simple Taipy dashboard that shows information a
 
 The following video presents the dashboard:
 
-[![YouTube video presentation](img/YT.png)](https://www.youtube.com/watch?v=_1X7etBFTk0)
+![YouTube presentation video](https://www.youtube.com/watch?v=_1X7etBFTk0)
 
 **Context**: This is a demonstration application. It uses **Taipy 3.1**, released a week before writing these lines. Coding this application allowed me to compare it with previous versions of Taipy, I coded a [similar dashboard about wine production in France](https://github.com/enarroied/taipy_wine_app) using Taipy 3.0.
 
