@@ -752,6 +752,7 @@ London 1908,Athletics,"Hammer Throw, Men",Matt McGrath,Silver,London,1908,summer
 London 1908,Athletics,"High Jump, Men",Harry Porter,Gold,London,1908,summer,Men,USA,United States,Country
 London 1908,Athletics,"High Jump, Men",Géo André,Silver,London,1908,summer,Men,FRA,France,Country
 London 1908,Athletics,"High Jump, Men",Con Leahy,Silver,London,1908,summer,Men,GBR,Great Britain,Country
+London 1908,Athletics,"High Jump, Men",István Somodi,Silver,London,1908,summer,Men,HUN,Hungary,Country
 London 1908,Athletics,"Javelin Throw, Freestyle, Men",Arne Halse,Bronze,London,1908,summer,Men,NOR,Norway,Country
 London 1908,Athletics,"Javelin Throw, Freestyle, Men",Eric Lemming,Gold,London,1908,summer,Men,SWE,Sweden,Country
 London 1908,Athletics,"Javelin Throw, Freestyle, Men",Michail Dorizas,Silver,London,1908,summer,Men,GRE,Greece,Country
@@ -766,6 +767,7 @@ London 1908,Athletics,"Marathon, Men",Johnny Hayes,Gold,London,1908,summer,Men,U
 London 1908,Athletics,"Marathon, Men",Charles Hefferon,Silver,London,1908,summer,Men,RSA,South Africa,Country
 London 1908,Athletics,"Pole Vault, Men",Ed Archibald,Bronze,London,1908,summer,Men,CAN,Canada,Country
 London 1908,Athletics,"Pole Vault, Men",Bruno Söderström,Bronze,London,1908,summer,Men,SWE,Sweden,Country
+London 1908,Athletics,"Pole Vault, Men",Clare Jacobs,Bronze,London,1908,summer,Men,USA,United States,Country
 London 1908,Athletics,"Pole Vault, Men",A. C. Gilbert,Gold,London,1908,summer,Men,USA,United States,Country
 London 1908,Athletics,"Pole Vault, Men",Ed Cook,Gold,London,1908,summer,Men,USA,United States,Country
 London 1908,Athletics,"Shot Put, Men",Johnny Garrels,Bronze,London,1908,summer,Men,USA,United States,Country
@@ -1103,6 +1105,7 @@ Stockholm 1912,Athletics,"Pentathlon, Men",Ferdinand Bie,Silver,Stockholm,1912,s
 Stockholm 1912,Athletics,"Pentathlon, Men",Jim Donahue,Silver,Stockholm,1912,summer,Men,USA,United States,Country
 Stockholm 1912,Athletics,"Pole Vault, Men",William Halpenny,Bronze,Stockholm,1912,summer,Men,CAN,Canada,Country
 Stockholm 1912,Athletics,"Pole Vault, Men",Bertil Uggla,Bronze,Stockholm,1912,summer,Men,SWE,Sweden,Country
+Stockholm 1912,Athletics,"Pole Vault, Men",Frank Murphy,Bronze,Stockholm,1912,summer,Men,USA,United States,Country
 Stockholm 1912,Athletics,"Pole Vault, Men",Harry Babcock,Gold,Stockholm,1912,summer,Men,USA,United States,Country
 Stockholm 1912,Athletics,"Pole Vault, Men",Frank Nelson,Silver,Stockholm,1912,summer,Men,USA,United States,Country
 Stockholm 1912,Athletics,"Pole Vault, Men",Marc Wright,Silver,Stockholm,1912,summer,Men,USA,United States,Country
@@ -3355,6 +3358,7 @@ London 1948,Artistic Gymnastics,"Horizontal Bar, Men",Sepp Stalder,Gold,London,1
 London 1948,Artistic Gymnastics,"Horizontal Bar, Men",Walter Lehmann,Silver,London,1948,summer,Men,SUI,Switzerland,Country
 London 1948,Artistic Gymnastics,"Horse Vault, Men",Ferenc Pataki,Bronze,London,1948,summer,Men,HUN,Hungary,Country
 London 1948,Artistic Gymnastics,"Horse Vault, Men",János Mogyorósi-Klencs,Bronze,London,1948,summer,Men,HUN,Hungary,Country
+London 1948,Artistic Gymnastics,"Horse Vault, Men",Leo Sotorník,Bronze,London,1948,summer,Men,TCH,Czechoslovakia,Former committee
 London 1948,Artistic Gymnastics,"Horse Vault, Men",Paavo Aaltonen,Gold,London,1948,summer,Men,FIN,Finland,Country
 London 1948,Artistic Gymnastics,"Horse Vault, Men",Olavi Rove,Silver,London,1948,summer,Men,FIN,Finland,Country
 London 1948,Artistic Gymnastics,"Individual All-Around, Men",Paavo Aaltonen,Bronze,London,1948,summer,Men,FIN,Finland,Country
@@ -3366,6 +3370,7 @@ London 1948,Artistic Gymnastics,"Parallel Bars, Men",Michael Reusch,Gold,London,
 London 1948,Artistic Gymnastics,"Parallel Bars, Men",Veikko Huhtanen,Silver,London,1948,summer,Men,FIN,Finland,Country
 London 1948,Artistic Gymnastics,"Pommelled Horse, Men",Heikki Savolainen,Gold,London,1948,summer,Men,FIN,Finland,Country
 London 1948,Artistic Gymnastics,"Pommelled Horse, Men",Veikko Huhtanen,Gold,London,1948,summer,Men,FIN,Finland,Country
+London 1948,Artistic Gymnastics,"Pommelled Horse, Men",Paavo Aaltonen,Gold,London,1948,summer,Men,FIN,Finland,Country
 London 1948,Artistic Gymnastics,"Rings, Men",Zdeněk Růžička,Bronze,London,1948,summer,Men,TCH,Czechoslovakia,Former committee
 London 1948,Artistic Gymnastics,"Rings, Men",Karl Frei,Gold,London,1948,summer,Men,SUI,Switzerland,Country
 London 1948,Artistic Gymnastics,"Rings, Men",Michael Reusch,Silver,London,1948,summer,Men,SUI,Switzerland,Country
@@ -4221,6 +4226,7 @@ Melbourne 1956,Artistic Gymnastics,"Balance Beam, Women",Tamara Manina,Silver,Me
 Melbourne 1956,Artistic Gymnastics,"Floor Exercise, Men",Valentin Muratov,Gold,Melbourne,1956,summer,Men,URS,Soviet Union,Former committee
 Melbourne 1956,Artistic Gymnastics,"Floor Exercise, Men",Nobuyuki Aihara,Silver,Melbourne,1956,summer,Men,JPN,Japan,Country
 Melbourne 1956,Artistic Gymnastics,"Floor Exercise, Men",William Thoresson,Silver,Melbourne,1956,summer,Men,SWE,Sweden,Country
+Melbourne 1956,Artistic Gymnastics,"Floor Exercise, Men",Viktor Chukarin,Silver,Melbourne,1956,summer,Men,URS,Soviet Union,Former committee
 Melbourne 1956,Artistic Gymnastics,"Floor Exercise, Women",Elena Leuştean,Bronze,Melbourne,1956,summer,Women,ROU,Romania,Country
 Melbourne 1956,Artistic Gymnastics,"Floor Exercise, Women",Ágnes Keleti,Gold,Melbourne,1956,summer,Women,HUN,Hungary,Country
 Melbourne 1956,Artistic Gymnastics,"Floor Exercise, Women",Larisa Latynina,Gold,Melbourne,1956,summer,Women,URS,Soviet Union,Former committee
@@ -5165,6 +5171,7 @@ Tokyo 1964,Artistic Gymnastics,"Horse Vault, Women",Larisa Latynina,Silver,Tokyo
 Tokyo 1964,Artistic Gymnastics,"Individual All-Around, Men",Yukio Endo,Gold,Tokyo,1964,summer,Men,JPN,Japan,Country
 Tokyo 1964,Artistic Gymnastics,"Individual All-Around, Men",Shuji Tsurumi,Silver,Tokyo,1964,summer,Men,JPN,Japan,Country
 Tokyo 1964,Artistic Gymnastics,"Individual All-Around, Men",Viktor Lisitsky,Silver,Tokyo,1964,summer,Men,URS,Soviet Union,Former committee
+Tokyo 1964,Artistic Gymnastics,"Individual All-Around, Men",Boris Shakhlin,Silver,Tokyo,1964,summer,Men,URS,Soviet Union,Former committee
 Tokyo 1964,Artistic Gymnastics,"Individual All-Around, Women",Polina Astakhova,Bronze,Tokyo,1964,summer,Women,URS,Soviet Union,Former committee
 Tokyo 1964,Artistic Gymnastics,"Individual All-Around, Women",Věra Čáslavská,Gold,Tokyo,1964,summer,Women,TCH,Czechoslovakia,Former committee
 Tokyo 1964,Artistic Gymnastics,"Individual All-Around, Women",Larisa Latynina,Silver,Tokyo,1964,summer,Women,URS,Soviet Union,Former committee
@@ -7435,6 +7442,7 @@ Moskva 1980,Artistic Gymnastics,"Team All-Around, Women",Soviet Union,Gold,Mosco
 Moskva 1980,Artistic Gymnastics,"Team All-Around, Women",Romania,Silver,Moscow,1980,summer,Women,ROU,Romania,Country
 Moskva 1980,Artistic Gymnastics,"Uneven Bars, Women",Steffi Kräker,Bronze,Moscow,1980,summer,Women,GDR,East Germany,Former committee
 Moskva 1980,Artistic Gymnastics,"Uneven Bars, Women",Melita Ruhn,Bronze,Moscow,1980,summer,Women,ROU,Romania,Country
+Moskva 1980,Artistic Gymnastics,"Uneven Bars, Women",Mariya Filatova,Bronze,Moscow,1980,summer,Women,URS,Soviet Union,Former committee
 Moskva 1980,Artistic Gymnastics,"Uneven Bars, Women",Maxi Gnauck,Gold,Moscow,1980,summer,Women,GDR,East Germany,Former committee
 Moskva 1980,Artistic Gymnastics,"Uneven Bars, Women",Emilia Eberle,Silver,Moscow,1980,summer,Women,ROU,Romania,Country
 Moskva 1980,Athletics,"1,500 metres, Men",Steve Ovett,Bronze,Moscow,1980,summer,Men,GBR,Great Britain,Country
@@ -8039,6 +8047,8 @@ Los Angeles 1984,Artistic Gymnastics,"Horizontal Bar, Men",Tong Fei,Silver,Los A
 Los Angeles 1984,Artistic Gymnastics,"Horse Vault, Men",Lou Yun,Gold,Los Angeles,1984,summer,Men,CHN,China,Country
 Los Angeles 1984,Artistic Gymnastics,"Horse Vault, Men",Li Ning,Silver,Los Angeles,1984,summer,Men,CHN,China,Country
 Los Angeles 1984,Artistic Gymnastics,"Horse Vault, Men",Koji Gushiken,Silver,Los Angeles,1984,summer,Men,JPN,Japan,Country
+Los Angeles 1984,Artistic Gymnastics,"Horse Vault, Men",Shinji Morisue,Silver,Los Angeles,1984,summer,Men,JPN,Japan,Country
+Los Angeles 1984,Artistic Gymnastics,"Horse Vault, Men",Mitch Gaylord,Silver,Los Angeles,1984,summer,Men,USA,United States,Country
 Los Angeles 1984,Artistic Gymnastics,"Horse Vault, Women",Lavinia Agache,Bronze,Los Angeles,1984,summer,Women,ROU,Romania,Country
 Los Angeles 1984,Artistic Gymnastics,"Horse Vault, Women",Ecaterina Szabo,Gold,Los Angeles,1984,summer,Women,ROU,Romania,Country
 Los Angeles 1984,Artistic Gymnastics,"Horse Vault, Women",Mary Lou Retton,Silver,Los Angeles,1984,summer,Women,USA,United States,Country
@@ -8747,6 +8757,7 @@ Seoul 1988,Artistic Gymnastics,"Parallel Bars, Men",Vladimir Artyomov,Gold,Seoul
 Seoul 1988,Artistic Gymnastics,"Parallel Bars, Men",Valery Lyukin,Silver,Seoul,1988,summer,Men,URS,Soviet Union,Former committee
 Seoul 1988,Artistic Gymnastics,"Pommelled Horse, Men",Lyubomir Geraskov,Gold,Seoul,1988,summer,Men,BUL,Bulgaria,Country
 Seoul 1988,Artistic Gymnastics,"Pommelled Horse, Men",Zsolt Borkai,Gold,Seoul,1988,summer,Men,HUN,Hungary,Country
+Seoul 1988,Artistic Gymnastics,"Pommelled Horse, Men",Dmitry Bilozerchev,Gold,Seoul,1988,summer,Men,URS,Soviet Union,Former committee
 Seoul 1988,Artistic Gymnastics,"Rings, Men",Sven Tippelt,Bronze,Seoul,1988,summer,Men,GDR,East Germany,Former committee
 Seoul 1988,Artistic Gymnastics,"Rings, Men",Holger Behrendt,Gold,Seoul,1988,summer,Men,GDR,East Germany,Former committee
 Seoul 1988,Artistic Gymnastics,"Rings, Men",Dmitry Bilozerchev,Gold,Seoul,1988,summer,Men,URS,Soviet Union,Former committee
@@ -9461,6 +9472,7 @@ Barcelona 1992,Artistic Gymnastics,"Floor Exercise, Men",Hryhoriy Misiutin,Silve
 Barcelona 1992,Artistic Gymnastics,"Floor Exercise, Men",Yukio Iketani,Silver,Barcelona,1992,summer,Men,JPN,Japan,Country
 Barcelona 1992,Artistic Gymnastics,"Floor Exercise, Women",Tatyana Gutsu,Bronze,Barcelona,1992,summer,Women,EUN,Unified Team,Former committee
 Barcelona 1992,Artistic Gymnastics,"Floor Exercise, Women",Cristina Bontaș,Bronze,Barcelona,1992,summer,Women,ROU,Romania,Country
+Barcelona 1992,Artistic Gymnastics,"Floor Exercise, Women",Shannon Miller,Bronze,Barcelona,1992,summer,Women,USA,United States,Country
 Barcelona 1992,Artistic Gymnastics,"Floor Exercise, Women",Lavinia Miloșovici,Gold,Barcelona,1992,summer,Women,ROU,Romania,Country
 Barcelona 1992,Artistic Gymnastics,"Floor Exercise, Women",Henrietta Ónodi,Silver,Barcelona,1992,summer,Women,HUN,Hungary,Country
 Barcelona 1992,Artistic Gymnastics,"Horizontal Bar, Men",Trent Dimas,Gold,Barcelona,1992,summer,Men,USA,United States,Country
@@ -9480,6 +9492,7 @@ Barcelona 1992,Artistic Gymnastics,"Individual All-Around, Women",Tatyana Gutsu,
 Barcelona 1992,Artistic Gymnastics,"Individual All-Around, Women",Shannon Miller,Silver,Barcelona,1992,summer,Women,USA,United States,Country
 Barcelona 1992,Artistic Gymnastics,"Parallel Bars, Men",Guo Linyao,Bronze,Barcelona,1992,summer,Men,CHN,China,Country
 Barcelona 1992,Artistic Gymnastics,"Parallel Bars, Men",Ihor Korobchinskyi,Bronze,Barcelona,1992,summer,Men,EUN,Unified Team,Former committee
+Barcelona 1992,Artistic Gymnastics,"Parallel Bars, Men",Masayuki Matsunaga,Bronze,Barcelona,1992,summer,Men,JPN,Japan,Country
 Barcelona 1992,Artistic Gymnastics,"Parallel Bars, Men",Vitali Shcherba,Gold,Barcelona,1992,summer,Men,EUN,Unified Team,Former committee
 Barcelona 1992,Artistic Gymnastics,"Parallel Bars, Men",Li Jing,Silver,Barcelona,1992,summer,Men,CHN,China,Country
 Barcelona 1992,Artistic Gymnastics,"Pommelled Horse, Men",Andreas Wecker,Bronze,Barcelona,1992,summer,Men,GER,Germany,Country
@@ -9599,6 +9612,7 @@ Barcelona 1992,Athletics,"Heptathlon, Women",Jackie Joyner-Kersee,Gold,Barcelona
 Barcelona 1992,Athletics,"Heptathlon, Women",Irina Belova,Silver,Barcelona,1992,summer,Women,EUN,Unified Team,Former committee
 Barcelona 1992,Athletics,"High Jump, Men",Tim Forsyth,Bronze,Barcelona,1992,summer,Men,AUS,Australia,Country
 Barcelona 1992,Athletics,"High Jump, Men",Artur Partyka,Bronze,Barcelona,1992,summer,Men,POL,Poland,Country
+Barcelona 1992,Athletics,"High Jump, Men",Hollis Conway,Bronze,Barcelona,1992,summer,Men,USA,United States,Country
 Barcelona 1992,Athletics,"High Jump, Men",Javier Sotomayor,Gold,Barcelona,1992,summer,Men,CUB,Cuba,Country
 Barcelona 1992,Athletics,"High Jump, Men",Patrik Sjöberg,Silver,Barcelona,1992,summer,Men,SWE,Sweden,Country
 Barcelona 1992,Athletics,"High Jump, Women",Ioamnet Quintero,Bronze,Barcelona,1992,summer,Women,CUB,Cuba,Country
@@ -10276,6 +10290,7 @@ Atlanta 1996,Artistic Gymnastics,"Floor Exercise, Women",Liliya Podkopaieva,Gold
 Atlanta 1996,Artistic Gymnastics,"Floor Exercise, Women",Simona Amânar,Silver,Atlanta,1996,summer,Women,ROU,Romania,Country
 Atlanta 1996,Artistic Gymnastics,"Horizontal Bar, Men",Vitali Shcherba,Bronze,Atlanta,1996,summer,Men,BLR,Belarus,Country
 Atlanta 1996,Artistic Gymnastics,"Horizontal Bar, Men",Fan Bin,Bronze,Atlanta,1996,summer,Men,CHN,China,Country
+Atlanta 1996,Artistic Gymnastics,"Horizontal Bar, Men",Aleksey Nemov,Bronze,Atlanta,1996,summer,Men,RUS,Russia,Country
 Atlanta 1996,Artistic Gymnastics,"Horizontal Bar, Men",Andreas Wecker,Gold,Atlanta,1996,summer,Men,GER,Germany,Country
 Atlanta 1996,Artistic Gymnastics,"Horizontal Bar, Men",Krasimir Dunev,Silver,Atlanta,1996,summer,Men,BUL,Bulgaria,Country
 Atlanta 1996,Artistic Gymnastics,"Horse Vault, Men",Vitali Shcherba,Bronze,Atlanta,1996,summer,Men,BLR,Belarus,Country
@@ -14067,6 +14082,7 @@ London 2012,Athletics,"Heptathlon, Women",Lilli Schwarzkopf,Silver,London,2012,s
 London 2012,Athletics,"High Jump, Men",Erik Kynard,Gold,London,2012,summer,Men,USA,United States,Country
 London 2012,Athletics,"High Jump, Men",Derek Drouin,Silver,London,2012,summer,Men,CAN,Canada,Country
 London 2012,Athletics,"High Jump, Men",Robbie Grabarz,Silver,London,2012,summer,Men,GBR,Great Britain,Country
+London 2012,Athletics,"High Jump, Men",Mutaz Essa Barshim,Silver,London,2012,summer,Men,QAT,Qatar,Country
 London 2012,Athletics,"High Jump, Women",Ruth Beitía,Bronze,London,2012,summer,Women,ESP,Spain,Country
 London 2012,Athletics,"High Jump, Women",Anna Chicherova,Gold,London,2012,summer,Women,RUS,Russia,Country
 London 2012,Athletics,"High Jump, Women",Brigetta Barrett,Silver,London,2012,summer,Women,USA,United States,Country
@@ -15558,6 +15574,7 @@ Rio de Janeiro 2016,Swimming,"100 metres Breaststroke, Women",Yuliya Yefimova,Si
 Rio de Janeiro 2016,Swimming,"100 metres Butterfly, Men",Joseph Schooling,Gold,Rio de Janeiro,2016,summer,Men,SGP,Singapore,Country
 Rio de Janeiro 2016,Swimming,"100 metres Butterfly, Men","László Cseh, Jr.",Silver,Rio de Janeiro,2016,summer,Men,HUN,Hungary,Country
 Rio de Janeiro 2016,Swimming,"100 metres Butterfly, Men",Chad le Clos,Silver,Rio de Janeiro,2016,summer,Men,RSA,South Africa,Country
+Rio de Janeiro 2016,Swimming,"100 metres Butterfly, Men",Michael Phelps,Silver,Rio de Janeiro,2016,summer,Men,USA,United States,Country
 Rio de Janeiro 2016,Swimming,"100 metres Butterfly, Women",Dana Vollmer,Bronze,Rio de Janeiro,2016,summer,Women,USA,United States,Country
 Rio de Janeiro 2016,Swimming,"100 metres Butterfly, Women",Sarah Sjöström,Gold,Rio de Janeiro,2016,summer,Women,SWE,Sweden,Country
 Rio de Janeiro 2016,Swimming,"100 metres Butterfly, Women",Penny Oleksiak,Silver,Rio de Janeiro,2016,summer,Women,CAN,Canada,Country
@@ -17003,6 +17020,7 @@ Sankt Moritz 1928,Speed Skating,"5,000 metres, Men",Ivar Ballangrud,Gold,St. Mor
 Sankt Moritz 1928,Speed Skating,"5,000 metres, Men",Julius Skutnabb,Silver,St. Moritz,1928,winter,Men,FIN,Finland,Country
 Sankt Moritz 1928,Speed Skating,"500 metres, Men",Jaakko Friman,Bronze,St. Moritz,1928,winter,Men,FIN,Finland,Country
 Sankt Moritz 1928,Speed Skating,"500 metres, Men",Roald Larsen,Bronze,St. Moritz,1928,winter,Men,NOR,Norway,Country
+Sankt Moritz 1928,Speed Skating,"500 metres, Men",John O'Neil Farrell,Bronze,St. Moritz,1928,winter,Men,USA,United States,Country
 Sankt Moritz 1928,Speed Skating,"500 metres, Men",Clas Thunberg,Gold,St. Moritz,1928,winter,Men,FIN,Finland,Country
 Sankt Moritz 1928,Speed Skating,"500 metres, Men",Bernt Evensen,Gold,St. Moritz,1928,winter,Men,NOR,Norway,Country
 Lake Placid 1932,Bobsleigh,"Four, Men",Germany 1,Bronze,Lake Placid,1932,winter,Men,GER,Germany,Country
@@ -17165,6 +17183,7 @@ Sankt Moritz 1948,Speed Skating,"5,000 metres, Men",Odd Lundberg,Silver,St. Mori
 Sankt Moritz 1948,Speed Skating,"500 metres, Men",Finn Helgesen,Gold,St. Moritz,1948,winter,Men,NOR,Norway,Country
 Sankt Moritz 1948,Speed Skating,"500 metres, Men",Thomas Byberg,Silver,St. Moritz,1948,winter,Men,NOR,Norway,Country
 Sankt Moritz 1948,Speed Skating,"500 metres, Men",Ken Bartholomew,Silver,St. Moritz,1948,winter,Men,USA,United States,Country
+Sankt Moritz 1948,Speed Skating,"500 metres, Men",Bobby Fitzgerald,Silver,St. Moritz,1948,winter,Men,USA,United States,Country
 Oslo 1952,Alpine Skiing,"Downhill, Men",Christian Pravda,Bronze,Oslo,1952,winter,Men,AUT,Austria,Country
 Oslo 1952,Alpine Skiing,"Downhill, Men",Zeno Colò,Gold,Oslo,1952,winter,Men,ITA,Italy,Country
 Oslo 1952,Alpine Skiing,"Downhill, Men",Othmar Schneider,Silver,Oslo,1952,winter,Men,AUT,Austria,Country
@@ -17485,6 +17504,7 @@ Innsbruck 1964,Speed Skating,"5,000 metres, Men",Per Ivar Moe,Silver,Innsbruck,1
 Innsbruck 1964,Speed Skating,"500 metres, Men",Terry McDermott,Gold,Innsbruck,1964,winter,Men,USA,United States,Country
 Innsbruck 1964,Speed Skating,"500 metres, Men",Alv Gjestvang,Silver,Innsbruck,1964,winter,Men,NOR,Norway,Country
 Innsbruck 1964,Speed Skating,"500 metres, Men",Yevgeny Grishin,Silver,Innsbruck,1964,winter,Men,URS,Soviet Union,Former committee
+Innsbruck 1964,Speed Skating,"500 metres, Men",Vladimir Orlov,Silver,Innsbruck,1964,winter,Men,URS,Soviet Union,Former committee
 Innsbruck 1964,Speed Skating,"500 metres, Women",Tatyana Sidorova,Bronze,Innsbruck,1964,winter,Women,URS,Soviet Union,Former committee
 Innsbruck 1964,Speed Skating,"500 metres, Women",Lidiya Skoblikova,Gold,Innsbruck,1964,winter,Women,URS,Soviet Union,Former committee
 Innsbruck 1964,Speed Skating,"500 metres, Women",Irina Yegorova,Silver,Innsbruck,1964,winter,Women,URS,Soviet Union,Former committee
@@ -17593,6 +17613,7 @@ Grenoble 1968,Speed Skating,"500 metres, Men",Terry McDermott,Silver,Grenoble,19
 Grenoble 1968,Speed Skating,"500 metres, Women",Lyudmila Titova,Gold,Grenoble,1968,winter,Women,URS,Soviet Union,Former committee
 Grenoble 1968,Speed Skating,"500 metres, Women",Jenny Fish,Silver,Grenoble,1968,winter,Women,USA,United States,Country
 Grenoble 1968,Speed Skating,"500 metres, Women",Dianne Holum,Silver,Grenoble,1968,winter,Women,USA,United States,Country
+Grenoble 1968,Speed Skating,"500 metres, Women",Mary Meyers,Silver,Grenoble,1968,winter,Women,USA,United States,Country
 Sapporo 1972,Alpine Skiing,"Downhill, Men",Heini Messner,Bronze,Sapporo,1972,winter,Men,AUT,Austria,Country
 Sapporo 1972,Alpine Skiing,"Downhill, Men",Bernhard Russi,Gold,Sapporo,1972,winter,Men,SUI,Switzerland,Country
 Sapporo 1972,Alpine Skiing,"Downhill, Men",Roland Collombin,Silver,Sapporo,1972,winter,Men,SUI,Switzerland,Country
