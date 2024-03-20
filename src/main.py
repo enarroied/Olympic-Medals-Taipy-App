@@ -8,7 +8,7 @@ from pages.medals_by_committee import committee_medals
 ###                       Run App                       ###
 ###########################################################
 with tgb.Page() as root_page:
-    tgb.text("Olympic medals 🥇🥈🥉", class_name="h1")
+    tgb.text("# Olympic medals 🥇🥈🥉", mode="md")
     tgb.navbar()
 
 pages = {

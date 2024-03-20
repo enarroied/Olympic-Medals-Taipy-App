@@ -347,7 +347,7 @@ def on_selector(state):
 
 with tgb.Page() as all_time_medals:
 
-    tgb.text("Medals awarded at all Olympic games", class_name="h2")
+    tgb.text("## Medals awarded at all Olympic games", mode="md")
     tgb.text(
         "This dashboard displays aggregated data for the medals awarded across the Olympics, from Athens 1896 to Beijing 2022."
     )
@@ -355,40 +355,43 @@ with tgb.Page() as all_time_medals:
     with tgb.layout("1 1 1 1"):
         with tgb.part("card card-bg"):
             tgb.text(
-                "Total Gold Medals 🥇 ",
-                class_name="h3",
+                "#### Total Gold Medals 🥇 ",
+                mode="md",
             )
             tgb.text(
-                "{int(df_olympic_medals[df_olympic_medals['Medal_type']=='Gold']['Medal_type'].count())}",
-                class_name="h3",
+                "#### {int(df_olympic_medals[df_olympic_medals['Medal_type']=='Gold']['Medal_type'].count())}",
+                mode="md",
             )
 
         with tgb.part("card card-bg"):
             tgb.text(
-                "Total Silver Medals 🥈",
-                class_name="h3",
+                "#### Total Silver Medals 🥈",
+                mode="md",
             )
             tgb.text(
-                "{int(df_olympic_medals[df_olympic_medals['Medal_type']=='Silver']['Medal_type'].count())}",
-                class_name="h3",
+                "#### {int(df_olympic_medals[df_olympic_medals['Medal_type']=='Silver']['Medal_type'].count())}",
+                mode="md",
             )
 
         with tgb.part("card card-bg"):
             tgb.text(
-                "Total Bronze Medals 🥉",
-                class_name="h3",
+                "#### Total Bronze Medals 🥉",
+                mode="md",
             )
             tgb.text(
-                "{int(df_olympic_medals[df_olympic_medals['Medal_type']=='Bronze']['Medal_type'].count())}",
-                class_name="h3",
+                "#### {int(df_olympic_medals[df_olympic_medals['Medal_type']=='Bronze']['Medal_type'].count())}",
+                mode="md",
             )
 
         with tgb.part("card card-bg"):
             tgb.text(
-                "Total Medals 🏟",
-                class_name="h3",
+                "#### Total Medals 🏟",
+                mode="md",
             )
-            tgb.text("{int(len(df_olympic_medals))}", class_name="h3")
+            tgb.text(
+                "#### {int(len(df_olympic_medals))}",
+                mode="md",
+            )
 
     # Bar chart of all medals:
     with tgb.layout("1 1"):

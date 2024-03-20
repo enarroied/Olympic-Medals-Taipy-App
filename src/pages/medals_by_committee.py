@@ -414,7 +414,7 @@ def on_selector(state):
 
 with tgb.Page() as committee_medals:
 
-    tgb.text("Medals Awarded to Committees", class_name="h2")
+    tgb.text("## Medals Awarded to Committees", mode="md")
     tgb.text(
         "This dashboard presents aggregated data for the medals awarded to committees."
     )
@@ -475,39 +475,39 @@ with tgb.Page() as committee_medals:
         )
         with tgb.part("card"):
             tgb.text(
-                "Gold Medals 🥇",
-                class_name="h4",
+                "#### Gold Medals 🥇",
+                mode="md",
             )
             tgb.text(
-                "{gold_medals_detail}",
-                class_name="h4",
-            )
-        with tgb.part("card"):
-            tgb.text(
-                "Silver Medals 🥈",
-                class_name="h4",
-            )
-            tgb.text(
-                "{silver_medals_detail}",
-                class_name="h4",
+                "#### {gold_medals_detail}",
+                mode="md",
             )
         with tgb.part("card"):
             tgb.text(
-                "Bronze Medals 🥉",
-                class_name="h4",
+                "#### Silver Medals 🥈",
+                mode="md",
             )
             tgb.text(
-                "{bronze_medals_detail}",
-                class_name="h4",
+                "#### {silver_medals_detail}",
+                mode="md",
             )
         with tgb.part("card"):
             tgb.text(
-                "Total Medals 🏟",
-                class_name="h4",
+                "#### Bronze Medals 🥉",
+                mode="md",
             )
             tgb.text(
-                "{total_medals_detail}",
-                class_name="h4",
+                "#### {bronze_medals_detail}",
+                mode="md",
+            )
+        with tgb.part("card"):
+            tgb.text(
+                "#### Total Medals 🏟",
+                mode="md",
+            )
+            tgb.text(
+                "#### {total_medals_detail}",
+                mode="md",
             )
     with tgb.layout("1 1"):
         with tgb.part():
