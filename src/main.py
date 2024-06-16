@@ -25,3 +25,6 @@ if __name__ == "__main__":
         port=2452,
         dark_mode=False,
     )
+
+# gui_multi_pages.run(run_server=False, title="Olympic medals 🥇")
+# flask_app = gui_multi_pages.get_flask_app()
