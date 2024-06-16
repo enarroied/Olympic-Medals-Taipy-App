@@ -49,40 +49,55 @@ def plot_total_medals_by_country(
     if medal_type != "All":
         df_filtered = df_filtered[df_filtered["Medal_type"] == medal_type]
 
-    # use df_max to calculate percentages:
-    df_max = df_filtered.groupby(["Olympic_year", "Olympiad", "Committee"]).size()
-    df_max = (
-        df_max.groupby(level=["Olympic_year", "Olympiad"])
-        .sum()
-        .reset_index(name="Total_medals")
+    # Quick fix: Replace "Stockholm 1956" with "Melbourne 1956"
+    df_filtered.loc[df_filtered["Olympiad"] == "Stockholm 1956", "Olympiad"] = (
+        "Melbourne 1956"
     )
 
-    df_filtered = df_filtered[df_filtered["Committee"].isin(committee_list)]
+    # Create a complete grid of all years, Olympiads, and committees for merging
+    years_olympiads = df_filtered[["Olympic_year", "Olympiad"]].drop_duplicates()
+    committees = pd.DataFrame({"Committee": committee_list})
 
-    # If a selected committee is not in the DataFrame, exclude from the list
-    committee_list = list(set(df_filtered["Committee"].to_list()))
+    # Cartesian product of years/olympiads and committees
+    full_grid = years_olympiads.merge(committees, how="cross")
 
-    # Aggregating total medals for each Olympic year
     df_totals = (
         df_filtered.groupby(["Olympic_year", "Olympiad", "Committee"])
         .size()
-        .unstack(fill_value=0)
-        .reset_index()
+        .reset_index(name="Medal_count")
     )
-    df_totals = df_totals.merge(df_max, on=["Olympic_year", "Olympiad"], how="left")
+
+    df_totals = full_grid.merge(
+        df_totals, on=["Olympic_year", "Olympiad", "Committee"], how="left"
+    ).fillna({"Medal_count": 0})
+
+    # Pivot to have committees as columns
+    df_pivot = df_totals.pivot_table(
+        index=["Olympic_year", "Olympiad"],
+        columns="Committee",
+        values="Medal_count",
+        fill_value=0,
+    ).reset_index()
+
+    df_totals_max = (
+        df_pivot.set_index(["Olympic_year", "Olympiad"])
+        .sum(axis=1)
+        .reset_index(name="Total_medals")
+    )
 
     if percentage == "Percentage":
-        # Calculate the percentage for each committee in each year
+        df_pivot = df_pivot.merge(df_totals_max, on=["Olympic_year", "Olympiad"])
         for committee in committee_list:
-            df_totals[committee] = (
-                df_totals[committee] * 100 / df_totals["Total_medals"]
-            )
+            df_pivot[committee] = (
+                df_pivot[committee] * 100 / df_pivot["Total_medals"]
+            ).fillna(0)
         value_label = "Percentage of Medals"
+        df_pivot = df_pivot.drop(columns=["Total_medals"])
     else:
         value_label = "Total Medals"
 
     fig = px.line(
-        df_totals,
+        df_pivot,
         x="Olympic_year",
         y=committee_list,
         labels={
@@ -91,7 +106,7 @@ def plot_total_medals_by_country(
             "Olympic_year": "Year",
             "Olympiad": "Olympiad",
         },
-        title=f"{medal_type} Medals for Selected committees by Olympic Year | {season}",
+        title=f"{medal_type} Medals for Selected Committees by Olympic Year | {season}",
         hover_data={"Olympiad": True},
     )
 
