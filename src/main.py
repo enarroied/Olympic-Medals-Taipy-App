@@ -8,7 +8,10 @@ from pages.medals_by_committee import committee_medals
 ###                       Run App                       ###
 ###########################################################
 with tgb.Page() as root_page:
-    tgb.text("# Olympic medals 🥇🥈🥉", mode="md")
+    with tgb.layout("1 1"):
+        tgb.text("# Olympic medals 🥇🥈🥉", mode="md")
+        with tgb.part():
+            tgb.image("../img/jo.jpeg", width="100px", label="Enjoy Paris 2024!")
     tgb.navbar()
 
 pages = {
