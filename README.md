@@ -18,6 +18,10 @@ The following video presents the dashboard:
 
 **Context**: This is a demonstration application. It uses **Taipy 3.1**, released a week before writing these lines. Coding this application allowed me to compare it with previous versions of Taipy, I coded a [similar dashboard about wine production in France](https://github.com/enarroied/taipy_wine_app) using Taipy 3.0.
 
+I chose the create a dashboard about the olympic games because 2024 is an Olympic year in Paris, and I live in France:
+
+![](img/jo.jpeg)
+
 The main change of Taipy 3.1 is the way you apply the GUI elements. They replaced their unique Markdown syntax by a more pythonic system that relies on functions. This is what I wanted to test. This project does **not** use Taipy Core.
 
 
