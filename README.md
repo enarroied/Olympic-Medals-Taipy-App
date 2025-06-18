@@ -5,6 +5,12 @@
 
 # 🥇🥈🥉 Olympic medals
 
+## Important Note
+
+I wrote a Medium article about [how to build this app using Taipy 3.1](https://medium.com/gitconnected/discover-taipys-3-1-application-builder-5b8333f2c184).
+
+Since I want to update the app, make it more efficient, and test it with further versions of Taipy, I'll freeze this version in a dedicated branch.
+
 ## Introduction and context
 
 Welcome to **Olympic Medals**, a simple Taipy dashboard that shows information about Olympic medals awarded from the beginning of modern Olympic games until the beginning of the year 2024 (this is, the Paris Olympics 2024 are not included). The dashboard has two tabs:
