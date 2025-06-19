@@ -235,46 +235,47 @@ winter_medal_grid = plot_medals_grid(
 ###                  Selector Function                  ###
 ###########################################################
 def on_selector(state):
-    state.summer_medal_by_committee = plot_total_medals_by_country(
-        df_olympic_medals,
-        committee_list=state.committees,
-        season="summer",
-        medal_type=state.medal_type,
-        percentage=state.display_percent,
-    )
-    state.winter_medal_by_committee = plot_total_medals_by_country(
-        df_olympic_medals,
-        committee_list=state.committees,
-        season="winter",
-        medal_type=state.medal_type,
-        percentage=state.display_percent,
-    )
-    state.total_medals_detail = int(
-        df_grouped_medals[df_grouped_medals["Committee"] == state.committee_detail][
-            "Total"
-        ].iloc[0]
-    )
-    state.gold_medals_detail = int(
-        df_grouped_medals[df_grouped_medals["Committee"] == state.committee_detail][
-            "Gold"
-        ].iloc[0]
-    )
-    state.silver_medals_detail = int(
-        df_grouped_medals[df_grouped_medals["Committee"] == state.committee_detail][
-            "Silver"
-        ].iloc[0]
-    )
-    state.bronze_medals_detail = int(
-        df_grouped_medals[df_grouped_medals["Committee"] == state.committee_detail][
-            "Bronze"
-        ].iloc[0]
-    )
-    state.summer_medal_grid = plot_medals_grid(
-        df_olympic_medals, committee=state.committee_detail, season="summer"
-    )
-    state.winter_medal_grid = plot_medals_grid(
-        df_olympic_medals, committee=state.committee_detail, season="winter"
-    )
+    with state as s:
+        s.summer_medal_by_committee = plot_total_medals_by_country(
+            df_olympic_medals,
+            committee_list=s.committees,
+            season="summer",
+            medal_type=s.medal_type,
+            percentage=s.display_percent,
+        )
+        s.winter_medal_by_committee = plot_total_medals_by_country(
+            df_olympic_medals,
+            committee_list=s.committees,
+            season="winter",
+            medal_type=s.medal_type,
+            percentage=s.display_percent,
+        )
+        s.total_medals_detail = int(
+            df_grouped_medals[df_grouped_medals["Committee"] == s.committee_detail][
+                "Total"
+            ].iloc[0]
+        )
+        s.gold_medals_detail = int(
+            df_grouped_medals[df_grouped_medals["Committee"] == s.committee_detail][
+                "Gold"
+            ].iloc[0]
+        )
+        s.silver_medals_detail = int(
+            df_grouped_medals[df_grouped_medals["Committee"] == s.committee_detail][
+                "Silver"
+            ].iloc[0]
+        )
+        s.bronze_medals_detail = int(
+            df_grouped_medals[df_grouped_medals["Committee"] == s.committee_detail][
+                "Bronze"
+            ].iloc[0]
+        )
+        s.summer_medal_grid = plot_medals_grid(
+            df_olympic_medals, committee=state.committee_detail, season="summer"
+        )
+        s.winter_medal_grid = plot_medals_grid(
+            df_olympic_medals, committee=state.committee_detail, season="winter"
+        )
 
 
 ###########################################################

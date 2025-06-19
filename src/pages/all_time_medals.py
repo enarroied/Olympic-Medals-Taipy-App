@@ -146,18 +146,19 @@ selected_olympiad_for_sunburst = "All"
 ###                  Selector Function                  ###
 ###########################################################
 def on_selector(state):
-    state.bar_medals = create_bar_medals(df_medals_by_olympiad, state.season)
-    state.bar_medals_by_committee = create_bar_by_committee(
-        df_olympic_medals, state.selected_olympiad
-    )
-    state.map_medals = plot_olympic_medals_by_country(
-        df_olympic_cities,
-        season=state.selected_season_map,
-        medal_type=state.selected_medal_color,
-    )
-    state.sunburnst_medals = create_sunburnst_medals(
-        df_olympic_medals, state.selected_olympiad_for_sunburst
-    )
+    with state as s:
+        s.bar_medals = create_bar_medals(df_medals_by_olympiad, s.season)
+        season.bar_medals_by_committee = create_bar_by_committee(
+            df_olympic_medals, s.selected_olympiad
+        )
+        s.map_medals = plot_olympic_medals_by_country(
+            df_olympic_cities,
+            season=s.selected_season_map,
+            medal_type=s.selected_medal_color,
+        )
+        s.sunburnst_medals = create_sunburnst_medals(
+            df_olympic_medals, s.selected_olympiad_for_sunburst
+        )
 
 
 ###########################################################
