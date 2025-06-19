@@ -131,6 +131,7 @@ list_olympiads = [
     "Sochi 2014",
     "PyeongChang 2018",
     "Beijing 2022",
+    "Paris 2024"
 ]
 list_seasons_map = ["All", "summer", "winter"]
 list_medal_colors = ["All", "Gold", "Silver", "Bronze"]
