@@ -51,7 +51,7 @@ def plot_total_medals_by_country(
         columns="Committee",
         values="Medal_count",
         fill_value=0,
-        observed=True
+        observed=True,
     ).reset_index()
 
     df_totals_max = (

@@ -138,7 +138,9 @@ def plot_olympic_medals_by_country(df_olympic_cities, season, medal_type):
         ]
 
     country_counts = (
-        df_olympic_cities.groupby(["Country", "ISO_code_mapping"], observed=True)[medal_column]
+        df_olympic_cities.groupby(["Country", "ISO_code_mapping"], observed=True)[
+            medal_column
+        ]
         .sum()
         .reset_index(name="Number of Medals")
     )
@@ -164,7 +166,9 @@ def plot_olympic_medals_by_country(df_olympic_cities, season, medal_type):
 
 
 def create_sunburnst_medals(df_olympic_medals, selected_olympiad_for_sunburst):
-    df_sunburst = df_olympic_medals[["Olympiad", "Gender", "Discipline", "Event"]].copy()
+    df_sunburst = df_olympic_medals[
+        ["Olympiad", "Gender", "Discipline", "Event"]
+    ].copy()
     df_sunburst = df_sunburst.astype(str)
 
     gender_category_colors = {

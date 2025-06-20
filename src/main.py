@@ -1,8 +1,10 @@
 from pages.all_time_medals import all_time_medals
 from pages.medals_by_committee import committee_medals
+from algorithms.read_parameters import yaml_to_list
 
 import taipy.gui.builder as tgb
 from taipy.gui import Gui
+
 
 ###########################################################
 ###                       Run App                       ###
@@ -20,6 +22,28 @@ pages = {
 gui_multi_pages = Gui(pages=pages)
 
 if __name__ == "__main__":
+
+    # Variables for both pages
+    list_seasons = ["All", "summer", "winter"]
+    list_medal_types = ["All", "Gold", "Silver", "Bronze"]
+
+    # Variables for all_tme_medals
+    list_olympiads = yaml_to_list("./parameters/list_olympiads.yml")
+    
+    list_seasons_map = ["All", "summer", "winter"]
+    season = "All"
+    selected_olympiad = "All"
+    selected_season_map = "All"
+    selected_medal_color = "All"
+    selected_olympiad_for_sunburst = "All"
+
+    # Variables for meddals_by_committe
+    list_committees = yaml_to_list("./parameters/list_committees.yml")
+    committees = ["France", "United States"]
+    committee_detail = "France"
+    medal_type = "All"
+    display_percent = "Total medals"
+
     gui_multi_pages.run(
         use_reloader=True,
         title="Olympic medals 🥇",

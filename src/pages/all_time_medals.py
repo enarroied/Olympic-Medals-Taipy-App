@@ -12,7 +12,9 @@ import taipy.gui.builder as tgb
 ###########################################################
 df_olympic_cities = pd.read_parquet("./data/olympic_cities.parquet")
 df_olympic_medals = pd.read_parquet("./data/olympic_medals.parquet")
-df_olympic_cities_simplified = pd.read_parquet("./data/olympic_cities_simplified.parquet")
+df_olympic_cities_simplified = pd.read_parquet(
+    "./data/olympic_cities_simplified.parquet"
+)
 df_medals_by_olympiad = pd.read_parquet("./data/medals_by_olympiad.parquet")
 
 ###########################################################
@@ -26,77 +28,6 @@ map_medals = plot_olympic_medals_by_country(
 sunburnst_medals = create_sunburnst_medals(
     df_olympic_medals, selected_olympiad_for_sunburst="All"
 )
-
-###########################################################
-###         Initial variables and selector lists        ###
-###########################################################
-
-list_seasons = ["All", "summer", "winter"]
-list_olympiads = [
-    "All",
-    "Athina 1896",
-    "Paris 1900",
-    "St. Louis 1904",
-    "London 1908",
-    "Stockholm 1912",
-    "Antwerpen 1920",
-    "Paris 1924",
-    "Amsterdam 1928",
-    "Los Angeles 1932",
-    "Berlin 1936",
-    "London 1948",
-    "Helsinki 1952",
-    "Stockholm 1956",
-    "Melbourne 1956",
-    "Roma 1960",
-    "Tokyo 1964",
-    "Ciudad de México 1968",
-    "München 1972",
-    "Montréal 1976",
-    "Moskva 1980",
-    "Los Angeles 1984",
-    "Seoul 1988",
-    "Barcelona 1992",
-    "Atlanta 1996",
-    "Sydney 2000",
-    "Athina 2004",
-    "Beijing 2008",
-    "London 2012",
-    "Rio de Janeiro 2016",
-    "Tokyo 2020",
-    "Chamonix 1924",
-    "Sankt Moritz 1928",
-    "Lake Placid 1932",
-    "Garmisch-Partenkirchen 1936",
-    "Sankt Moritz 1948",
-    "Oslo 1952",
-    "Cortina d'Ampezzo 1956",
-    "Squaw Valley 1960",
-    "Innsbruck 1964",
-    "Grenoble 1968",
-    "Sapporo 1972",
-    "Innsbruck 1976",
-    "Lake Placid 1980",
-    "Sarajevo 1984",
-    "Calgary 1988",
-    "Albertville 1992",
-    "Lillehammer 1994",
-    "Nagano 1998",
-    "Salt Lake City 2002",
-    "Torino 2006",
-    "Vancouver 2010",
-    "Sochi 2014",
-    "PyeongChang 2018",
-    "Beijing 2022",
-    "Paris 2024",
-]
-list_seasons_map = ["All", "summer", "winter"]
-list_medal_colors = ["All", "Gold", "Silver", "Bronze"]
-season = "All"
-selected_olympiad = "All"
-selected_season_map = "All"
-selected_medal_color = "All"
-selected_olympiad_for_sunburst = "All"
 
 
 ###########################################################
@@ -176,7 +107,7 @@ with tgb.Page() as all_time_medals:
         with tgb.part():
             tgb.selector(
                 value="{season}",
-                lov=list_seasons,
+                lov="{list_seasons}",
                 dropdown=True,
                 label="Select season",
                 class_name="fullwidth",
@@ -187,7 +118,7 @@ with tgb.Page() as all_time_medals:
         with tgb.part():
             tgb.selector(
                 value="{selected_olympiad}",
-                lov=list_olympiads,
+                lov="{list_olympiads}",
                 dropdown=True,
                 label="Select Olympiad",
                 class_name="fullwidth",
@@ -199,7 +130,7 @@ with tgb.Page() as all_time_medals:
                 with tgb.part():
                     tgb.selector(
                         value="{selected_season_map}",
-                        lov=list_seasons_map,
+                        lov="{list_seasons_map}",
                         dropdown=True,
                         label="Select season for map",
                         class_name="fullwidth",
@@ -208,7 +139,7 @@ with tgb.Page() as all_time_medals:
                 with tgb.part():
                     tgb.selector(
                         value="{selected_medal_color}",
-                        lov=list_medal_colors,
+                        lov="{list_medal_types}",
                         dropdown=True,
                         label="Select medal color",
                         class_name="fullwidth",
@@ -218,7 +149,7 @@ with tgb.Page() as all_time_medals:
         with tgb.part():
             tgb.selector(
                 value="{selected_olympiad_for_sunburst}",
-                lov=list_olympiads,
+                lov="{list_olympiads}",
                 dropdown=True,
                 label="Select Olympiad",
                 class_name="fullwidth",
