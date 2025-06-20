@@ -10,54 +10,10 @@ import taipy.gui.builder as tgb
 ###########################################################
 ###                    Load Datasets                    ###
 ###########################################################
-df_olympic_cities = pd.read_csv("./data/olympic_cities.csv")
+df_olympic_cities = pd.read_parquet("./data/olympic_cities.parquet")
 df_olympic_medals = pd.read_parquet("./data/olympic_medals.parquet")
-
-###########################################################
-###             Ceate transformed DataFrames            ###
-###########################################################
-
-# Small DataFrame to display as summary table
-df_olympic_cities_simplified = df_olympic_cities[
-    [
-        "Olympiad",
-        "Olympic_year",
-        "Olympic_season",
-        "total_medals",
-        "total_medals_gold",
-        "total_medals_silver",
-        "total_medals_bronze",
-        "number_committees",
-        "number_disciplines",
-        "number_events",
-        "Country",
-        "Continent",
-    ]
-]
-
-# Define a custom sorting order for 'Medal_type'
-medal_order = {"Bronze": 0, "Silver": 1, "Gold": 2}
-
-df_medals_by_olympiad = (
-    df_olympic_medals.groupby(
-        ["Olympiad", "Olympic_year", "Medal_type", "Olympic_season"],
-        observed=True
-    )
-    .size()
-    .reset_index(name="Medal_count")
-)
-
-# Sort the DataFrame first by 'Olympic_year' and then by 'Medal_type' using the custom sorting order
-df_medals_by_olympiad["Medal_type_code"] = df_medals_by_olympiad["Medal_type"].map(
-    medal_order
-)
-df_medals_by_olympiad = df_medals_by_olympiad.sort_values(
-    by=["Olympic_year", "Medal_type_code"]
-)
-
-# Reset index without creating a new column
-df_medals_by_olympiad.reset_index(drop=True, inplace=True)
-
+df_olympic_cities_simplified = pd.read_parquet("./data/olympic_cities_simplified.parquet")
+df_medals_by_olympiad = pd.read_parquet("./data/medals_by_olympiad.parquet")
 
 ###########################################################
 ###                  Displayed objects                  ###
