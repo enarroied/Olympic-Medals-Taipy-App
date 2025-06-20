@@ -1,10 +1,8 @@
 import pandas as pd
-from algorithms.plotting_medals_by_committee import (
-    plot_medals_grid,
-    plot_total_medals_by_country,
-)
-
 import taipy.gui.builder as tgb
+
+from algorithms.plotting_medals_by_committee import (
+    plot_medals_grid, plot_total_medals_by_country)
 
 ###########################################################
 ###                    Load Datasets                    ###

@@ -1,5 +1,6 @@
-import yaml
 import os
+
+import yaml
 
 
 def yaml_to_list(filepath):
