@@ -148,7 +148,7 @@ selected_olympiad_for_sunburst = "All"
 def on_selector(state):
     with state as s:
         s.bar_medals = create_bar_medals(df_medals_by_olympiad, s.season)
-        season.bar_medals_by_committee = create_bar_by_committee(
+        s.bar_medals_by_committee = create_bar_by_committee(
             df_olympic_medals, s.selected_olympiad
         )
         s.map_medals = plot_olympic_medals_by_country(
