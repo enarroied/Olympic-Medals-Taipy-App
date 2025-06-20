@@ -1,10 +1,16 @@
-from pages.all_time_medals import all_time_medals
-from pages.medals_by_committee import committee_medals
-from algorithms.read_parameters import yaml_to_list
-
+import pandas as pd
 import taipy.gui.builder as tgb
 from taipy.gui import Gui
 
+from algorithms.plotting_all_time import (
+    create_bar_by_committee,
+    create_bar_medals,
+    create_sunburnst_medals,
+    plot_olympic_medals_by_country,
+)
+from algorithms.read_parameters import yaml_to_list
+from pages.all_time_medals import all_time_medals
+from pages.medals_by_committee import committee_medals
 
 ###########################################################
 ###                       Run App                       ###
@@ -24,12 +30,29 @@ gui_multi_pages = Gui(pages=pages)
 if __name__ == "__main__":
 
     # Variables for both pages
+    df_olympic_cities = pd.read_parquet("./data/olympic_cities.parquet")
+    df_olympic_medals = pd.read_parquet("./data/olympic_medals.parquet")
+
     list_seasons = ["All", "summer", "winter"]
     list_medal_types = ["All", "Gold", "Silver", "Bronze"]
 
     # Variables for all_tme_medals
+    df_olympic_cities_simplified = pd.read_parquet(
+        "./data/olympic_cities_simplified.parquet"
+    )
+    df_medals_by_olympiad = pd.read_parquet("./data/medals_by_olympiad.parquet")
+
+    bar_medals = create_bar_medals(df_medals_by_olympiad, "All")
+    bar_medals_by_committee = create_bar_by_committee(df_olympic_medals, "All")
+    map_medals = plot_olympic_medals_by_country(
+        df_olympic_cities, season="All", medal_type="All"
+    )
+    sunburnst_medals = create_sunburnst_medals(
+        df_olympic_medals, selected_olympiad_for_sunburst="All"
+    )
+
     list_olympiads = yaml_to_list("./parameters/list_olympiads.yml")
-    
+
     list_seasons_map = ["All", "summer", "winter"]
     season = "All"
     selected_olympiad = "All"

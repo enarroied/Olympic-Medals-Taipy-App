@@ -1,51 +1,27 @@
 import pandas as pd
-from algorithms.plotting_all_time import (
-    create_bar_medals,
-    create_bar_by_committee,
-    create_sunburnst_medals,
-    plot_olympic_medals_by_country,
-)
 import taipy.gui.builder as tgb
 
-###########################################################
-###                    Load Datasets                    ###
-###########################################################
-df_olympic_cities = pd.read_parquet("./data/olympic_cities.parquet")
-df_olympic_medals = pd.read_parquet("./data/olympic_medals.parquet")
-df_olympic_cities_simplified = pd.read_parquet(
-    "./data/olympic_cities_simplified.parquet"
-)
-df_medals_by_olympiad = pd.read_parquet("./data/medals_by_olympiad.parquet")
-
-###########################################################
-###                  Displayed objects                  ###
-###########################################################
-bar_medals = create_bar_medals(df_medals_by_olympiad, "All")
-bar_medals_by_committee = create_bar_by_committee(df_olympic_medals, "All")
-map_medals = plot_olympic_medals_by_country(
-    df_olympic_cities, season="All", medal_type="All"
-)
-sunburnst_medals = create_sunburnst_medals(
-    df_olympic_medals, selected_olympiad_for_sunburst="All"
-)
-
+from algorithms.plotting_all_time import (create_bar_by_committee,
+                                          create_bar_medals,
+                                          create_sunburnst_medals,
+                                          plot_olympic_medals_by_country)
 
 ###########################################################
 ###                  Selector Function                  ###
 ###########################################################
 def on_selector(state):
     with state as s:
-        s.bar_medals = create_bar_medals(df_medals_by_olympiad, s.season)
+        s.bar_medals = create_bar_medals(s.df_medals_by_olympiad, s.season)
         s.bar_medals_by_committee = create_bar_by_committee(
-            df_olympic_medals, s.selected_olympiad
+            s.df_olympic_medals, s.selected_olympiad
         )
         s.map_medals = plot_olympic_medals_by_country(
-            df_olympic_cities,
+            s.df_olympic_cities,
             season=s.selected_season_map,
             medal_type=s.selected_medal_color,
         )
         s.sunburnst_medals = create_sunburnst_medals(
-            df_olympic_medals, s.selected_olympiad_for_sunburst
+            s.df_olympic_medals, s.selected_olympiad_for_sunburst
         )
 
 
