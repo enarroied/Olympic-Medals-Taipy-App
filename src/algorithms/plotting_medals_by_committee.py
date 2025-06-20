@@ -36,7 +36,7 @@ def plot_total_medals_by_country(
     full_grid = years_olympiads.merge(committees, how="cross")
 
     df_totals = (
-        df_filtered.groupby(["Olympic_year", "Olympiad", "Committee"])
+        df_filtered.groupby(["Olympic_year", "Olympiad", "Committee"], observed=True)
         .size()
         .reset_index(name="Medal_count")
     )
@@ -51,6 +51,7 @@ def plot_total_medals_by_country(
         columns="Committee",
         values="Medal_count",
         fill_value=0,
+        observed=True
     ).reset_index()
 
     df_totals_max = (
@@ -113,7 +114,7 @@ def plot_medals_grid(df_medals, committee, season):
 
     # Group by Olympiad and Discipline, then count occurrences
     df_grouped = (
-        df_filtered.groupby(["Olympiad", "Olympic_year", "Discipline"])
+        df_filtered.groupby(["Olympiad", "Olympic_year", "Discipline"], observed=True)
         .size()
         .unstack(fill_value=0)
     )

@@ -11,7 +11,7 @@ import taipy.gui.builder as tgb
 ###                    Load Datasets                    ###
 ###########################################################
 df_olympic_cities = pd.read_csv("./data/olympic_cities.csv")
-df_olympic_medals = pd.read_csv("./data/olympic_medals.csv")
+df_olympic_medals = pd.read_parquet("./data/olympic_medals.parquet")
 
 ###########################################################
 ###             Ceate transformed DataFrames            ###
@@ -40,7 +40,8 @@ medal_order = {"Bronze": 0, "Silver": 1, "Gold": 2}
 
 df_medals_by_olympiad = (
     df_olympic_medals.groupby(
-        ["Olympiad", "Olympic_year", "Medal_type", "Olympic_season"]
+        ["Olympiad", "Olympic_year", "Medal_type", "Olympic_season"],
+        observed=True
     )
     .size()
     .reset_index(name="Medal_count")

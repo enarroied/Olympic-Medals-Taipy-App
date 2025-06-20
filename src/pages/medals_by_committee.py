@@ -9,13 +9,13 @@ import taipy.gui.builder as tgb
 ###########################################################
 ###                    Load Datasets                    ###
 ###########################################################
-df_olympic_medals = pd.read_csv("./data/olympic_medals.csv")
+df_olympic_medals = pd.read_parquet("./data/olympic_medals.parquet")
 
 ###########################################################
 ###             Ceate transformed DataFrames            ###
 ###########################################################
 df_grouped_medals = (
-    df_olympic_medals.groupby(["Committee", "Medal_type"])
+    df_olympic_medals.groupby(["Committee", "Medal_type"], observed=True)
     .size()
     .unstack(fill_value=0)
     .reset_index()

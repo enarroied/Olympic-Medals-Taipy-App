@@ -84,7 +84,7 @@ def create_bar_by_committee(df_medals, olympiad="All"):
 
     # Aggregating data to get count of medals by Medal_type for each Committee
     df_aggregated = (
-        df_medals_by_committee.groupby(["Committee", "Medal_type"])
+        df_medals_by_committee.groupby(["Committee", "Medal_type"], observed=True)
         .size()
         .unstack(fill_value=0)
     )
@@ -138,7 +138,7 @@ def plot_olympic_medals_by_country(df_olympic_cities, season, medal_type):
         ]
 
     country_counts = (
-        df_olympic_cities.groupby(["Country", "ISO_code_mapping"])[medal_column]
+        df_olympic_cities.groupby(["Country", "ISO_code_mapping"], observed=True)[medal_column]
         .sum()
         .reset_index(name="Number of Medals")
     )
@@ -164,6 +164,9 @@ def plot_olympic_medals_by_country(df_olympic_cities, season, medal_type):
 
 
 def create_sunburnst_medals(df_olympic_medals, selected_olympiad_for_sunburst):
+    df_sunburst = df_olympic_medals[["Olympiad", "Gender", "Discipline", "Event"]].copy()
+    df_sunburst = df_sunburst.astype(str)
+
     gender_category_colors = {
         "Men": "#6baed6",  # Light blue
         "Women": "#fb6a4a",  # Light red
@@ -171,11 +174,11 @@ def create_sunburnst_medals(df_olympic_medals, selected_olympiad_for_sunburst):
         "Mixed": "#9e9ac8",  # Light purple
     }
     if selected_olympiad_for_sunburst != "All":
-        df_olympic_medals = df_olympic_medals[
-            df_olympic_medals["Olympiad"] == selected_olympiad_for_sunburst
+        df_sunburst = df_sunburst[
+            df_sunburst["Olympiad"] == selected_olympiad_for_sunburst
         ]
     fig = px.sunburst(
-        df_olympic_medals,
+        df_sunburst,
         path=["Gender", "Discipline", "Event"],
         color="Gender",
         color_discrete_map=gender_category_colors,
