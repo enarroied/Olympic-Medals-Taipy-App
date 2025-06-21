@@ -8,6 +8,10 @@ from algorithms.plotting_all_time import (
     create_sunburnst_medals,
     plot_olympic_medals_by_country,
 )
+from algorithms.plotting_medals_by_committee import (
+    plot_medals_grid,
+    plot_total_medals_by_country,
+)
 from algorithms.read_parameters import yaml_to_list
 from pages.all_time_medals import all_time_medals
 from pages.medals_by_committee import committee_medals
@@ -36,11 +40,12 @@ if __name__ == "__main__":
     list_seasons = ["All", "summer", "winter"]
     list_medal_types = ["All", "Gold", "Silver", "Bronze"]
 
-    # Variables for all_tme_medals
+    # Variables for all_time_medals
     df_olympic_cities_simplified = pd.read_parquet(
         "./data/olympic_cities_simplified.parquet"
     )
     df_medals_by_olympiad = pd.read_parquet("./data/medals_by_olympiad.parquet")
+    df_grouped_medals = pd.read_parquet("./data/grouped_medals.parquet")
 
     bar_medals = create_bar_medals(df_medals_by_olympiad, "All")
     bar_medals_by_committee = create_bar_by_committee(df_olympic_medals, "All")
@@ -66,6 +71,49 @@ if __name__ == "__main__":
     committee_detail = "France"
     medal_type = "All"
     display_percent = "Total medals"
+
+    # To fix
+    summer_medal_by_committee = plot_total_medals_by_country(
+        df_olympic_medals,
+        committee_list=committees,
+        season="summer",
+        medal_type=medal_type,
+    )
+    winter_medal_by_committee = plot_total_medals_by_country(
+        df_olympic_medals,
+        committee_list=committees,
+        season="winter",
+        medal_type=medal_type,
+    )
+
+    # For detail cards
+    total_medals_detail = int(
+        df_grouped_medals[df_grouped_medals["Committee"] == committee_detail][
+            "Total"
+        ].iloc[0]
+    )
+    gold_medals_detail = int(
+        df_grouped_medals[df_grouped_medals["Committee"] == committee_detail][
+            "Gold"
+        ].iloc[0]
+    )
+    silver_medals_detail = int(
+        df_grouped_medals[df_grouped_medals["Committee"] == committee_detail][
+            "Silver"
+        ].iloc[0]
+    )
+    bronze_medals_detail = int(
+        df_grouped_medals[df_grouped_medals["Committee"] == committee_detail][
+            "Bronze"
+        ].iloc[0]
+    )
+
+    summer_medal_grid = plot_medals_grid(
+        df_olympic_medals, committee=committee_detail, season="summer"
+    )
+    winter_medal_grid = plot_medals_grid(
+        df_olympic_medals, committee=committee_detail, season="winter"
+    )
 
     gui_multi_pages.run(
         use_reloader=True,

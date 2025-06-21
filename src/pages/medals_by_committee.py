@@ -2,57 +2,8 @@ import pandas as pd
 import taipy.gui.builder as tgb
 
 from algorithms.plotting_medals_by_committee import (
-    plot_medals_grid, plot_total_medals_by_country)
-
-###########################################################
-###                    Load Datasets                    ###
-###########################################################
-df_olympic_medals = pd.read_parquet("./data/olympic_medals.parquet")
-df_grouped_medals = pd.read_parquet("./data/grouped_medals.parquet")
-
-
-###########################################################
-###                  Displayed objects                  ###
-###########################################################
-
-committees = ["France", "United States"]
-committee_detail = "France"
-medal_type = "All"
-
-summer_medal_by_committee = plot_total_medals_by_country(
-    df_olympic_medals, committee_list=committees, season="summer", medal_type=medal_type
-)
-winter_medal_by_committee = plot_total_medals_by_country(
-    df_olympic_medals, committee_list=committees, season="winter", medal_type=medal_type
-)
-
-# For detail cards
-total_medals_detail = int(
-    df_grouped_medals[df_grouped_medals["Committee"] == committee_detail]["Total"].iloc[
-        0
-    ]
-)
-gold_medals_detail = int(
-    df_grouped_medals[df_grouped_medals["Committee"] == committee_detail]["Gold"].iloc[
-        0
-    ]
-)
-silver_medals_detail = int(
-    df_grouped_medals[df_grouped_medals["Committee"] == committee_detail][
-        "Silver"
-    ].iloc[0]
-)
-bronze_medals_detail = int(
-    df_grouped_medals[df_grouped_medals["Committee"] == committee_detail][
-        "Bronze"
-    ].iloc[0]
-)
-
-summer_medal_grid = plot_medals_grid(
-    df_olympic_medals, committee=committee_detail, season="summer"
-)
-winter_medal_grid = plot_medals_grid(
-    df_olympic_medals, committee=committee_detail, season="winter"
+    plot_medals_grid,
+    plot_total_medals_by_country,
 )
 
 
@@ -61,6 +12,10 @@ winter_medal_grid = plot_medals_grid(
 ###########################################################
 def on_selector(state):
     with state as s:
+        df_grouped_medals = s.df_grouped_medals.copy()
+        df_olympic_medals = s.df_olympic_medals.copy()
+        selected_committe = s.committee_detail
+
         s.summer_medal_by_committee = plot_total_medals_by_country(
             df_olympic_medals,
             committee_list=s.committees,
@@ -76,30 +31,30 @@ def on_selector(state):
             percentage=s.display_percent,
         )
         s.total_medals_detail = int(
-            df_grouped_medals[df_grouped_medals["Committee"] == s.committee_detail][
+            df_grouped_medals[df_grouped_medals["Committee"] == selected_committe][
                 "Total"
             ].iloc[0]
         )
         s.gold_medals_detail = int(
-            df_grouped_medals[df_grouped_medals["Committee"] == s.committee_detail][
+            s.df_grouped_medals[df_grouped_medals["Committee"] == selected_committe][
                 "Gold"
             ].iloc[0]
         )
         s.silver_medals_detail = int(
-            df_grouped_medals[df_grouped_medals["Committee"] == s.committee_detail][
+            s.df_grouped_medals[df_grouped_medals["Committee"] == selected_committe][
                 "Silver"
             ].iloc[0]
         )
         s.bronze_medals_detail = int(
-            df_grouped_medals[df_grouped_medals["Committee"] == s.committee_detail][
+            s.df_grouped_medals[df_grouped_medals["Committee"] == selected_committe][
                 "Bronze"
             ].iloc[0]
         )
         s.summer_medal_grid = plot_medals_grid(
-            df_olympic_medals, committee=state.committee_detail, season="summer"
+            s.df_olympic_medals, committee=selected_committe, season="summer"
         )
         s.winter_medal_grid = plot_medals_grid(
-            df_olympic_medals, committee=state.committee_detail, season="winter"
+            s.df_olympic_medals, committee=selected_committe, season="winter"
         )
 
 
