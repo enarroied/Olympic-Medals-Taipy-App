@@ -2,16 +2,12 @@ import pandas as pd
 import taipy.gui.builder as tgb
 from taipy.gui import Gui
 
-from algorithms.plotting_all_time import (
-    create_bar_by_committee,
-    create_bar_medals,
-    create_sunburnst_medals,
-    plot_olympic_medals_by_country,
-)
+from algorithms.plotting_all_time import (create_bar_by_committee,
+                                          create_bar_medals,
+                                          create_sunburnst_medals,
+                                          plot_olympic_medals_by_country)
 from algorithms.plotting_medals_by_committee import (
-    plot_medals_grid,
-    plot_total_medals_by_country,
-)
+    plot_medals_grid, plot_total_medals_by_country_both_seasons)
 from algorithms.read_parameters import yaml_to_list
 from pages.all_time_medals import all_time_medals
 from pages.medals_by_committee import committee_medals
@@ -73,19 +69,13 @@ if __name__ == "__main__":
     display_percent = "Total medals"
 
     # To fix
-    summer_medal_by_committee = plot_total_medals_by_country(
-        df_olympic_medals,
-        committee_list=committees,
-        season="summer",
-        medal_type=medal_type,
+    summer_medal_by_committee, winter_medal_by_committee = (
+        plot_total_medals_by_country_both_seasons(
+            df_olympic_medals,
+            committee_list=committees,
+            medal_type=medal_type,
+        )
     )
-    winter_medal_by_committee = plot_total_medals_by_country(
-        df_olympic_medals,
-        committee_list=committees,
-        season="winter",
-        medal_type=medal_type,
-    )
-
     # For detail cards
     total_medals_detail = int(
         df_grouped_medals[df_grouped_medals["Committee"] == committee_detail][

@@ -90,6 +90,27 @@ def plot_total_medals_by_country(
     return fig
 
 
+def plot_total_medals_by_country_both_seasons(
+    df_medals, committee_list, medal_type="All", percentage="Total medals"
+):
+    return (
+        plot_total_medals_by_country(
+            df_medals=df_medals,
+            committee_list=committee_list,
+            season="summer",
+            medal_type=medal_type,
+            percentage=percentage,
+        ),
+        plot_total_medals_by_country(
+            df_medals=df_medals,
+            committee_list=committee_list,
+            season="winter",
+            medal_type=medal_type,
+            percentage=percentage,
+        ),
+    )
+
+
 def plot_medals_grid(df_medals, committee, season):
     """
     Plot medals won by a committee across different disciplines and Olympiads.

@@ -2,9 +2,7 @@ import pandas as pd
 import taipy.gui.builder as tgb
 
 from algorithms.plotting_medals_by_committee import (
-    plot_medals_grid,
-    plot_total_medals_by_country,
-)
+    plot_medals_grid, plot_total_medals_by_country_both_seasons)
 
 
 ###########################################################
@@ -16,19 +14,13 @@ def on_selector(state):
         df_olympic_medals = s.df_olympic_medals.copy()
         selected_committe = s.committee_detail
 
-        s.summer_medal_by_committee = plot_total_medals_by_country(
-            df_olympic_medals,
-            committee_list=s.committees,
-            season="summer",
-            medal_type=s.medal_type,
-            percentage=s.display_percent,
-        )
-        s.winter_medal_by_committee = plot_total_medals_by_country(
-            df_olympic_medals,
-            committee_list=s.committees,
-            season="winter",
-            medal_type=s.medal_type,
-            percentage=s.display_percent,
+        s.summer_medal_by_committee, s.winter_medal_by_committee = (
+            plot_total_medals_by_country_both_seasons(
+                df_olympic_medals,
+                committee_list=s.committees,
+                medal_type=s.medal_type,
+                percentage=s.display_percent,
+            )
         )
         s.total_medals_detail = int(
             df_grouped_medals[df_grouped_medals["Committee"] == selected_committe][
