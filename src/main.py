@@ -2,12 +2,16 @@ import pandas as pd
 import taipy.gui.builder as tgb
 from taipy.gui import Gui
 
-from algorithms.plotting_all_time import (create_bar_by_committee,
-                                          create_bar_medals,
-                                          create_sunburnst_medals,
-                                          plot_olympic_medals_by_country)
+from algorithms.plotting_all_time import (
+    create_bar_by_committee,
+    create_bar_medals,
+    create_sunburnst_medals,
+    plot_olympic_medals_by_country,
+)
 from algorithms.plotting_medals_by_committee import (
-    plot_medals_grid, plot_total_medals_by_country_both_seasons)
+    plot_medals_grid_both_seasons,
+    plot_total_medals_by_country_both_seasons,
+)
 from algorithms.read_parameters import yaml_to_list
 from pages.all_time_medals import all_time_medals
 from pages.medals_by_committee import committee_medals
@@ -98,11 +102,8 @@ if __name__ == "__main__":
         ].iloc[0]
     )
 
-    summer_medal_grid = plot_medals_grid(
-        df_olympic_medals, committee=committee_detail, season="summer"
-    )
-    winter_medal_grid = plot_medals_grid(
-        df_olympic_medals, committee=committee_detail, season="winter"
+    summer_medal_grid, winter_medal_grid = plot_medals_grid_both_seasons(
+        df_olympic_medals, committee=committee_detail
     )
 
     gui_multi_pages.run(

@@ -2,7 +2,9 @@ import pandas as pd
 import taipy.gui.builder as tgb
 
 from algorithms.plotting_medals_by_committee import (
-    plot_medals_grid, plot_total_medals_by_country_both_seasons)
+    plot_medals_grid_both_seasons,
+    plot_total_medals_by_country_both_seasons,
+)
 
 
 ###########################################################
@@ -42,11 +44,8 @@ def on_selector(state):
                 "Bronze"
             ].iloc[0]
         )
-        s.summer_medal_grid = plot_medals_grid(
-            s.df_olympic_medals, committee=selected_committe, season="summer"
-        )
-        s.winter_medal_grid = plot_medals_grid(
-            s.df_olympic_medals, committee=selected_committe, season="winter"
+        s.summer_medal_grid, s.winter_medal_grid = plot_medals_grid_both_seasons(
+            s.df_olympic_medals, committee=selected_committe
         )
 
 

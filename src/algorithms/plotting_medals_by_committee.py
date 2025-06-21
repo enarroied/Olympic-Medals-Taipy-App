@@ -163,3 +163,10 @@ def plot_medals_grid(df_medals, committee, season):
         ),
     )
     return fig
+
+
+def plot_medals_grid_both_seasons(df_medals, committee):
+    return (
+        plot_medals_grid(df_medals=df_medals, committee=committee, season="summer"),
+        plot_medals_grid(df_medals=df_medals, committee=committee, season="winter"),
+    )
