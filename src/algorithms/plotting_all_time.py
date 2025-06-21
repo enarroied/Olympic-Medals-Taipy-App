@@ -106,31 +106,41 @@ def create_bar_by_committee(df_medals, olympiad="All"):
     fig.update_layout(xaxis={"title": "Committee"}, yaxis={"title": "Count"})
     return fig
 
+def select_medal_column(medal_type):
+    """
+    Helper function to select the appropriate medal column based on medal_type.
+
+    Args:
+        medal_type (str): The type of medal. One of "All", "Gold", "Silver", or "Bronze".
+
+    Returns:
+        str: The corresponding column name in the DataFrame.
+    """
+    medal_map = {
+        "All": "total_medals",
+        "Gold": "total_medals_gold",
+        "Silver": "total_medals_silver",
+        "Bronze": "total_medals_bronze"
+    }
+
+    if medal_type not in medal_map:
+        raise ValueError("Invalid medal_type. Should be one of 'All', 'Gold', 'Silver', or 'Bronze'.")
+
+    return medal_map[medal_type]
 
 def plot_olympic_medals_by_country(df_olympic_cities, season, medal_type):
     """
     Plot a choropleth map of Olympic medals by country for a specified season and medal type.
 
     Args:
-        df_olympic_medals (pandas.DataFrame): DataFrame containing Olympic medals data.
+        df_olympic_cities (pandas.DataFrame): DataFrame containing Olympic medals data.
         season (str): The season for which to plot the medals. Should be either "winter" or "summer".
         medal_type (str): The type of medal to count. Should be one of "All", "Gold", "Silver", or "Bronze".
 
     Returns:
-        None
+        plotly.graph_objs._figure.Figure: Choropleth map figure.
     """
-    if medal_type == "All":
-        medal_column = "total_medals"
-    elif medal_type == "Gold":
-        medal_column = "total_medals_gold"
-    elif medal_type == "Silver":
-        medal_column = "total_medals_silver"
-    elif medal_type == "Bronze":
-        medal_column = "total_medals_bronze"
-    else:
-        raise ValueError(
-            "Invalid medal_type. Should be one of 'All', 'Gold', 'Silver', or 'Bronze'."
-        )
+    medal_column = select_medal_column(medal_type)
 
     if season != "All":
         df_olympic_cities = df_olympic_cities[
