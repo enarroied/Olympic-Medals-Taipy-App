@@ -2,6 +2,7 @@ import pandas as pd
 import taipy.gui.builder as tgb
 from taipy.gui import Gui
 
+from algorithms.medal_details import create_medals_detail
 from algorithms.plotting_all_time import (
     create_bar_by_committee,
     create_bar_medals,
@@ -81,26 +82,12 @@ if __name__ == "__main__":
         )
     )
     # For detail cards
-    total_medals_detail = int(
-        df_grouped_medals[df_grouped_medals["Committee"] == committee_detail][
-            "Total"
-        ].iloc[0]
-    )
-    gold_medals_detail = int(
-        df_grouped_medals[df_grouped_medals["Committee"] == committee_detail][
-            "Gold"
-        ].iloc[0]
-    )
-    silver_medals_detail = int(
-        df_grouped_medals[df_grouped_medals["Committee"] == committee_detail][
-            "Silver"
-        ].iloc[0]
-    )
-    bronze_medals_detail = int(
-        df_grouped_medals[df_grouped_medals["Committee"] == committee_detail][
-            "Bronze"
-        ].iloc[0]
-    )
+    (
+        total_medals_detail,
+        gold_medals_detail,
+        silver_medals_detail,
+        bronze_medals_detail,
+    ) = create_medals_detail(df_grouped_medals, committee_detail)
 
     summer_medal_grid, winter_medal_grid = plot_medals_grid_both_seasons(
         df_olympic_medals, committee=committee_detail

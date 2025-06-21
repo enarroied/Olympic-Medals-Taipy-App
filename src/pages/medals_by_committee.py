@@ -1,6 +1,7 @@
 import pandas as pd
 import taipy.gui.builder as tgb
 
+from algorithms.medal_details import create_medals_detail
 from algorithms.plotting_medals_by_committee import (
     plot_medals_grid_both_seasons,
     plot_total_medals_by_country_both_seasons,
@@ -24,26 +25,14 @@ def on_selector(state):
                 percentage=s.display_percent,
             )
         )
-        s.total_medals_detail = int(
-            df_grouped_medals[df_grouped_medals["Committee"] == selected_committe][
-                "Total"
-            ].iloc[0]
-        )
-        s.gold_medals_detail = int(
-            s.df_grouped_medals[df_grouped_medals["Committee"] == selected_committe][
-                "Gold"
-            ].iloc[0]
-        )
-        s.silver_medals_detail = int(
-            s.df_grouped_medals[df_grouped_medals["Committee"] == selected_committe][
-                "Silver"
-            ].iloc[0]
-        )
-        s.bronze_medals_detail = int(
-            s.df_grouped_medals[df_grouped_medals["Committee"] == selected_committe][
-                "Bronze"
-            ].iloc[0]
-        )
+
+        (
+            s.total_medals_detail,
+            s.gold_medals_detail,
+            s.silver_medals_detail,
+            s.bronze_medals_detail,
+        ) = create_medals_detail(df_grouped_medals, selected_committe)
+
         s.summer_medal_grid, s.winter_medal_grid = plot_medals_grid_both_seasons(
             s.df_olympic_medals, committee=selected_committe
         )
