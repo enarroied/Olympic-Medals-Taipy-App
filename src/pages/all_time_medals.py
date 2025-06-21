@@ -1,10 +1,13 @@
 import pandas as pd
 import taipy.gui.builder as tgb
 
-from algorithms.plotting_all_time import (create_bar_by_committee,
-                                          create_bar_medals,
-                                          create_sunburnst_medals,
-                                          plot_olympic_medals_by_country)
+from algorithms.plotting_all_time import (
+    create_bar_by_committee,
+    create_bar_medals,
+    create_sunburnst_medals,
+    plot_olympic_medals_by_country,
+)
+
 
 ###########################################################
 ###                  Selector Function                  ###

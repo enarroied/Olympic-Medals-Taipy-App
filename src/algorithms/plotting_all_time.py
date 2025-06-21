@@ -106,6 +106,7 @@ def create_bar_by_committee(df_medals, olympiad="All"):
     fig.update_layout(xaxis={"title": "Committee"}, yaxis={"title": "Count"})
     return fig
 
+
 def select_medal_column(medal_type):
     """
     Helper function to select the appropriate medal column based on medal_type.
@@ -120,13 +121,16 @@ def select_medal_column(medal_type):
         "All": "total_medals",
         "Gold": "total_medals_gold",
         "Silver": "total_medals_silver",
-        "Bronze": "total_medals_bronze"
+        "Bronze": "total_medals_bronze",
     }
 
     if medal_type not in medal_map:
-        raise ValueError("Invalid medal_type. Should be one of 'All', 'Gold', 'Silver', or 'Bronze'.")
+        raise ValueError(
+            "Invalid medal_type. Should be one of 'All', 'Gold', 'Silver', or 'Bronze'."
+        )
 
     return medal_map[medal_type]
+
 
 def plot_olympic_medals_by_country(df_olympic_cities, season, medal_type):
     """
