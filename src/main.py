@@ -3,6 +3,7 @@ import taipy.gui.builder as tgb
 from taipy.gui import Gui
 
 from algorithms.callbacks import (
+    get_last_olympic,
     init_total_medals,
     on_selector_all_time_medals,
     on_selector_medals_by_committee,
@@ -31,6 +32,7 @@ def on_init(state):
     init_total_medals(state)
     on_selector_all_time_medals(state)
     on_selector_medals_by_committee(state)
+    get_last_olympic(state)
 
 
 if __name__ == "__main__":
@@ -55,6 +57,8 @@ if __name__ == "__main__":
         ["Olympiad", "Gender", "Discipline", "Event"]
     ].copy()
     df_sunburst = df_sunburst.astype(str)
+
+    latest_olympiad = ""
 
     total_medals = 0
     total_gold_medals = 0

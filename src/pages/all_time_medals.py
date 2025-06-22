@@ -6,7 +6,7 @@ with tgb.Page() as all_time_medals:
 
     tgb.text("## Medals awarded at all Olympic games", mode="md")
     tgb.text(
-        "This dashboard displays aggregated data for the medals awarded across the Olympics, from Athens 1896 to Beijing 2022."
+        "This dashboard displays aggregated data for the medals awarded across the Olympics, from Athens 1896 to {latest_olympiad}."
     )
     with tgb.layout("1 1 1 1"):
         with tgb.part("card card-bg"):

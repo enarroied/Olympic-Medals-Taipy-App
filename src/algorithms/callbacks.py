@@ -81,3 +81,9 @@ def init_total_medals(state):
                 "Medal_type"
             ].count()
         )
+
+
+def get_last_olympic(state):
+    state.latest_olympiad = state.df_olympic_medals.loc[
+        state.df_olympic_medals["Olympic_year"].idxmax(), "Olympiad"
+    ]
