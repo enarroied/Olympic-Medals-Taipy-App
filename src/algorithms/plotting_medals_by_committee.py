@@ -2,6 +2,26 @@ import pandas as pd
 import plotly.express as px
 
 
+def _create_df_to_plot_medals(
+    df_medals, committee_list, season, medal_type, percentage
+):
+    df_filtered = df_medals[
+        (df_medals["Olympic_season"] == season)
+        & (df_medals["Medal_type"] == medal_type)
+    ]
+
+    columns_to_plot = ["Olympic_year", "Olympiad", "Total_medals"] + committee_list
+    df_to_plot = df_filtered[columns_to_plot]
+
+    if percentage == "Percentage":
+        for committee in committee_list:
+            df_to_plot.loc[:, committee] = (
+                df_to_plot[committee] * 100 / df_to_plot["Total_medals"]
+            ).fillna(0)
+    df_to_plot = df_to_plot.drop(columns=["Total_medals"])
+    return df_to_plot
+
+
 def plot_total_medals_by_country(
     df_total_medals_by_olympiad_and_committee,
     committee_list,
@@ -23,25 +43,12 @@ def plot_total_medals_by_country(
     - fig: Plotly figure object showing total medals by year for selected committees.
     """
     df_medals = df_total_medals_by_olympiad_and_committee.copy()
-
-    df_filtered = df_medals[
-        (df_medals["Olympic_season"] == season)
-        & (df_medals["Medal_type"] == medal_type)
-    ]
-
-    columns_to_plot = ["Olympic_year", "Olympiad", "Total_medals"] + committee_list
-    df_to_plot = df_filtered[columns_to_plot]
-
-    if percentage == "Percentage":
-        for committee in committee_list:
-            df_to_plot.loc[:, committee] = (
-                df_to_plot[committee] * 100 / df_to_plot["Total_medals"]
-            ).fillna(0)
-        value_label = "Percentage of Medals"
-    else:
-        value_label = "Total Medals"
-
-    df_to_plot = df_to_plot.drop(columns=["Total_medals"])
+    df_to_plot = _create_df_to_plot_medals(
+        df_medals, committee_list, season, medal_type, percentage
+    )
+    value_label = (
+        "Percentage of Medals" if percentage == "Percentage" else "Total Medals"
+    )
 
     fig = px.line(
         df_to_plot,
@@ -56,9 +63,7 @@ def plot_total_medals_by_country(
         title=f"{medal_type} Medals for Selected Committees by Olympic Year | {season}",
         hover_data={"Olympiad": True},
     )
-
     fig.update_traces(mode="markers+lines", marker=dict(size=4))
-
     return fig
 
 
