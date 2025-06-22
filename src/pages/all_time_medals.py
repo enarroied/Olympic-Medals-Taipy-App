@@ -135,4 +135,5 @@ with tgb.Page() as all_time_medals:
     tgb.table(
         "{df_olympic_cities_simplified}",
         filter=True,
+        page_size=20
     )
