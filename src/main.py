@@ -2,16 +2,10 @@ import pandas as pd
 import taipy.gui.builder as tgb
 from taipy.gui import Gui
 
-from algorithms.medal_details import create_medals_detail
-from algorithms.plotting_all_time import (
-    create_bar_by_committee,
-    create_bar_medals,
-    create_sunburnst_medals,
-    plot_olympic_medals_by_country,
-)
-from algorithms.plotting_medals_by_committee import (
-    plot_medals_grid_both_seasons,
-    plot_total_medals_by_country_both_seasons,
+from algorithms.callbacks import (
+    init_total_medals,
+    on_selector_all_time_medals,
+    on_selector_medals_by_committee,
 )
 from algorithms.read_parameters import yaml_to_list
 from pages.all_time_medals import all_time_medals
@@ -31,6 +25,13 @@ pages = {
     "medals_awarded_to_committees": committee_medals,
 }
 gui_multi_pages = Gui(pages=pages)
+
+
+def on_init(state):
+    init_total_medals(state)
+    on_selector_all_time_medals(state)
+    on_selector_medals_by_committee(state)
+
 
 if __name__ == "__main__":
 
@@ -55,16 +56,15 @@ if __name__ == "__main__":
     ].copy()
     df_sunburst = df_sunburst.astype(str)
 
-    bar_medals = create_bar_medals(df_medals_by_olympiad, "All")
-    bar_medals_by_committee = create_bar_by_committee(
-        df_grouped_medals_olympiads, "All"
-    )
-    map_medals = plot_olympic_medals_by_country(
-        df_olympic_cities, season="All", medal_type="All"
-    )
-    sunburnst_medals = create_sunburnst_medals(
-        df_sunburst, selected_olympiad_for_sunburst="All"
-    )
+    total_medals = 0
+    total_gold_medals = 0
+    total_silver_medals = 0
+    total_bronze_medals = 0
+
+    bar_medals = None
+    bar_medals_by_committee = None
+    map_medals = None
+    sunburnst_medals = None
 
     list_olympiads = yaml_to_list("./parameters/list_olympiads.yml")
 
@@ -86,24 +86,21 @@ if __name__ == "__main__":
     medal_type = "All"
     display_percent = "Total medals"
 
-    summer_medal_by_committee, winter_medal_by_committee = (
-        plot_total_medals_by_country_both_seasons(
-            df_total_medals_by_olympiad_and_committee,
-            committee_list=committees,
-            medal_type=medal_type,
-        )
-    )
+    summer_medal_by_committee, winter_medal_by_committee = None, None
     # For detail cards
     (
         total_medals_detail,
         gold_medals_detail,
         silver_medals_detail,
         bronze_medals_detail,
-    ) = create_medals_detail(df_grouped_medals_olympiads, committee_detail)
-
-    summer_medal_grid, winter_medal_grid = plot_medals_grid_both_seasons(
-        df_olympic_medals, committee=committee_detail
+    ) = (
+        None,
+        None,
+        None,
+        None,
     )
+
+    summer_medal_grid, winter_medal_grid = None, None
 
     gui_multi_pages.run(
         use_reloader=True,

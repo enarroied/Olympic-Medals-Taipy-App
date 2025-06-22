@@ -8,7 +8,6 @@ with tgb.Page() as all_time_medals:
     tgb.text(
         "This dashboard displays aggregated data for the medals awarded across the Olympics, from Athens 1896 to Beijing 2022."
     )
-
     with tgb.layout("1 1 1 1"):
         with tgb.part("card card-bg"):
             tgb.text(
@@ -16,37 +15,34 @@ with tgb.Page() as all_time_medals:
                 mode="md",
             )
             tgb.text(
-                "#### {int(df_olympic_medals[df_olympic_medals['Medal_type']=='Gold']['Medal_type'].count())}",
+                "#### {total_gold_medals}",
                 mode="md",
             )
-
         with tgb.part("card card-bg"):
             tgb.text(
                 "#### Total Silver Medals 🥈",
                 mode="md",
             )
             tgb.text(
-                "#### {int(df_olympic_medals[df_olympic_medals['Medal_type']=='Silver']['Medal_type'].count())}",
+                "#### {total_silver_medals}",
                 mode="md",
             )
-
         with tgb.part("card card-bg"):
             tgb.text(
                 "#### Total Bronze Medals 🥉",
                 mode="md",
             )
             tgb.text(
-                "#### {int(df_olympic_medals[df_olympic_medals['Medal_type']=='Bronze']['Medal_type'].count())}",
+                "#### {total_bronze_medals}",
                 mode="md",
             )
-
         with tgb.part("card card-bg"):
             tgb.text(
                 "#### Total Medals 🏟",
                 mode="md",
             )
             tgb.text(
-                "#### {int(len(df_olympic_medals))}",
+                "#### {total_medals}",
                 mode="md",
             )
 
