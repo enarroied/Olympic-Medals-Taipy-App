@@ -21,6 +21,26 @@ def _create_df_to_plot_medals(
     return df_to_plot
 
 
+def _create_fig_total_medals_by_country(
+    df_to_plot, committee_list, season, medal_type, value_label
+):
+    fig = px.line(
+        df_to_plot,
+        x="Olympic_year",
+        y=committee_list,
+        labels={
+            "value": value_label,
+            "variable": "Committee",
+            "Olympic_year": "Year",
+            "Olympiad": "Olympiad",
+        },
+        title=f"{medal_type} Medals for Selected Committees by Olympic Year | {season}",
+        hover_data={"Olympiad": True},
+    )
+    fig.update_traces(mode="markers+lines", marker=dict(size=4))
+    return fig
+
+
 def plot_total_medals_by_country(
     df_total_medals_by_olympiad_and_committee,
     committee_list,
@@ -48,22 +68,9 @@ def plot_total_medals_by_country(
     value_label = (
         "Percentage of Medals" if percentage == "Percentage" else "Total Medals"
     )
-
-    fig = px.line(
-        df_to_plot,
-        x="Olympic_year",
-        y=committee_list,
-        labels={
-            "value": value_label,
-            "variable": "Committee",
-            "Olympic_year": "Year",
-            "Olympiad": "Olympiad",
-        },
-        title=f"{medal_type} Medals for Selected Committees by Olympic Year | {season}",
-        hover_data={"Olympiad": True},
+    return _create_fig_total_medals_by_country(
+        df_to_plot, committee_list, season, medal_type, value_label
     )
-    fig.update_traces(mode="markers+lines", marker=dict(size=4))
-    return fig
 
 
 def plot_total_medals_by_country_both_seasons(
