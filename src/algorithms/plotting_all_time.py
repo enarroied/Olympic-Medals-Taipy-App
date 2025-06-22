@@ -127,6 +127,25 @@ def _select_medal_column(medal_type):
     return medal_map[medal_type]
 
 
+def _create_map_medals_by_country(country_counts, season, medal_type):
+    fig = px.choropleth(
+        country_counts,
+        locations="ISO_code_mapping",
+        color="Number of Medals",
+        hover_name="Country",
+        color_continuous_scale=px.colors.sequential.Plasma,
+        title=f"{medal_type.capitalize()} Olympic Medals awarded by Host Country ({season.capitalize()})",
+        projection="natural earth",
+    )
+    fig.update_geos(
+        showcountries=True,
+        showland=True,
+        landcolor="lightgray",
+        countrycolor="white",
+    )
+    return fig
+
+
 def plot_olympic_medals_by_country(df_olympic_cities, season, medal_type):
     """
     Plot a choropleth map of Olympic medals by country for a specified season and medal type.
@@ -153,24 +172,7 @@ def plot_olympic_medals_by_country(df_olympic_cities, season, medal_type):
         .sum()
         .reset_index(name="Number of Medals")
     )
-
-    fig = px.choropleth(
-        country_counts,
-        locations="ISO_code_mapping",
-        color="Number of Medals",
-        hover_name="Country",
-        color_continuous_scale=px.colors.sequential.Plasma,
-        title=f"{medal_type.capitalize()} Olympic Medals awarded by Host Country ({season.capitalize()})",
-        projection="natural earth",
-    )
-
-    fig.update_geos(
-        showcountries=True,
-        showland=True,
-        landcolor="lightgray",
-        countrycolor="white",
-    )
-    return fig
+    return _create_map_medals_by_country(country_counts, season, medal_type)
 
 
 def _create_sunburnst_medals(
