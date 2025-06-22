@@ -1,7 +1,11 @@
 import plotly.express as px
+
 from parameters.medal_colors import MedalColorMap
 
-def _create_bar_medal_season(df_medals_season, season, medal_colors: MedalColorMap = MedalColorMap()):
+
+def _create_bar_medal_season(
+    df_medals_season, season, medal_colors: MedalColorMap = MedalColorMap()
+):
     fig = px.bar(
         df_medals_season,
         x="Olympiad",
@@ -43,17 +47,14 @@ def create_bar_medals(df_medals_by_olympiad, season):
     Returns:
        px.bar: A plotly bar chart to display in the Taipy app
     """
-    # Define colors for each medal type
-
     if season != "All":
         df_medals_season = df_medals_by_olympiad[
             df_medals_by_olympiad["Olympic_season"] == season
         ].reset_index(drop=True)
     else:
         df_medals_season = df_medals_by_olympiad
-    
-    return _create_bar_medal_season(df_medals_season, season)
 
+    return _create_bar_medal_season(df_medals_season, season)
 
 
 def create_bar_by_committee(df_medals, olympiad="All"):
@@ -118,12 +119,10 @@ def select_medal_column(medal_type):
         "Silver": "total_medals_silver",
         "Bronze": "total_medals_bronze",
     }
-
     if medal_type not in medal_map:
         raise ValueError(
             "Invalid medal_type. Should be one of 'All', 'Gold', 'Silver', or 'Bronze'."
         )
-
     return medal_map[medal_type]
 
 
