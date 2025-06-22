@@ -14,10 +14,11 @@ def on_selector(state):
         df_olympic_medals = s.df_olympic_medals.copy()
         df_medals_by_olympiad = s.df_medals_by_olympiad.copy()
         df_sunburst = s.df_sunburst.copy()
+        df_grouped_medals_olympiads = s.df_grouped_medals_olympiads.copy()
 
         s.bar_medals = create_bar_medals(df_medals_by_olympiad, s.season)
         s.bar_medals_by_committee = create_bar_by_committee(
-            df_olympic_medals, s.selected_olympiad
+            df_grouped_medals_olympiads, s.selected_olympiad
         )
         s.map_medals = plot_olympic_medals_by_country(
             df_olympic_cities,
@@ -133,8 +134,4 @@ with tgb.Page() as all_time_medals:
             tgb.chart(figure="{sunburnst_medals}")
 
     with tgb.expandable(expanded=False, title="Total Medals by Event"):
-        tgb.table(
-            "{df_olympic_cities_simplified}",
-            filter=True,
-            page_size=20
-        )
+        tgb.table("{df_olympic_cities_simplified}", filter=True, page_size=20)

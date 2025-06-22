@@ -63,7 +63,7 @@ def _create_bar_plot_by_committee(
 ):
     fig = px.bar(
         df_aggregated,
-        x=df_aggregated.index,
+        x="Committee",
         y=["Gold", "Silver", "Bronze"],
         barmode="group",
         orientation="v",
@@ -86,22 +86,10 @@ def create_bar_by_committee(df_medals, olympiad="All"):
     Returns:
        px.bar: A plotly bar chart to display in the Taipy app
     """
-    df_medals_by_committee = df_medals.copy()
-
-    if olympiad != "All":
-        df_medals_by_committee = df_medals_by_committee[
-            df_medals_by_committee["Olympiad"] == olympiad
-        ]
-    # Aggregating data to get count of medals by Medal_type for each Committee
-    df_aggregated = (
-        df_medals_by_committee.groupby(["Committee", "Medal_type"], observed=True)
-        .size()
-        .unstack(fill_value=0)
-    )
-    # Sort DataFrame by count of gold and silver medals
-    df_aggregated = df_aggregated.sort_values(by=["Gold", "Silver"], ascending=False)
-
-    return _create_bar_plot_by_committee(df_aggregated)
+    df_medals_to_plot = df_medals.copy()
+    df_medals_to_plot = df_medals_to_plot[df_medals_to_plot["Olympiad"] == olympiad]
+    df_medals_to_plot = df_medals_to_plot.drop(columns="Olympiad")
+    return _create_bar_plot_by_committee(df_medals_to_plot)
 
 
 def _select_medal_column(medal_type):

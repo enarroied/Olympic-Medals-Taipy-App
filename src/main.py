@@ -37,6 +37,9 @@ if __name__ == "__main__":
     # Variables for both pages
     df_olympic_cities = pd.read_parquet("./data/olympic_cities.parquet")
     df_olympic_medals = pd.read_parquet("./data/olympic_medals.parquet")
+    df_grouped_medals_olympiads = pd.read_parquet(
+        "./data/grouped_medals_olympiads.parquet"
+    )
 
     list_seasons = ["All", "summer", "winter"]
     list_medal_types = ["All", "Gold", "Silver", "Bronze"]
@@ -54,7 +57,9 @@ if __name__ == "__main__":
     df_sunburst = df_sunburst.astype(str)
 
     bar_medals = create_bar_medals(df_medals_by_olympiad, "All")
-    bar_medals_by_committee = create_bar_by_committee(df_olympic_medals, "All")
+    bar_medals_by_committee = create_bar_by_committee(
+        df_grouped_medals_olympiads, "All"
+    )
     map_medals = plot_olympic_medals_by_country(
         df_olympic_cities, season="All", medal_type="All"
     )

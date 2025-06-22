@@ -37,7 +37,6 @@ def on_selector(state):
 
 
 with tgb.Page() as committee_medals:
-
     tgb.text("## Medals Awarded to Committees", mode="md")
     tgb.text(
         "This dashboard presents aggregated data for the medals awarded to committees."
