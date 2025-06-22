@@ -23,11 +23,6 @@ def plot_total_medals_by_country(
     if medal_type != "All":
         df_filtered = df_filtered[df_filtered["Medal_type"] == medal_type]
 
-    # Quick fix: Replace "Stockholm 1956" with "Melbourne 1956"
-    df_filtered.loc[df_filtered["Olympiad"] == "Stockholm 1956", "Olympiad"] = (
-        "Melbourne 1956"
-    )
-
     # Create a complete grid of all years, Olympiads, and committees for merging
     years_olympiads = df_filtered[["Olympic_year", "Olympiad"]].drop_duplicates()
     committees = pd.DataFrame({"Committee": committee_list})
