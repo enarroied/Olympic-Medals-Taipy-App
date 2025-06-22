@@ -173,15 +173,11 @@ def plot_olympic_medals_by_country(df_olympic_cities, season, medal_type):
     return fig
 
 
-def create_sunburnst_medals(
+def _create_sunburnst_medals(
     df_sunburst,
     selected_olympiad_for_sunburst,
     gender_category_colors: GenderCategoryColorMap = GenderCategoryColorMap(),
 ):
-    if selected_olympiad_for_sunburst != "All":
-        df_sunburst = df_sunburst[
-            df_sunburst["Olympiad"] == selected_olympiad_for_sunburst
-        ]
     fig = px.sunburst(
         df_sunburst,
         path=["Gender", "Discipline", "Event"],
@@ -190,3 +186,14 @@ def create_sunburnst_medals(
         title=f"Total Medals by Gender, Discipline, and Event - {selected_olympiad_for_sunburst}",
     )
     return fig
+
+
+def create_sunburnst_medals(
+    df_sunburst,
+    selected_olympiad_for_sunburst,
+):
+    if selected_olympiad_for_sunburst != "All":
+        df_sunburst = df_sunburst[
+            df_sunburst["Olympiad"] == selected_olympiad_for_sunburst
+        ]
+    return _create_sunburnst_medals(df_sunburst, selected_olympiad_for_sunburst)
