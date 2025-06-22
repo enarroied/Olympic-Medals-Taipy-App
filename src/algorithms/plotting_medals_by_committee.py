@@ -97,6 +97,25 @@ def plot_total_medals_by_country_both_seasons(
     )
 
 
+def _create_grid_for_country(df_grouped, committee, season, ordered_olympiads):
+    fig = px.imshow(
+        df_grouped,
+        labels=dict(x="Discipline", y="Olympiad", color="Total Medals"),
+        x=df_grouped.columns,
+        y=ordered_olympiads,
+        color_continuous_scale="plasma",
+        title=f"Medals by Olympiad and discipline for {committee} | {season}",
+    )
+    # reduce font size:
+    fig.update_layout(
+        xaxis=dict(tickfont=dict(size=9)),
+        yaxis=dict(tickfont=dict(size=9)),
+        coloraxis_colorbar=dict(
+            tickfont=dict(size=9),
+        ),
+    )
+    return fig
+
 def plot_medals_grid(df_medals, committee, season):
     """
     Plot medals won by a committee across different disciplines and Olympiads.
@@ -127,28 +146,11 @@ def plot_medals_grid(df_medals, committee, season):
     )
     # Sort the index by "Olympic_year"
     df_grouped = df_grouped.sort_index(level=1)
-    ordered_olympiads = df_grouped.index.get_level_values("Olympiad").unique()
+    ordered_olympiads = list(df_grouped.index.get_level_values("Olympiad").unique())
 
     # Add all the disciplines of the selcted season, whether the Committee won a medals or not
     df_grouped = df_grouped.reindex(columns=all_disciplines, fill_value=0)
-
-    fig = px.imshow(
-        df_grouped,
-        labels=dict(x="Discipline", y="Olympiad", color="Total Medals"),
-        x=df_grouped.columns,
-        y=list(ordered_olympiads),
-        color_continuous_scale="plasma",
-        title=f"Medals by Olympiad and discipline for {committee} | {season}",
-    )
-    # reduce font size:
-    fig.update_layout(
-        xaxis=dict(tickfont=dict(size=9)),
-        yaxis=dict(tickfont=dict(size=9)),
-        coloraxis_colorbar=dict(
-            tickfont=dict(size=9),
-        ),
-    )
-    return fig
+    return _create_grid_for_country(df_grouped, committee, season, ordered_olympiads)
 
 
 def plot_medals_grid_both_seasons(df_medals, committee):
