@@ -37,7 +37,7 @@ def on_selector(state):
         ) = create_medals_detail(df_grouped_medals, selected_committe)
 
         s.summer_medal_grid, s.winter_medal_grid = plot_medals_grid_both_seasons(
-            s.df_olympic_medals, committee=selected_committe
+            df_olympic_medals, committee=selected_committe
         )
 
 
