@@ -15,11 +15,14 @@ def on_selector(state):
     with state as s:
         df_grouped_medals = s.df_grouped_medals.copy()
         df_olympic_medals = s.df_olympic_medals.copy()
+        df_total_medals_by_olympiad_and_committee = (
+            s.df_total_medals_by_olympiad_and_committee.copy()
+        )
         selected_committe = s.committee_detail
 
         s.summer_medal_by_committee, s.winter_medal_by_committee = (
             plot_total_medals_by_country_both_seasons(
-                df_olympic_medals,
+                df_total_medals_by_olympiad_and_committee,
                 committee_list=s.committees,
                 medal_type=s.medal_type,
                 percentage=s.display_percent,

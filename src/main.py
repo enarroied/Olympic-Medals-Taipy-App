@@ -67,16 +67,19 @@ if __name__ == "__main__":
     selected_olympiad_for_sunburst = "All"
 
     # Variables for meddals_by_committe
+    df_total_medals_by_olympiad_and_committee = pd.read_parquet(
+        "./data/total_medals_by_olympiad_and_committee.parquet"
+    )
+
     list_committees = yaml_to_list("./parameters/list_committees.yml")
     committees = ["France", "United States"]
     committee_detail = "France"
     medal_type = "All"
     display_percent = "Total medals"
 
-    # To fix
     summer_medal_by_committee, winter_medal_by_committee = (
         plot_total_medals_by_country_both_seasons(
-            df_olympic_medals,
+            df_total_medals_by_olympiad_and_committee,
             committee_list=committees,
             medal_type=medal_type,
         )

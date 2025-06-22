@@ -3,13 +3,17 @@ import plotly.express as px
 
 
 def plot_total_medals_by_country(
-    df_medals, committee_list, season, medal_type="All", percentage="Total medals"
+    df_total_medals_by_olympiad_and_committee,
+    committee_list,
+    season,
+    medal_type="All",
+    percentage="Total medals",
 ):
     """
     Plot total medals won by selected committees over Olympic years (by olympic season winter/summer).
 
     Parameters:
-    - df_medals (DataFrame): DataFrame containing medal data.
+    - df_total_medals_by_olympiad_and_committee (DataFrame): DataFrame containing medal data.
     - committee_list (list): List of committees to plot.
     - season (str): Olympic season: "summer" or "winter".
     - medal_type (str): Type of medal. Default is "All".
@@ -18,56 +22,29 @@ def plot_total_medals_by_country(
     Returns:
     - fig: Plotly figure object showing total medals by year for selected committees.
     """
+    df_medals = df_total_medals_by_olympiad_and_committee.copy()
 
-    df_filtered = df_medals[df_medals["Olympic_season"] == season]
-    if medal_type != "All":
-        df_filtered = df_filtered[df_filtered["Medal_type"] == medal_type]
+    df_filtered = df_medals[
+        (df_medals["Olympic_season"] == season)
+        & (df_medals["Medal_type"] == medal_type)
+    ]
 
-    # Create a complete grid of all years, Olympiads, and committees for merging
-    years_olympiads = df_filtered[["Olympic_year", "Olympiad"]].drop_duplicates()
-    committees = pd.DataFrame({"Committee": committee_list})
-
-    # Cartesian product of years/olympiads and committees
-    full_grid = years_olympiads.merge(committees, how="cross")
-
-    df_totals = (
-        df_filtered.groupby(["Olympic_year", "Olympiad", "Committee"], observed=True)
-        .size()
-        .reset_index(name="Medal_count")
-    )
-
-    df_totals = full_grid.merge(
-        df_totals, on=["Olympic_year", "Olympiad", "Committee"], how="left"
-    ).fillna({"Medal_count": 0})
-
-    # Pivot to have committees as columns
-    df_pivot = df_totals.pivot_table(
-        index=["Olympic_year", "Olympiad"],
-        columns="Committee",
-        values="Medal_count",
-        fill_value=0,
-        observed=True,
-    ).reset_index()
-
-    df_totals_max = (
-        df_pivot.set_index(["Olympic_year", "Olympiad"])
-        .sum(axis=1)
-        .reset_index(name="Total_medals")
-    )
+    columns_to_plot = ["Olympic_year", "Olympiad", "Total_medals"] + committee_list
+    df_to_plot = df_filtered[columns_to_plot]
 
     if percentage == "Percentage":
-        df_pivot = df_pivot.merge(df_totals_max, on=["Olympic_year", "Olympiad"])
         for committee in committee_list:
-            df_pivot[committee] = (
-                df_pivot[committee] * 100 / df_pivot["Total_medals"]
+            df_to_plot.loc[:, committee] = (
+                df_to_plot[committee] * 100 / df_to_plot["Total_medals"]
             ).fillna(0)
         value_label = "Percentage of Medals"
-        df_pivot = df_pivot.drop(columns=["Total_medals"])
     else:
         value_label = "Total Medals"
 
+    df_to_plot = df_to_plot.drop(columns=["Total_medals"])
+
     fig = px.line(
-        df_pivot,
+        df_to_plot,
         x="Olympic_year",
         y=committee_list,
         labels={
@@ -86,18 +63,21 @@ def plot_total_medals_by_country(
 
 
 def plot_total_medals_by_country_both_seasons(
-    df_medals, committee_list, medal_type="All", percentage="Total medals"
+    df_total_medals_by_olympiad_and_committee,
+    committee_list,
+    medal_type="All",
+    percentage="Total medals",
 ):
     return (
         plot_total_medals_by_country(
-            df_medals=df_medals,
+            df_total_medals_by_olympiad_and_committee=df_total_medals_by_olympiad_and_committee,
             committee_list=committee_list,
             season="summer",
             medal_type=medal_type,
             percentage=percentage,
         ),
         plot_total_medals_by_country(
-            df_medals=df_medals,
+            df_total_medals_by_olympiad_and_committee=df_total_medals_by_olympiad_and_committee,
             committee_list=committee_list,
             season="winter",
             medal_type=medal_type,
