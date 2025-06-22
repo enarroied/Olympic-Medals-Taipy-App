@@ -103,7 +103,7 @@ def create_bar_by_committee(df_medals, olympiad="All"):
     return _create_bar_plot_by_committee(df_aggregated)
 
 
-def select_medal_column(medal_type):
+def _select_medal_column(medal_type):
     """
     Helper function to select the appropriate medal column based on medal_type.
 
@@ -138,7 +138,7 @@ def plot_olympic_medals_by_country(df_olympic_cities, season, medal_type):
     Returns:
         plotly.graph_objs._figure.Figure: Choropleth map figure.
     """
-    medal_column = select_medal_column(medal_type)
+    medal_column = _select_medal_column(medal_type)
 
     if season != "All":
         df_olympic_cities = df_olympic_cities[
