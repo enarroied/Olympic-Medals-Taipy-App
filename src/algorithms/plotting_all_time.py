@@ -1,33 +1,13 @@
 import plotly.express as px
+from parameters.medal_colors import MedalColorMap
 
-
-def create_bar_medals(df_medals_by_olympiad, season):
-    """Creates a plotly bar chart with total olympic medals (broken by medal color).
-        The dataframe is previously filtered by season (summer / winter).
-
-    Args:
-        df_medals_by_olympiad (pd.DataFrame): data with all the olympic medals.
-        season (str): ""All", "winter" or "summer".
-
-    Returns:
-       px.bar: A plotly bar chart to display in the Taipy app
-    """
-    # Define colors for each medal type
-    medal_colors = {"Gold": "#FFD700", "Silver": "#C0C0C0", "Bronze": "#CD7F32"}
-
-    if season != "All":
-        df_medals_season = df_medals_by_olympiad[
-            df_medals_by_olympiad["Olympic_season"] == season
-        ].reset_index(drop=True)
-    else:
-        df_medals_season = df_medals_by_olympiad
-    # Create a stacked bar chart
+def _create_bar_medal_season(df_medals_season, season, medal_colors: MedalColorMap = MedalColorMap()):
     fig = px.bar(
         df_medals_season,
         x="Olympiad",
         y="Medal_count",
         color="Medal_type",
-        color_discrete_map=medal_colors,  # Assign colors to medal types
+        color_discrete_map=medal_colors.as_dict(),
         title="Medal Count by Olympiad and Medal Type",
         labels={"Medal_count": "Medal Count", "Olympiad": "Olympiad"},
         category_orders={"Olympiad": df_medals_season["Olympiad"].unique()},
@@ -50,6 +30,30 @@ def create_bar_medals(df_medals_by_olympiad, season):
             opacity=0.8,
         )
     return fig
+
+
+def create_bar_medals(df_medals_by_olympiad, season):
+    """Creates a plotly bar chart with total olympic medals (broken by medal color).
+        The dataframe is previously filtered by season (summer / winter).
+
+    Args:
+        df_medals_by_olympiad (pd.DataFrame): data with all the olympic medals.
+        season (str): ""All", "winter" or "summer".
+
+    Returns:
+       px.bar: A plotly bar chart to display in the Taipy app
+    """
+    # Define colors for each medal type
+
+    if season != "All":
+        df_medals_season = df_medals_by_olympiad[
+            df_medals_by_olympiad["Olympic_season"] == season
+        ].reset_index(drop=True)
+    else:
+        df_medals_season = df_medals_by_olympiad
+    
+    return _create_bar_medal_season(df_medals_season, season)
+
 
 
 def create_bar_by_committee(df_medals, olympiad="All"):
