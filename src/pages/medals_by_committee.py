@@ -9,7 +9,7 @@ from algorithms.plotting_medals_by_committee import (
 
 def on_selector(state):
     with state as s:
-        df_grouped_medals = s.df_grouped_medals.copy()
+        df_grouped_medals_olympiads = s.df_grouped_medals_olympiads.copy()
         df_olympic_medals = s.df_olympic_medals.copy()
         df_total_medals_by_olympiad_and_committee = (
             s.df_total_medals_by_olympiad_and_committee.copy()
@@ -29,7 +29,7 @@ def on_selector(state):
             s.gold_medals_detail,
             s.silver_medals_detail,
             s.bronze_medals_detail,
-        ) = create_medals_detail(df_grouped_medals, selected_committe)
+        ) = create_medals_detail(df_grouped_medals_olympiads, selected_committe)
 
         s.summer_medal_grid, s.winter_medal_grid = plot_medals_grid_both_seasons(
             df_olympic_medals, committee=selected_committe

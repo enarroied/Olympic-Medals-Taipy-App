@@ -6,7 +6,7 @@ def _get_medal_count(df_grouped_medals, medal_type, committee_detail):
     )
 
 
-def create_medals_detail(df_grouped_medals, committee_detail):
+def create_medals_detail(df_grouped_medals_olympiads, committee_detail):
     """
     Returns total, gold, silver, and bronze medal counts for a given committee.
 
@@ -17,6 +17,9 @@ def create_medals_detail(df_grouped_medals, committee_detail):
     Returns:
         tuple: (Total, Gold, Silver, Bronze) medal counts as integers.
     """
+    df_grouped_medals = df_grouped_medals_olympiads.copy()
+    df_grouped_medals = df_grouped_medals[df_grouped_medals["Olympiad"] == "All"]
+    df_grouped_medals = df_grouped_medals.drop(columns="Olympiad")
     return (
         _get_medal_count(df_grouped_medals, "Total", committee_detail),
         _get_medal_count(df_grouped_medals, "Gold", committee_detail),

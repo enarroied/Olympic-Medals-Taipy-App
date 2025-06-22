@@ -49,7 +49,6 @@ if __name__ == "__main__":
         "./data/olympic_cities_simplified.parquet"
     )
     df_medals_by_olympiad = pd.read_parquet("./data/medals_by_olympiad.parquet")
-    df_grouped_medals = pd.read_parquet("./data/grouped_medals.parquet")
 
     df_sunburst = df_olympic_medals[
         ["Olympiad", "Gender", "Discipline", "Event"]
@@ -100,7 +99,7 @@ if __name__ == "__main__":
         gold_medals_detail,
         silver_medals_detail,
         bronze_medals_detail,
-    ) = create_medals_detail(df_grouped_medals, committee_detail)
+    ) = create_medals_detail(df_grouped_medals_olympiads, committee_detail)
 
     summer_medal_grid, winter_medal_grid = plot_medals_grid_both_seasons(
         df_olympic_medals, committee=committee_detail
