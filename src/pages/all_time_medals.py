@@ -1,34 +1,6 @@
 import taipy.gui.builder as tgb
 
-from algorithms.plotting_all_time import (
-    create_bar_by_committee,
-    create_bar_medals,
-    create_sunburnst_medals,
-    plot_olympic_medals_by_country,
-)
-
-
-def on_selector(state):
-    with state as s:
-        df_olympic_cities = s.df_olympic_cities.copy()
-        df_olympic_medals = s.df_olympic_medals.copy()
-        df_medals_by_olympiad = s.df_medals_by_olympiad.copy()
-        df_sunburst = s.df_sunburst.copy()
-        df_grouped_medals_olympiads = s.df_grouped_medals_olympiads.copy()
-
-        s.bar_medals = create_bar_medals(df_medals_by_olympiad, s.season)
-        s.bar_medals_by_committee = create_bar_by_committee(
-            df_grouped_medals_olympiads, s.selected_olympiad
-        )
-        s.map_medals = plot_olympic_medals_by_country(
-            df_olympic_cities,
-            season=s.selected_season_map,
-            medal_type=s.selected_medal_color,
-        )
-        s.sunburnst_medals = create_sunburnst_medals(
-            df_sunburst, s.selected_olympiad_for_sunburst
-        )
-
+from algorithms.callbacks import on_selector_all_time_medals
 
 with tgb.Page() as all_time_medals:
 
@@ -87,7 +59,7 @@ with tgb.Page() as all_time_medals:
                 dropdown=True,
                 label="Select season",
                 class_name="fullwidth",
-                on_change=on_selector,
+                on_change=on_selector_all_time_medals,
             )
             tgb.chart(figure="{bar_medals}")
 
@@ -98,7 +70,7 @@ with tgb.Page() as all_time_medals:
                 dropdown=True,
                 label="Select Olympiad",
                 class_name="fullwidth",
-                on_change=on_selector,
+                on_change=on_selector_all_time_medals,
             )
             tgb.chart(figure="{bar_medals_by_committee}")
         with tgb.part():
@@ -110,7 +82,7 @@ with tgb.Page() as all_time_medals:
                         dropdown=True,
                         label="Select season for map",
                         class_name="fullwidth",
-                        on_change=on_selector,
+                        on_change=on_selector_all_time_medals,
                     )
                 with tgb.part():
                     tgb.selector(
@@ -119,7 +91,7 @@ with tgb.Page() as all_time_medals:
                         dropdown=True,
                         label="Select medal color",
                         class_name="fullwidth",
-                        on_change=on_selector,
+                        on_change=on_selector_all_time_medals,
                     )
             tgb.chart(figure="{map_medals}")
         with tgb.part():
@@ -129,7 +101,7 @@ with tgb.Page() as all_time_medals:
                 dropdown=True,
                 label="Select Olympiad",
                 class_name="fullwidth",
-                on_change=on_selector,
+                on_change=on_selector_all_time_medals,
             )
             tgb.chart(figure="{sunburnst_medals}")
 
