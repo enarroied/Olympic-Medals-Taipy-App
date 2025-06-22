@@ -13,6 +13,7 @@ def on_selector(state):
         df_olympic_cities = s.df_olympic_cities.copy()
         df_olympic_medals = s.df_olympic_medals.copy()
         df_medals_by_olympiad = s.df_medals_by_olympiad.copy()
+        df_sunburst = s.df_sunburst.copy()
 
         s.bar_medals = create_bar_medals(df_medals_by_olympiad, s.season)
         s.bar_medals_by_committee = create_bar_by_committee(
@@ -24,7 +25,7 @@ def on_selector(state):
             medal_type=s.selected_medal_color,
         )
         s.sunburnst_medals = create_sunburnst_medals(
-            df_olympic_medals, s.selected_olympiad_for_sunburst
+            df_sunburst, s.selected_olympiad_for_sunburst
         )
 
 

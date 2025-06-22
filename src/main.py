@@ -48,13 +48,18 @@ if __name__ == "__main__":
     df_medals_by_olympiad = pd.read_parquet("./data/medals_by_olympiad.parquet")
     df_grouped_medals = pd.read_parquet("./data/grouped_medals.parquet")
 
+    df_sunburst = df_olympic_medals[
+        ["Olympiad", "Gender", "Discipline", "Event"]
+    ].copy()
+    df_sunburst = df_sunburst.astype(str)
+
     bar_medals = create_bar_medals(df_medals_by_olympiad, "All")
     bar_medals_by_committee = create_bar_by_committee(df_olympic_medals, "All")
     map_medals = plot_olympic_medals_by_country(
         df_olympic_cities, season="All", medal_type="All"
     )
     sunburnst_medals = create_sunburnst_medals(
-        df_olympic_medals, selected_olympiad_for_sunburst="All"
+        df_sunburst, selected_olympiad_for_sunburst="All"
     )
 
     list_olympiads = yaml_to_list("./parameters/list_olympiads.yml")
