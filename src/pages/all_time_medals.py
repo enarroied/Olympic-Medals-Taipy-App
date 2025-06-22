@@ -10,17 +10,21 @@ from algorithms.plotting_all_time import (
 
 def on_selector(state):
     with state as s:
-        s.bar_medals = create_bar_medals(s.df_medals_by_olympiad, s.season)
+        df_olympic_cities = s.df_olympic_cities.copy()
+        df_olympic_medals = s.df_olympic_medals.copy()
+        df_medals_by_olympiad = s.df_medals_by_olympiad.copy()
+
+        s.bar_medals = create_bar_medals(df_medals_by_olympiad, s.season)
         s.bar_medals_by_committee = create_bar_by_committee(
-            s.df_olympic_medals, s.selected_olympiad
+            df_olympic_medals, s.selected_olympiad
         )
         s.map_medals = plot_olympic_medals_by_country(
-            s.df_olympic_cities,
+            df_olympic_cities,
             season=s.selected_season_map,
             medal_type=s.selected_medal_color,
         )
         s.sunburnst_medals = create_sunburnst_medals(
-            s.df_olympic_medals, s.selected_olympiad_for_sunburst
+            df_olympic_medals, s.selected_olympiad_for_sunburst
         )
 
 
