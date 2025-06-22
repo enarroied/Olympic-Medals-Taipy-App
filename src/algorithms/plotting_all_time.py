@@ -57,6 +57,23 @@ def create_bar_medals(df_medals_by_olympiad, season):
     return _create_bar_medal_season(df_medals_season, season)
 
 
+def _create_bar_plot_by_committee(
+    df_aggregated, medal_colors: MedalColorMap = MedalColorMap()
+):
+    fig = px.bar(
+        df_aggregated,
+        x=df_aggregated.index,
+        y=["Gold", "Silver", "Bronze"],
+        barmode="group",
+        orientation="v",
+        color_discrete_map=medal_colors.as_dict(),
+        labels={"value": "Count", "variable": "Medal Type"},
+        title="Count of Gold, Silver, Bronze Medals by Committee",
+    )
+    fig.update_layout(xaxis={"title": "Committee"}, yaxis={"title": "Count"})
+    return fig
+
+
 def create_bar_by_committee(df_medals, olympiad="All"):
     """Creates a plotly bar chart with total olympic medals (medal colorS by each other).
         The dataframe is previously filtered by season (summer / winter).
@@ -74,33 +91,16 @@ def create_bar_by_committee(df_medals, olympiad="All"):
         df_medals_by_committee = df_medals_by_committee[
             df_medals_by_committee["Olympiad"] == olympiad
         ]
-
-    # Define medal colors
-    medal_colors = {"Gold": "#FFD700", "Silver": "#C0C0C0", "Bronze": "#CD7F32"}
-
     # Aggregating data to get count of medals by Medal_type for each Committee
     df_aggregated = (
         df_medals_by_committee.groupby(["Committee", "Medal_type"], observed=True)
         .size()
         .unstack(fill_value=0)
     )
-
     # Sort DataFrame by count of gold and silver medals
     df_aggregated = df_aggregated.sort_values(by=["Gold", "Silver"], ascending=False)
 
-    # Plotly bar chart
-    fig = px.bar(
-        df_aggregated,
-        x=df_aggregated.index,
-        y=["Gold", "Silver", "Bronze"],
-        barmode="group",
-        orientation="v",
-        color_discrete_map=medal_colors,
-        labels={"value": "Count", "variable": "Medal Type"},
-        title="Count of Gold, Silver, Bronze Medals by Committee",
-    )
-    fig.update_layout(xaxis={"title": "Committee"}, yaxis={"title": "Count"})
-    return fig
+    return _create_bar_plot_by_committee(df_aggregated)
 
 
 def select_medal_column(medal_type):
