@@ -1,4 +1,3 @@
-import pandas as pd
 import taipy.gui.builder as tgb
 
 from algorithms.plotting_all_time import (
@@ -9,9 +8,6 @@ from algorithms.plotting_all_time import (
 )
 
 
-###########################################################
-###                  Selector Function                  ###
-###########################################################
 def on_selector(state):
     with state as s:
         s.bar_medals = create_bar_medals(s.df_medals_by_olympiad, s.season)
@@ -26,11 +22,6 @@ def on_selector(state):
         s.sunburnst_medals = create_sunburnst_medals(
             s.df_olympic_medals, s.selected_olympiad_for_sunburst
         )
-
-
-###########################################################
-###                      Design Page                    ###
-###########################################################
 
 
 with tgb.Page() as all_time_medals:

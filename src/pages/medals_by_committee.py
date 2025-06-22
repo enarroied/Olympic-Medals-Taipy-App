@@ -1,4 +1,3 @@
-import pandas as pd
 import taipy.gui.builder as tgb
 
 from algorithms.medal_details import create_medals_detail
@@ -8,9 +7,6 @@ from algorithms.plotting_medals_by_committee import (
 )
 
 
-###########################################################
-###                  Selector Function                  ###
-###########################################################
 def on_selector(state):
     with state as s:
         df_grouped_medals = s.df_grouped_medals.copy()
@@ -28,7 +24,6 @@ def on_selector(state):
                 percentage=s.display_percent,
             )
         )
-
         (
             s.total_medals_detail,
             s.gold_medals_detail,
@@ -39,11 +34,6 @@ def on_selector(state):
         s.summer_medal_grid, s.winter_medal_grid = plot_medals_grid_both_seasons(
             df_olympic_medals, committee=selected_committe
         )
-
-
-###########################################################
-###                      Design Page                    ###
-###########################################################
 
 
 with tgb.Page() as committee_medals:

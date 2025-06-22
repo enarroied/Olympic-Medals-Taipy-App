@@ -116,6 +116,7 @@ def _create_grid_for_country(df_grouped, committee, season, ordered_olympiads):
     )
     return fig
 
+
 def plot_medals_grid(df_medals, committee, season):
     """
     Plot medals won by a committee across different disciplines and Olympiads.
