@@ -132,8 +132,9 @@ with tgb.Page() as all_time_medals:
             )
             tgb.chart(figure="{sunburnst_medals}")
 
-    tgb.table(
-        "{df_olympic_cities_simplified}",
-        filter=True,
-        page_size=20
-    )
+    with tgb.expandable(expanded=False, title="Total Medals by Event"):
+        tgb.table(
+            "{df_olympic_cities_simplified}",
+            filter=True,
+            page_size=20
+        )
