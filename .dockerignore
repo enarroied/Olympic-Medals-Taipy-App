@@ -1,0 +1,36 @@
+# Ignore virtual environments
+.venv
+env/
+venv/
+
+# Ignore Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Ignore logs
+*.log
+
+# Ignore test coverage and reports
+.coverage
+htmlcov/
+*.egg-info/
+
+# Ignore git stuff
+.git
+.gitignore
+
+# Ignore Docker’s own stuff
+Dockerfile
+.dockerignore
+
+# Ignore environment files and secrets
+.env
+*.pem
+*.key
+*.crt
+
+# Ignore local dev files
+.idea/
+.vscode/
