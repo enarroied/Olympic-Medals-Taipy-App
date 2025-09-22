@@ -36,7 +36,6 @@ def on_init(state):
 
 
 if __name__ == "__main__":
-
     # Variables for both pages
     df_olympic_cities = pd.read_parquet("./data/olympic_cities.parquet")
     df_olympic_medals = pd.read_parquet("./data/olympic_medals.parquet")

@@ -5,13 +5,16 @@ from algorithms.callbacks import on_selector_medals_by_committee
 with tgb.Page() as committee_medals:
     tgb.text("## Medals Awarded to Committees", mode="md")
     tgb.text(
-        "This dashboard presents aggregated data for the medals awarded to committees."
+        "This dashboard presents aggregated data for the medals awarded to\
+              committees."
     )
     tgb.text(
-        "Compare as many committees as needed with multiple selections. You can choose to compare all medals or just one medal color."
+        "Compare as many committees as needed with multiple selections. You can\
+              choose to compare all medals or just one medal color."
     )
     tgb.text(
-        "Results can be shown as total medals or as a percentage of total medals per Olympic Games."
+        "Results can be shown as total medals or as a percentage of total medals\
+              per Olympic Games."
     )
 
     with tgb.layout("1 1 1"):
@@ -51,7 +54,8 @@ with tgb.Page() as committee_medals:
 
     tgb.text("Detailed information by committee", class_name="h2")
     tgb.text(
-        "Select a country to see total medals and how they distribute accross Olympics and disciplines."
+        "Select a country to see total medals and how they distribute accross\
+              Olympics and disciplines."
     )
     with tgb.layout("1 1 1 1 1"):
         tgb.selector(

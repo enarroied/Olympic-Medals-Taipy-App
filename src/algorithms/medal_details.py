@@ -11,7 +11,8 @@ def create_medals_detail(df_grouped_medals_olympiads, committee_detail):
     Returns total, gold, silver, and bronze medal counts for a given committee.
 
     Args:
-        df_grouped_medals (pandas.DataFrame): DataFrame grouped by committee with medal counts.
+        df_grouped_medals (pandas.DataFrame): DataFrame grouped by committee
+    with medal counts.
         committee_detail (str): The committee name to look up.
 
     Returns:

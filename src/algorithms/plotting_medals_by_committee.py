@@ -49,14 +49,17 @@ def plot_total_medals_by_country(
     percentage="Total medals",
 ):
     """
-    Plot total medals won by selected committees over Olympic years (by olympic season winter/summer).
+    Plot total medals won by selected committees over Olympic years (by olympic
+    season winter/summer).
 
     Parameters:
-    - df_total_medals_by_olympiad_and_committee (DataFrame): DataFrame containing medal data.
+    - df_total_medals_by_olympiad_and_committee (DataFrame): DataFrame containing
+    medal data.
     - committee_list (list): List of committees to plot.
     - season (str): Olympic season: "summer" or "winter".
     - medal_type (str): Type of medal. Default is "All".
-    - percentage (str): Type of representation. Default is "Total medals". Other option is "Percentage"
+    - percentage (str): Type of representation. Default is "Total medals".
+    Other option is "Percentage"
 
     Returns:
     - fig: Plotly figure object showing total medals by year for selected committees.
@@ -127,29 +130,31 @@ def plot_medals_grid(df_medals, committee, season):
     - season (str): Olympic season: "summer" or "winter".
 
     Returns:
-    - fig: Plotly figure object showing medals by Olympiad and discipline for the committee.
+    - fig: Plotly figure object showing medals by Olympiad and discipline for
+      the committee.
     """
-    # Filter DataFrame by season
     df_filtered = df_medals[(df_medals["Olympic_season"] == season)]
 
-    # Get all possible disciplines --> Like this, all disciplines appear for all countries
-    # Important to do this after filtering by season and before filtering by committee!
+    # Get all possible disciplines --> Like this, all disciplines appear for all
+    # countries
+    # Important to do this after filtering by season and before filtering by
+    # committee!
     all_disciplines = df_filtered["Discipline"].unique()
 
     # And then only filter the DataFrame by committee
     df_filtered = df_filtered[(df_filtered["Committee"] == committee)]
 
-    # Group by Olympiad and Discipline, then count occurrences
     df_grouped = (
         df_filtered.groupby(["Olympiad", "Olympic_year", "Discipline"], observed=True)
         .size()
         .unstack(fill_value=0)
     )
-    # Sort the index by "Olympic_year"
+
     df_grouped = df_grouped.sort_index(level=1)
     ordered_olympiads = list(df_grouped.index.get_level_values("Olympiad").unique())
 
-    # Add all the disciplines of the selcted season, whether the Committee won a medals or not
+    # Add all the disciplines of the selcted season, whether the Committee won a
+    #  medals or not
     df_grouped = df_grouped.reindex(columns=all_disciplines, fill_value=0)
     return _create_grid_for_country(df_grouped, committee, season, ordered_olympiads)
 

@@ -76,7 +76,8 @@ def _create_bar_plot_by_committee(
 
 
 def create_bar_by_committee(df_medals, olympiad="All"):
-    """Creates a plotly bar chart with total olympic medals (medal colorS by each other).
+    """Creates a plotly bar chart with total olympic medals (medal colorS by
+    each other).
         The dataframe is previously filtered by season (summer / winter).
 
     Args:
@@ -97,7 +98,8 @@ def _select_medal_column(medal_type):
     Helper function to select the appropriate medal column based on medal_type.
 
     Args:
-        medal_type (str): The type of medal. One of "All", "Gold", "Silver", or "Bronze".
+        medal_type (str): The type of medal. One of "All", "Gold", "Silver",
+        or "Bronze".
 
     Returns:
         str: The corresponding column name in the DataFrame.
@@ -110,7 +112,8 @@ def _select_medal_column(medal_type):
     }
     if medal_type not in medal_map:
         raise ValueError(
-            "Invalid medal_type. Should be one of 'All', 'Gold', 'Silver', or 'Bronze'."
+            "Invalid medal_type. Should be one of 'All', 'Gold', 'Silver',\
+                  or 'Bronze'."
         )
     return medal_map[medal_type]
 
@@ -122,7 +125,8 @@ def _create_map_medals_by_country(country_counts, season, medal_type):
         color="Number of Medals",
         hover_name="Country",
         color_continuous_scale=px.colors.sequential.Plasma,
-        title=f"{medal_type.capitalize()} Olympic Medals awarded by Host Country ({season.capitalize()})",
+        title=f"{medal_type.capitalize()} Olympic Medals awarded by Host Country\
+         ({season.capitalize()})",
         projection="natural earth",
     )
     fig.update_geos(
@@ -136,12 +140,16 @@ def _create_map_medals_by_country(country_counts, season, medal_type):
 
 def plot_olympic_medals_by_country(df_olympic_cities, season, medal_type):
     """
-    Plot a choropleth map of Olympic medals by country for a specified season and medal type.
+    Plot a choropleth map of Olympic medals by country for a specified season
+    and medal type.
 
     Args:
-        df_olympic_cities (pandas.DataFrame): DataFrame containing Olympic medals data.
-        season (str): The season for which to plot the medals. Should be either "winter" or "summer".
-        medal_type (str): The type of medal to count. Should be one of "All", "Gold", "Silver", or "Bronze".
+        df_olympic_cities (pandas.DataFrame): DataFrame containing Olympic
+        medals data.
+        season (str): The season for which to plot the medals. Should be either
+        "winter" or "summer".
+        medal_type (str): The type of medal to count. Should be one of "All",
+        "Gold", "Silver", or "Bronze".
 
     Returns:
         plotly.graph_objs._figure.Figure: Choropleth map figure.
@@ -173,7 +181,8 @@ def _create_sunburnst_medals(
         path=["Gender", "Discipline", "Event"],
         color="Gender",
         color_discrete_map=gender_category_colors.as_dict(),
-        title=f"Total Medals by Gender, Discipline, and Event - {selected_olympiad_for_sunburst}",
+        title=f"Total Medals by Gender, Discipline, and Event\
+              - {selected_olympiad_for_sunburst}",
     )
     return fig
 
