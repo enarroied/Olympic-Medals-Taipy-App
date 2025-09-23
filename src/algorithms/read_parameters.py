@@ -34,7 +34,6 @@ def yaml_to_list(filepath):
                 f"YAML content is not a plain list. Found type: {type(data)}. "
                 "Expected a list at the root of the YAML file."
             )
-
         return data
 
     except yaml.YAMLError as e:
