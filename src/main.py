@@ -1,7 +1,4 @@
 import pandas as pd
-import taipy.gui.builder as tgb
-from taipy.gui import Gui
-
 from algorithms.callbacks import (
     get_last_olympic,
     init_total_medals,
@@ -11,6 +8,9 @@ from algorithms.callbacks import (
 from algorithms.read_parameters import yaml_to_list
 from pages.all_time_medals import all_time_medals
 from pages.medals_by_committee import committee_medals
+
+import taipy.gui.builder as tgb
+from taipy.gui import Gui
 
 ###########################################################
 ###                       Run App                       ###
@@ -36,7 +36,7 @@ def on_init(state):
 
 
 if __name__ == "__main__":
-    # Variables for both pages
+    # Variables for both page
     df_olympic_cities = pd.read_parquet("./data/olympic_cities.parquet")
     df_olympic_medals = pd.read_parquet("./data/olympic_medals.parquet")
     df_grouped_medals_olympiads = pd.read_parquet(

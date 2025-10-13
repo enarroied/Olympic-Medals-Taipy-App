@@ -1,7 +1,5 @@
 import plotly.express as px
-
-from parameters.gender_category_colors import GenderCategoryColorMap
-from parameters.medal_colors import MedalColorMap
+from algorithms.context import GenderCategoryColorMap, MedalColorMap
 
 
 def _create_bar_medal_season(
