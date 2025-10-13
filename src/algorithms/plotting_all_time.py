@@ -1,5 +1,5 @@
 import plotly.express as px
-from algorithms.context import GenderCategoryColorMap, MedalColorMap
+from algorithms.context import MedalColorMap
 
 
 def _create_bar_medal_season(
@@ -167,30 +167,3 @@ def plot_olympic_medals_by_country(df_olympic_cities, season, medal_type):
         .reset_index(name="Number of Medals")
     )
     return _create_map_medals_by_country(country_counts, season, medal_type)
-
-
-def _create_sunburnst_medals(
-    df_sunburst,
-    selected_olympiad_for_sunburst,
-    gender_category_colors: GenderCategoryColorMap = GenderCategoryColorMap(),
-):
-    fig = px.sunburst(
-        df_sunburst,
-        path=["Gender", "Discipline", "Event"],
-        color="Gender",
-        color_discrete_map=gender_category_colors.as_dict(),
-        title=f"Total Medals by Gender, Discipline, and Event\
-              - {selected_olympiad_for_sunburst}",
-    )
-    return fig
-
-
-def create_sunburnst_medals(
-    df_sunburst,
-    selected_olympiad_for_sunburst,
-):
-    if selected_olympiad_for_sunburst != "All":
-        df_sunburst = df_sunburst[
-            df_sunburst["Olympiad"] == selected_olympiad_for_sunburst
-        ]
-    return _create_sunburnst_medals(df_sunburst, selected_olympiad_for_sunburst)

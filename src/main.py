@@ -5,6 +5,7 @@ from algorithms.callbacks import (
     on_selector_all_time_medals,
     on_selector_medals_by_committee,
 )
+from algorithms.create_sunburst import SunburstByGender
 from algorithms.read_parameters import yaml_to_list
 from pages.all_time_medals import all_time_medals
 from pages.medals_by_committee import committee_medals
@@ -52,10 +53,7 @@ if __name__ == "__main__":
     )
     df_medals_by_olympiad = pd.read_parquet("./data/medals_by_olympiad.parquet")
 
-    df_sunburst = df_olympic_medals[
-        ["Olympiad", "Gender", "Discipline", "Event"]
-    ].copy()
-    df_sunburst = df_sunburst.astype(str)
+    sunburnst_by_gender = SunburstByGender(df_olympic_medals)
 
     latest_olympiad = ""
 

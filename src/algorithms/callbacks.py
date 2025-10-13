@@ -1,8 +1,7 @@
 from algorithms.medal_details import create_medals_detail
-from algorithms.plotting_all_time import (
+from algorithms.plotting_all_time import (  # create_sunburnst_medals,
     create_bar_by_committee,
     create_bar_medals,
-    create_sunburnst_medals,
     plot_olympic_medals_by_country,
 )
 from algorithms.plotting_medals_by_committee import (
@@ -44,7 +43,7 @@ def on_selector_all_time_medals(state):
     with state as s:
         df_olympic_cities = s.df_olympic_cities.copy()
         df_medals_by_olympiad = s.df_medals_by_olympiad.copy()
-        df_sunburst = s.df_sunburst.copy()
+        # df_sunburst = s.df_sunburst.copy()
         df_grouped_medals_olympiads = s.df_grouped_medals_olympiads.copy()
 
         s.bar_medals = create_bar_medals(df_medals_by_olympiad, s.season)
@@ -56,9 +55,9 @@ def on_selector_all_time_medals(state):
             season=s.selected_season_map,
             medal_type=s.selected_medal_color,
         )
-        s.sunburnst_medals = create_sunburnst_medals(
-            df_sunburst, s.selected_olympiad_for_sunburst
-        )
+        # s.sunburnst_medals = create_sunburnst_medals(
+        #     df_sunburst, s.selected_olympiad_for_sunburst
+        # )
 
 
 def init_total_medals(state):

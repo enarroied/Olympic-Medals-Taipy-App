@@ -99,7 +99,12 @@ with tgb.Page() as all_time_medals:
                 class_name="fullwidth",
                 on_change=on_selector_all_time_medals,
             )
-            tgb.chart(figure="{sunburnst_medals}")
+            tgb.chart(
+                figure=lambda sunburnst_by_gender,
+                selected_olympiad_for_sunburst: sunburnst_by_gender.create_sunburst_medals(
+                    selected_olympiad_for_sunburst
+                )
+            )
 
     with tgb.expandable(expanded=False, title="Total Medals by Event"):
         tgb.table("{df_olympic_cities_simplified}", filter=True, page_size=20)

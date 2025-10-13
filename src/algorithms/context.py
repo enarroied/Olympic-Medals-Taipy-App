@@ -1,4 +1,4 @@
-from dataclasses import dataclass, field
+from dataclasses import dataclass
 
 
 @dataclass
@@ -25,20 +25,3 @@ class MedalColorMap:
 
     def as_dict(self):
         return {"Gold": self.gold, "Silver": self.silver, "Bronze": self.bronze}
-
-
-class SunburstByGender:
-    """Handles sunburst data preparation for medals by gender."""
-
-    def __init__(self, df_olympic_medals):
-        # Keep a copy to avoid mutating external data
-        self.df_olympic_medals = df_olympic_medals.copy()
-        # Prepare initial sunburst data
-        self.df_sunburst = self.make_initial_sunburst()
-
-    def make_initial_sunburst(self):
-        """Return a DataFrame ready for sunburst charting."""
-        df_sunburst = self.df_olympic_medals[
-            ["Olympiad", "Gender", "Discipline", "Event"]
-        ]
-        return df_sunburst.astype(str)
