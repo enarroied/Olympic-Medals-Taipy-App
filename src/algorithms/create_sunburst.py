@@ -29,11 +29,16 @@ class SunburstByGender:
         )
         return fig
 
-    def create_sunburst_medals(self, selected_olympiad_for_sunburst="All"):
-        """Public method: filter by Olympiad and generate sunburst chart."""
+    def _get_filtered_sunburst_data(self, selected_olympiad_for_sunburst="All"):
+        """Internal helper: returns the sunburst DataFrame filtered by Olympiad."""
         df_filtered = self.df_sunburst
         if selected_olympiad_for_sunburst != "All":
             df_filtered = df_filtered[
                 df_filtered["Olympiad"] == selected_olympiad_for_sunburst
             ]
+        return df_filtered
+
+    def create_sunburst_medals(self, selected_olympiad_for_sunburst="All"):
+        """Gets filtered data and generates sunburst chart."""
+        df_filtered = self._get_filtered_sunburst_data(selected_olympiad_for_sunburst)
         return self._create_sunburst_medals(df_filtered, selected_olympiad_for_sunburst)
