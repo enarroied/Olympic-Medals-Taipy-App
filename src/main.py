@@ -1,7 +1,4 @@
 import pandas as pd
-import taipy.gui.builder as tgb
-from taipy.gui import Gui
-
 from algorithms.callbacks import (
     get_last_olympic,
     init_total_medals,
@@ -13,6 +10,9 @@ from algorithms.create_sunburst import SunburstByGender
 from algorithms.read_parameters import yaml_to_list
 from pages.all_time_medals import all_time_medals
 from pages.medals_by_committee import committee_medals
+
+import taipy.gui.builder as tgb
+from taipy.gui import Gui
 
 ###########################################################
 ###                       Run App                       ###
@@ -66,8 +66,6 @@ if __name__ == "__main__":
 
     bar_medals = None
     bar_medals_by_committee = None
-    map_medals = None
-    sunburnst_medals = None
 
     list_olympiads = yaml_to_list("./parameters/list_olympiads.yml")
 
@@ -78,7 +76,7 @@ if __name__ == "__main__":
     selected_medal_color = "All"
     selected_olympiad_for_sunburst = "All"
 
-    # Variables for meddals_by_committe
+    # Variables for medals_by_committe
     df_total_medals_by_olympiad_and_committee = pd.read_parquet(
         "./data/total_medals_by_olympiad_and_committee.parquet"
     )
