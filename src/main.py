@@ -8,6 +8,7 @@ from algorithms.callbacks import (
     on_selector_all_time_medals,
     on_selector_medals_by_committee,
 )
+from algorithms.create_olympic_map import MedalMap
 from algorithms.create_sunburst import SunburstByGender
 from algorithms.read_parameters import yaml_to_list
 from pages.all_time_medals import all_time_medals
@@ -53,6 +54,7 @@ if __name__ == "__main__":
     )
     df_medals_by_olympiad = pd.read_parquet("./data/medals_by_olympiad.parquet")
 
+    medal_map = MedalMap(df_olympic_cities)
     sunburnst_by_gender = SunburstByGender(df_olympic_medals)
 
     latest_olympiad = ""

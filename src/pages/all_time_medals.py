@@ -89,7 +89,13 @@ with tgb.Page() as all_time_medals:
                         class_name="fullwidth",
                         on_change=on_selector_all_time_medals,
                     )
-            tgb.chart(figure="{map_medals}")
+            tgb.chart(
+                figure=lambda medal_map,
+                selected_season_map,
+                selected_medal_color: medal_map.plot_olympic_medals_by_country(
+                    selected_season_map, selected_medal_color
+                )
+            )
         with tgb.part():
             tgb.selector(
                 value="{selected_olympiad_for_sunburst}",
