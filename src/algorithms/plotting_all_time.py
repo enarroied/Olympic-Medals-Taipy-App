@@ -1,4 +1,5 @@
 import plotly.express as px
+
 from algorithms.context import MedalColorMap
 
 
