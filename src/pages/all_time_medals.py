@@ -1,6 +1,6 @@
-from algorithms.callbacks import on_selector_all_time_medals
-
 import taipy.gui.builder as tgb
+
+from algorithms.callbacks import on_selector_all_time_medals
 
 with tgb.Page() as all_time_medals:
     tgb.text("## Medals awarded at all Olympic games", mode="md")
@@ -66,9 +66,13 @@ with tgb.Page() as all_time_medals:
                 dropdown=True,
                 label="Select Olympiad",
                 class_name="fullwidth",
-                on_change=on_selector_all_time_medals,
             )
-            tgb.chart(figure="{bar_medals_by_committee}")
+            tgb.chart(
+                figure=lambda medals_by_olimpics,
+                selected_olympiad: medals_by_olimpics.plot_medals_by_olympics(
+                    selected_olympiad
+                )
+            )
         with tgb.part():
             with tgb.layout("1 1"):
                 with tgb.part():
@@ -88,7 +92,9 @@ with tgb.Page() as all_time_medals:
                         class_name="fullwidth",
                     )
             tgb.chart(
-                figure=lambda medal_map, selected_season_map, selected_medal_color: medal_map.plot_olympic_medals_by_country(
+                figure=lambda medal_map,
+                selected_season_map,
+                selected_medal_color: medal_map.plot_olympic_medals_by_country(
                     selected_season_map, selected_medal_color
                 )
             )
@@ -101,7 +107,8 @@ with tgb.Page() as all_time_medals:
                 class_name="fullwidth",
             )
             tgb.chart(
-                figure=lambda sunburnst_by_gender, selected_olympiad_for_sunburst: sunburnst_by_gender.create_sunburst_medals(
+                figure=lambda sunburnst_by_gender,
+                selected_olympiad_for_sunburst: sunburnst_by_gender.create_sunburst_medals(
                     selected_olympiad_for_sunburst
                 )
             )

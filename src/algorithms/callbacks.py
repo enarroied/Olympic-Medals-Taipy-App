@@ -1,8 +1,5 @@
 from algorithms.medal_details import create_medals_detail
-from algorithms.plotting_all_time import (  # plot_olympic_medals_by_country,
-    create_bar_by_committee,
-    create_bar_medals,
-)
+from algorithms.plotting_all_time import create_bar_medals
 from algorithms.plotting_medals_by_committee import (
     plot_medals_grid_both_seasons,
     plot_total_medals_by_country_both_seasons,
@@ -41,12 +38,7 @@ def on_selector_medals_by_committee(state):
 def on_selector_all_time_medals(state):
     with state as s:
         df_medals_by_olympiad = s.df_medals_by_olympiad.copy()
-        df_grouped_medals_olympiads = s.df_grouped_medals_olympiads.copy()
-
         s.bar_medals = create_bar_medals(df_medals_by_olympiad, s.season)
-        s.bar_medals_by_committee = create_bar_by_committee(
-            df_grouped_medals_olympiads, s.selected_olympiad
-        )
 
 
 def init_total_medals(state):

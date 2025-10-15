@@ -3,7 +3,8 @@ import plotly.express as px
 
 
 class MedalMap:
-    """Handles data aggregation and choropleth map generation for Olympic medals by host country."""
+    """Handles data aggregation and choropleth map generation for Olympic medals
+    by host country."""
 
     def __init__(self, df_olympic_cities):
         self.df_olympic_cities = df_olympic_cities.copy()

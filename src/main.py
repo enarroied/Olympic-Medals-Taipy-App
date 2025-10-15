@@ -1,18 +1,19 @@
 import pandas as pd
+import taipy.gui.builder as tgb
+from taipy.gui import Gui
+
 from algorithms.callbacks import (
     get_last_olympic,
     init_total_medals,
     on_selector_all_time_medals,
     on_selector_medals_by_committee,
 )
+from algorithms.create_medals_by_olympics import MedalsByOlympics
 from algorithms.create_olympic_map import MedalMap
 from algorithms.create_sunburst import SunburstByGender
 from algorithms.read_parameters import yaml_to_list
 from pages.all_time_medals import all_time_medals
 from pages.medals_by_committee import committee_medals
-
-import taipy.gui.builder as tgb
-from taipy.gui import Gui
 
 ###########################################################
 ###                       Run App                       ###
@@ -38,8 +39,8 @@ def on_init(state):
 
 
 if __name__ == "__main__":
-    # Variables for both page
-    df_olympic_cities = pd.read_parquet("./data/olympic_cities.parquet")
+    # Variables for both pages
+
     df_olympic_medals = pd.read_parquet("./data/olympic_medals.parquet")
     df_grouped_medals_olympiads = pd.read_parquet(
         "./data/grouped_medals_olympiads.parquet"
@@ -49,6 +50,7 @@ if __name__ == "__main__":
     list_medal_types = ["All", "Gold", "Silver", "Bronze"]
 
     # Variables for all_time_medals
+    df_olympic_cities = pd.read_parquet("./data/olympic_cities.parquet")
     df_olympic_cities_simplified = pd.read_parquet(
         "./data/olympic_cities_simplified.parquet"
     )
@@ -56,6 +58,7 @@ if __name__ == "__main__":
 
     medal_map = MedalMap(df_olympic_cities)
     sunburnst_by_gender = SunburstByGender(df_olympic_medals)
+    medals_by_olimpics = MedalsByOlympics(df_grouped_medals_olympiads)
 
     latest_olympiad = ""
 
