@@ -44,13 +44,13 @@ with tgb.Page() as committee_medals:
     with tgb.layout("1 1"):
         with tgb.part():
             tgb.chart(
-                figure=lambda medals_by_country, committees, medal_type, display_percent: medals_by_country.create_total_medals_by_country_summer(
+                figure=lambda medals_by_country, committees, medal_type, display_percent: medals_by_country.create_medals_by_country_summer(
                     committees, medal_type, display_percent
                 )
             )
         with tgb.part():
             tgb.chart(
-                figure=lambda medals_by_country, committees, medal_type, display_percent: medals_by_country.create_total_medals_by_country_winter(
+                figure=lambda medals_by_country, committees, medal_type, display_percent: medals_by_country.create_medals_by_country_winter(
                     committees, medal_type, display_percent
                 )
             )
