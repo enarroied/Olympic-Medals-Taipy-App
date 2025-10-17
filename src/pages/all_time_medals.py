@@ -69,7 +69,7 @@ with tgb.Page() as all_time_medals:
                 class_name="fullwidth",
             )
             tgb.chart(
-                figure=lambda medals_by_olimpics, selected_olympiad: medals_by_olimpics.plot_medals_by_olympics(
+                figure=lambda medals_by_olimpics, selected_olympiad: medals_by_olimpics.create_medals_by_olympics(
                     selected_olympiad
                 )
             )
@@ -92,7 +92,7 @@ with tgb.Page() as all_time_medals:
                         class_name="fullwidth",
                     )
             tgb.chart(
-                figure=lambda medal_map, selected_season_map, selected_medal_color: medal_map.plot_olympic_medals_by_country(
+                figure=lambda medal_map, selected_season_map, selected_medal_color: medal_map.create_olympic_medals_by_country(
                     selected_season_map, selected_medal_color
                 )
             )

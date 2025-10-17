@@ -77,7 +77,7 @@ class MedalsBySeason:
             return self._compute_medals_by_season(season)
         except Exception as e:
             print(f"Error filtering data: {e}")
-            print(self.df_grouped_medals_olympiads.head(3))
+            print(self.df_medals_season.head(3))
             return pd.DataFrame()
 
     def create_bar_medal_season(self, season):

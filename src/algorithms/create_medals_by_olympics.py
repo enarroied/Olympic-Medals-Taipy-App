@@ -1,6 +1,5 @@
 import pandas as pd
 import plotly.express as px
-
 from algorithms.context import MedalColorMap
 
 
@@ -61,7 +60,7 @@ class MedalsByOlympics:
         fig.update_layout(xaxis={"title": "Committee"}, yaxis={"title": "Count"})
         return fig
 
-    def plot_medals_by_olympics(self, olympiad):
+    def create_medals_by_olympics(self, olympiad):
         """
         Generates a Plotly bar chart displaying the count of Gold, Silver, and
         Bronze medals won by each Committee (Nation) for a specific Olympiad.

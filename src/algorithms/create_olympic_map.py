@@ -33,9 +33,7 @@ class MedalMap:
             )
         return medal_map[medal_type]
 
-    def _get_aggregated_medal_counts(
-        self, season: str, medal_type: str
-    ) -> pd.DataFrame:
+    def _compute_medal_counts(self, season: str, medal_type: str) -> pd.DataFrame:
         """Filters, groups, and aggregates medal counts from the raw data."""
         medal_column = self._select_medal_column(medal_type)
         df_filtered = self.df_olympic_cities
@@ -51,7 +49,24 @@ class MedalMap:
         )
         return country_counts
 
-    def _create_map_medals_by_country(
+    def _generate_medal_counts(self, season, medal_type):
+        """
+        Generate the medals DataFrame filtered by season, w/ erro handling.
+
+        Args:
+            season (str): "All", "winter", or "summer".
+
+        Returns:
+            pd.DataFrame: Filtered DataFrame or empty DataFrame if an error occurs.
+        """
+        try:
+            return self._compute_medal_counts(season, medal_type)
+        except Exception as e:
+            print(f"Error filtering data: {e}")
+            print(self.df_olympic_cities.head(3))
+            return pd.DataFrame()
+
+    def _plot_map_medals_by_country(
         self, country_counts: pd.DataFrame, season: str, medal_type: str
     ):
         """Internal helper: create the Plotly choropleth figure."""
@@ -72,9 +87,9 @@ class MedalMap:
         )
         return fig
 
-    def plot_olympic_medals_by_country(self, season: str, medal_type: str):
+    def create_olympic_medals_by_country(self, season: str, medal_type: str):
         """
         Retrieves filtered data and generates a choropleth map.
         """
-        country_counts = self._get_aggregated_medal_counts(season, medal_type)
-        return self._create_map_medals_by_country(country_counts, season, medal_type)
+        country_counts = self._generate_medal_counts(season, medal_type)
+        return self._plot_map_medals_by_country(country_counts, season, medal_type)
