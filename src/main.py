@@ -4,6 +4,7 @@ from algorithms.callbacks import (
     init_total_medals,
     on_selector_medals_by_committee,
 )
+from algorithms.create_medals_by_country import MedalsByCountry
 from algorithms.create_medals_by_olympics import MedalsByOlympics
 from algorithms.create_medals_by_season import MedalsBySeason
 from algorithms.create_olympic_map import MedalMap
@@ -80,6 +81,7 @@ if __name__ == "__main__":
     df_total_medals_by_olympiad_and_committee = pd.read_parquet(
         "./data/total_medals_by_olympiad_and_committee.parquet"
     )
+    medals_by_country = MedalsByCountry(df_total_medals_by_olympiad_and_committee)
 
     list_committees = yaml_to_list("./parameters/list_committees.yml")
     committees = ["France", "United States"]
@@ -87,7 +89,6 @@ if __name__ == "__main__":
     medal_type = "All"
     display_percent = "Total medals"
 
-    summer_medal_by_committee, winter_medal_by_committee = None, None
     # For detail cards
     (
         total_medals_detail,

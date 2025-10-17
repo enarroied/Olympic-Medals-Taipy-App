@@ -33,7 +33,7 @@ class MedalsBySeason:
                 xref="paper",
                 yref="paper",
                 x=0,  # Centered horizontally
-                y=-1,  # Below the chart (adjust as needed)
+                y=-1,  # Below the chart
                 xanchor="left",
                 yanchor="bottom",
                 bgcolor="#E5F9FC",
@@ -75,7 +75,7 @@ class MedalsBySeason:
         """
         try:
             return self._compute_medals_by_season(season)
-        except Exception as e:
+        except Exception as e:  # plot_total_medals_by_country_both_seasons,
             print(f"Error filtering data: {e}")
             print(self.df_medals_season.head(3))
             return pd.DataFrame()

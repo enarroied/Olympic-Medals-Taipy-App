@@ -1,6 +1,6 @@
-import taipy.gui.builder as tgb
-
 from algorithms.callbacks import on_selector_medals_by_committee
+
+import taipy.gui.builder as tgb
 
 with tgb.Page() as committee_medals:
     tgb.text("## Medals Awarded to Committees", mode="md")
@@ -26,7 +26,6 @@ with tgb.Page() as committee_medals:
                 multiple=True,
                 label="Select committees",
                 class_name="fullwidth",
-                on_change=on_selector_medals_by_committee,
             )
         with tgb.part():
             tgb.selector(
@@ -35,20 +34,26 @@ with tgb.Page() as committee_medals:
                 dropdown=True,
                 label="Select medal type",
                 class_name="fullwidth",
-                on_change=on_selector_medals_by_committee,
             )
         with tgb.part():
             tgb.toggle(
                 value="{display_percent}",
                 lov=["Total medals", "Percentage"],
-                on_change=on_selector_medals_by_committee,
             )
 
     with tgb.layout("1 1"):
         with tgb.part():
-            tgb.chart(figure="{summer_medal_by_committee}")
+            tgb.chart(
+                figure=lambda medals_by_country, committees, medal_type, display_percent: medals_by_country.create_total_medals_by_country_summer(
+                    committees, medal_type, display_percent
+                )
+            )
         with tgb.part():
-            tgb.chart(figure="{winter_medal_by_committee}")
+            tgb.chart(
+                figure=lambda medals_by_country, committees, medal_type, display_percent: medals_by_country.create_total_medals_by_country_winter(
+                    committees, medal_type, display_percent
+                )
+            )
 
     ########################################################
 
