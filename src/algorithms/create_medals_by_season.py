@@ -4,6 +4,8 @@ from algorithms.context import MedalColorMap
 
 
 class MedalsBySeason:
+    """Handles data aggregation and generates a bar chart by Olympic season."""
+
     def __init__(self, df_medals_season, medal_colors=None):
         self.df_medals_season = df_medals_season.copy()
         self.medal_colors = medal_colors or MedalColorMap()
