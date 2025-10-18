@@ -87,7 +87,7 @@ if __name__ == "__main__":
     committees = ["France", "United States"]
     committee_detail = "France"
     medal_type = "All"
-    display_percent = "Total medals"
+    display_percent = "Total"
 
     # For detail cards
     (

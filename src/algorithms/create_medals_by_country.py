@@ -5,30 +5,35 @@ import plotly.express as px
 class MedalsByCountry:
     def __init__(self, df_total_medals_by_olympiad_and_committee):
         self.total_medals = df_total_medals_by_olympiad_and_committee.copy()
+        self.columns_for_plot = [
+            "Olympic_year",
+            "Olympiad",
+            "Total_medals",
+        ]
 
-    def _compute_medals_by_committee(
-        self, committee_list, season, medal_type, percentage
-    ):
-        # TODO: Clean this mess!
+    def _filter_dataset(self, committee_list, season, medal_type):
         df_filtered = self.total_medals[
             (self.total_medals["Olympic_season"] == season)
             & (self.total_medals["Medal_type"] == medal_type)
         ]
 
-        columns_to_plot = [
-            "Olympic_year",
-            "Olympiad",
-            "Total_medals",
-        ] + committee_list  # TODO: take this hardcoded stuff out
-        df_to_plot = df_filtered[columns_to_plot]
+        columns_to_plot = self.columns_for_plot + committee_list
+        return df_filtered[columns_to_plot].copy()
 
-        if percentage == "Percentage":  # TODO: remove this flag
-            for committee in committee_list:
-                df_to_plot.loc[:, committee] = (
-                    df_to_plot[committee] * 100 / df_to_plot["Total_medals"]
-                ).fillna(0)
-        df_to_plot = df_to_plot.drop(columns=["Total_medals"])
+    def _compute_percentage(self, df_to_plot, committee_list):
+        for committee in committee_list:
+            df_to_plot.loc[:, committee] = (
+                df_to_plot[committee] * 100 / df_to_plot["Total_medals"]
+            ).fillna(0)
         return df_to_plot
+
+    def _compute_medals_by_committee(
+        self, committee_list, season, medal_type, percentage
+    ):
+        df_to_plot = self._filter_dataset(committee_list, season, medal_type)
+        if percentage == "Percentage":
+            df_to_plot = self._compute_percentage(df_to_plot, committee_list)
+        return df_to_plot.drop(columns=["Total_medals"])
 
     def _plot_fig_total_medals_by_country(
         self, df_to_plot, committee_list, value_label, title
@@ -73,16 +78,13 @@ class MedalsByCountry:
         chart_title = (
             f"{medal_type} Medals for Selected Committees by Olympic Year | {season}"
         )
+        value_label = f"{percentage} - Medals"
 
-        df_to_plot = self._compute_medals_by_committee(
+        medals_country = self._compute_medals_by_committee(
             committee_list, season, medal_type, percentage
         )
-        value_label = (
-            "Percentage of Medals" if percentage == "Percentage" else "Total Medals"
-        )  # TODO: change this to a dict or something cleaner
-
         return self._plot_fig_total_medals_by_country(
-            df_to_plot, committee_list, value_label, chart_title
+            medals_country, committee_list, value_label, chart_title
         )
 
     def create_medals_by_country_summer(

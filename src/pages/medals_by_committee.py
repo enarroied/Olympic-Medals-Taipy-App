@@ -38,7 +38,8 @@ with tgb.Page() as committee_medals:
         with tgb.part():
             tgb.toggle(
                 value="{display_percent}",
-                lov=["Total medals", "Percentage"],
+                lov=["Total", "Percentage"],
+                label="Medal Display: ",
             )
 
     with tgb.layout("1 1"):
