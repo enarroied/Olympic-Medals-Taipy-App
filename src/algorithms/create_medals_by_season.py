@@ -1,20 +1,58 @@
+"""
+Module for visualizing Olympic medal by Olympic season.
+
+This module defines the MedalsBySeason class, which filter the dataset by season
+(if a specific seasons - winter or summer - is selcted). The`create_bar_medal_season`
+ method returns a bar chart with all medals awarded for a each Omympic game.
+
+Used for `all_time_medals.py`.
+"""
+
+from typing import Optional
+
 import pandas as pd
 import plotly.express as px
 from algorithms.context import MedalColorMap
+from plotly.graph_objs import Figure
 
 
 class MedalsBySeason:
     """Handles data aggregation and generates a bar chart by Olympic season."""
 
-    def __init__(self, df_medals_season, medal_colors=None):
+    def __init__(
+        self,
+        df_medals_season: pd.DataFrame,
+        medal_colors: Optional[MedalColorMap] = None,
+    ):
+        """Initialize MedalsBySeason with medal data and optional color mapping."""
         self.df_medals_season = df_medals_season.copy()
         self.medal_colors = medal_colors or MedalColorMap()
 
+    def _add_stockholm_annotation(self, fig: Figure) -> None:
+        """Plotly `fig.add_annotation` adds the annotation"""
+        fig.add_annotation(
+            text="(*) Stockholm 1956: only equestrian games",
+            font=dict(color="black", size=10),
+            showarrow=False,
+            xref="paper",
+            yref="paper",
+            x=0,  # Centered horizontally
+            y=-1,  # Below the chart
+            xanchor="left",
+            yanchor="bottom",
+            bgcolor="#E5F9FC",
+            bordercolor="#c7c7c7",
+            borderwidth=1,
+            borderpad=4,
+            opacity=0.8,
+        )
+
     def _plot_bar_medal_season(
         self,
-        df_medals_filtered_by_season,
-        season,
-    ):
+        df_medals_filtered_by_season: pd.DataFrame,
+        season: str,
+    ) -> Figure:
+        """Create a Plotly bar chart of medal counts by Olympiad and medal type."""
         fig = px.bar(
             df_medals_filtered_by_season,
             x="Olympiad",
@@ -28,25 +66,16 @@ class MedalsBySeason:
             },
         )
         if season != "winter":
-            fig.add_annotation(
-                text="(*) Stockholm 1956: only equestrian games",
-                font=dict(color="black", size=10),
-                showarrow=False,
-                xref="paper",
-                yref="paper",
-                x=0,  # Centered horizontally
-                y=-1,  # Below the chart
-                xanchor="left",
-                yanchor="bottom",
-                bgcolor="#E5F9FC",
-                bordercolor="#c7c7c7",
-                borderwidth=1,
-                borderpad=4,
-                opacity=0.8,
-            )
+            self._add_stockholm_annotation(fig)
         return fig
 
-    def _compute_medals_by_season(self, season):
+    def _filter_season(self, season: str) -> pd.DataFrame:
+        """Filter the medals DataFrame by Olympic season."""
+        return self.df_medals_season[
+            self.df_medals_season["Olympic_season"] == season
+        ].reset_index(drop=True)
+
+    def _compute_medals_by_season(self, season: str) -> pd.DataFrame:
         """Creates a plotly bar chart with total olympic medals (broken by medal color).
             The dataframe is previously filtered by season (summer / winter).
 
@@ -59,13 +88,11 @@ class MedalsBySeason:
         """
 
         if season != "All":
-            return self.df_medals_season[
-                self.df_medals_season["Olympic_season"] == season
-            ].reset_index(drop=True)
+            return self._filter_season(season)
         else:
             return self.df_medals_season
 
-    def _generate_medals_by_season(self, season):
+    def _generate_medals_by_season(self, season: str) -> pd.DataFrame:
         """
         Generate the medals DataFrame filtered by season, w/ erro handling.
 
@@ -82,9 +109,10 @@ class MedalsBySeason:
             print(self.df_medals_season.head(3))
             return pd.DataFrame()
 
-    def create_bar_medal_season(self, season):
+    def create_bar_medal_season(self, season: str) -> Figure:
         """
-        Generate and plot the medal distribution for a given Olympic season.
+        Generate and plot the total medals for a given Olympic season. The chart
+        shows all medals by Olympic game, the colors break data by medal color.
 
         Args:
             season (str): "All", "winter", or "summer".
