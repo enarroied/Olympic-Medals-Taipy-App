@@ -55,9 +55,8 @@ with tgb.Page() as all_time_medals:
                 class_name="fullwidth",
             )
             tgb.chart(
-                figure=lambda medals_by_season, season: medals_by_season.create_bar_medal_season(
-                    season
-                )
+                figure=lambda medals_by_season,
+                season: medals_by_season.create_bar_medal_season(season)
             )
 
         with tgb.part():
@@ -69,7 +68,8 @@ with tgb.Page() as all_time_medals:
                 class_name="fullwidth",
             )
             tgb.chart(
-                figure=lambda medals_by_olimpics, selected_olympiad: medals_by_olimpics.create_medals_by_olympics(
+                figure=lambda medals_by_olimpics,
+                selected_olympiad: medals_by_olimpics.create_medals_by_olympics(
                     selected_olympiad
                 )
             )
@@ -92,7 +92,9 @@ with tgb.Page() as all_time_medals:
                         class_name="fullwidth",
                     )
             tgb.chart(
-                figure=lambda medal_map, selected_season_map, selected_medal_color: medal_map.create_olympic_medals_by_country(
+                figure=lambda medal_map,
+                selected_season_map,
+                selected_medal_color: medal_map.create_olympic_medals_by_country(
                     selected_season_map, selected_medal_color
                 )
             )
@@ -105,7 +107,8 @@ with tgb.Page() as all_time_medals:
                 class_name="fullwidth",
             )
             tgb.chart(
-                figure=lambda sunburnst_by_gender, selected_olympiad_for_sunburst: sunburnst_by_gender.create_sunburst_medals(
+                figure=lambda sunburnst_by_gender,
+                selected_olympiad_for_sunburst: sunburnst_by_gender.create_sunburst_medals(
                     selected_olympiad_for_sunburst
                 )
             )

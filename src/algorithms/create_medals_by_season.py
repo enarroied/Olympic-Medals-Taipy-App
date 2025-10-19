@@ -3,17 +3,18 @@ Module for visualizing Olympic medal by Olympic season.
 
 This module defines the MedalsBySeason class, which filter the dataset by season
 (if a specific seasons - winter or summer - is selcted). The`create_bar_medal_season`
- method returns a bar chart with all medals awarded for a each Omympic game.
+ method returns a bar chart with all medals awarded for a each Olympic game.
 
-Used for `all_time_medals.py`.
+Used by `all_time_medals.py`.
 """
 
 from typing import Optional
 
 import pandas as pd
 import plotly.express as px
-from algorithms.context import MedalColorMap
 from plotly.graph_objs import Figure
+
+from algorithms.context import MedalColorMap
 
 
 class MedalsBySeason:

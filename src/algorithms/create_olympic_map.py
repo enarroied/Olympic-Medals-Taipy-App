@@ -1,15 +1,29 @@
+"""
+Module for visualizing a map with all the medals awarded at a certain Olympic
+event.
+
+This module defines the MedalMap class, which creates a choropleth map with all
+the awarded medals. It can also display all the gold, silver or bronwe medals.
+
+Used by `medals_by_committee.py`.
+"""
+
 import pandas as pd
 import plotly.express as px
+from plotly.graph_objs import Figure
 
 
 class MedalMap:
     """Handles data aggregation and choropleth map generation for Olympic medals
     by host country."""
 
-    def __init__(self, df_olympic_cities):
+    def __init__(self, df_olympic_cities: pd.DataFrame):
+        """Initialize MedalMap with a DataFrame containing Olympic city and
+        medal data.
+        """
         self.df_olympic_cities = df_olympic_cities.copy()
 
-    def _select_medal_column(self, medal_type):
+    def _select_medal_column(self, medal_type: str) -> str:
         """
         Helper function to select the appropriate medal column based on medal_type.
 
@@ -49,15 +63,17 @@ class MedalMap:
         )
         return country_counts
 
-    def _generate_medal_counts(self, season, medal_type):
+    def _generate_medal_counts(self, season: str, medal_type: str) -> pd.DataFrame:
         """
-        Generate the medals DataFrame filtered by season, w/ erro handling.
+        Generate the medals DataFrame filtered by season, with error handling.
 
         Args:
             season (str): "All", "winter", or "summer".
+            medal_type (str): "All", "Gold", "Silver", or "Bronze".
 
         Returns:
-            pd.DataFrame: Filtered DataFrame or empty DataFrame if an error occurs.
+            pd.DataFrame: Filtered and aggregated DataFrame,
+            or empty DataFrame if an error occurs.
         """
         try:
             return self._compute_medal_counts(season, medal_type)
@@ -68,7 +84,7 @@ class MedalMap:
 
     def _plot_map_medals_by_country(
         self, country_counts: pd.DataFrame, season: str, medal_type: str
-    ):
+    ) -> Figure:
         """Internal helper: create the Plotly choropleth figure."""
         fig = px.choropleth(
             country_counts,
@@ -76,7 +92,8 @@ class MedalMap:
             color="Number of Medals",
             hover_name="Country",
             color_continuous_scale=px.colors.sequential.Plasma,
-            title=f"{medal_type.capitalize()} Olympic Medals awarded by Host Country ({season.capitalize()})",
+            title=f"{medal_type.capitalize()} Olympic Medals awarded by \
+                Host Country ({season.capitalize()})",
             projection="natural earth",
         )
         fig.update_geos(
@@ -87,9 +104,16 @@ class MedalMap:
         )
         return fig
 
-    def create_olympic_medals_by_country(self, season: str, medal_type: str):
+    def create_olympic_medals_by_country(self, season: str, medal_type: str) -> Figure:
         """
         Retrieves filtered data and generates a choropleth map.
+
+        Args:
+            season (str): "All", "winter", or "summer".
+            medal_type (str): "All", "Gold", "Silver", or "Bronze".
+
+        Returns:
+            plotly.graph_objs.Figure: Choropleth map showing medal distribution.
         """
         country_counts = self._generate_medal_counts(season, medal_type)
         return self._plot_map_medals_by_country(country_counts, season, medal_type)

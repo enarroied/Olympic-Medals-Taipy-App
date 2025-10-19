@@ -5,7 +5,7 @@ This module defines the MedalsByCountry class, which filters, computes,
 and plots total or percentage-based medal counts for different Olympic
 committees using pandas and Plotly.
 
-Used for `medals_by_committee.py`.
+Used by `medals_by_committee.py`.
 """
 
 from typing import List
@@ -105,7 +105,7 @@ class MedalsByCountry:
         Other option is "Percentage"
 
         Returns:
-        - fig: Plotly figure object showing total medals by year for selected committees.
+        - fig: Plotly figure object with total medals by year for committees.
         """
         chart_title = (
             f"{medal_type} Medals for Selected Committees by Olympic Year | {season}"
