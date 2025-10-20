@@ -12,8 +12,9 @@ from typing import Optional
 
 import pandas as pd
 import plotly.express as px
-from algorithms.context import GenderCategoryColorMap
 from plotly.graph_objs import Figure
+
+from algorithms.context import GenderCategoryColorMap
 
 
 class SunburstByGender:

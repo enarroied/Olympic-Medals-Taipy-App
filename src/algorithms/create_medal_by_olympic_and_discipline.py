@@ -8,11 +8,8 @@ and by Olympic event.
 Used by `all_time_medals.py`.
 """
 
-from typing import Optional
-
 import pandas as pd
 import plotly.express as px
-from plotly.graph_objs import Figure
 
 
 class MedalsByOlympicAndDiscipline:
