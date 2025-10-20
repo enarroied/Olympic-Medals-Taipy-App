@@ -1,6 +1,6 @@
-import taipy.gui.builder as tgb
-
 from algorithms.callbacks import on_selector_medals_by_committee
+
+import taipy.gui.builder as tgb
 
 with tgb.Page() as committee_medals:
     tgb.text("## Medals Awarded to Committees", mode="md")
@@ -45,19 +45,13 @@ with tgb.Page() as committee_medals:
     with tgb.layout("1 1"):
         with tgb.part():
             tgb.chart(
-                figure=lambda medals_by_country,
-                committees,
-                medal_type,
-                display_percent: medals_by_country.create_medals_by_country_summer(
+                figure=lambda medals_by_country, committees, medal_type, display_percent: medals_by_country.create_medals_by_country_summer(
                     committees, medal_type, display_percent
                 )
             )
         with tgb.part():
             tgb.chart(
-                figure=lambda medals_by_country,
-                committees,
-                medal_type,
-                display_percent: medals_by_country.create_medals_by_country_winter(
+                figure=lambda medals_by_country, committees, medal_type, display_percent: medals_by_country.create_medals_by_country_winter(
                     committees, medal_type, display_percent
                 )
             )
@@ -116,6 +110,14 @@ with tgb.Page() as committee_medals:
             )
     with tgb.layout("1 1"):
         with tgb.part():
-            tgb.chart(figure="{summer_medal_grid}")
+            tgb.chart(
+                figure=lambda medals_by_olympic_and_discipline, committee_detail: medals_by_olympic_and_discipline.plot_medals_grid_summer(
+                    committee_detail
+                )
+            )
         with tgb.part():
-            tgb.chart(figure="{winter_medal_grid}")
+            tgb.chart(
+                figure=lambda medals_by_olympic_and_discipline, committee_detail: medals_by_olympic_and_discipline.plot_medals_grid_winter(
+                    committee_detail
+                )
+            )

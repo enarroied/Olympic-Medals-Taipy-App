@@ -1,11 +1,11 @@
 import pandas as pd
-import taipy.gui.builder as tgb
-from taipy.gui import Gui
-
 from algorithms.callbacks import (
     get_last_olympic,
     init_total_medals,
     on_selector_medals_by_committee,
+)
+from algorithms.create_medal_by_olympic_and_discipline import (
+    MedalsByOlympicAndDiscipline,
 )
 from algorithms.create_medals_by_country import MedalsByCountry
 from algorithms.create_medals_by_olympics import MedalsByOlympics
@@ -15,6 +15,9 @@ from algorithms.create_sunburst import SunburstByGender
 from algorithms.read_parameters import yaml_to_list
 from pages.all_time_medals import all_time_medals
 from pages.medals_by_committee import committee_medals
+
+import taipy.gui.builder as tgb
+from taipy.gui import Gui
 
 ###########################################################
 ###                       Run App                       ###
@@ -82,6 +85,7 @@ if __name__ == "__main__":
         "./data/total_medals_by_olympiad_and_committee.parquet"
     )
     medals_by_country = MedalsByCountry(df_total_medals_by_olympiad_and_committee)
+    medals_by_olympic_and_discipline = MedalsByOlympicAndDiscipline(df_olympic_medals)
 
     list_committees = yaml_to_list("./parameters/list_committees.yml")
     committees = ["France", "United States"]

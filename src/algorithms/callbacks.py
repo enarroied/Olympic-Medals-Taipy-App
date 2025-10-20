@@ -1,11 +1,9 @@
 from algorithms.medal_details import create_medals_detail
-from algorithms.plotting_medals_by_committee import plot_medals_grid_both_seasons
 
 
 def on_selector_medals_by_committee(state):
     with state as s:
         df_grouped_medals_olympics = s.df_grouped_medals_olympics.copy()
-        df_olympic_medals = s.df_olympic_medals.copy()
         selected_committe = s.committee_detail
 
         (
@@ -14,10 +12,6 @@ def on_selector_medals_by_committee(state):
             s.silver_medals_detail,
             s.bronze_medals_detail,
         ) = create_medals_detail(df_grouped_medals_olympics, selected_committe)
-
-        s.summer_medal_grid, s.winter_medal_grid = plot_medals_grid_both_seasons(
-            df_olympic_medals, committee=selected_committe
-        )
 
 
 def init_total_medals(state):

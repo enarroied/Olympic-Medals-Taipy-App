@@ -8,11 +8,12 @@ sunburst chart for analyzing medal distributions.
 Used by `medals_by_committee.py`.
 """
 
+from typing import Optional
+
 import pandas as pd
 import plotly.express as px
-from plotly.graph_objs import Figure
-
 from algorithms.context import GenderCategoryColorMap
+from plotly.graph_objs import Figure
 
 
 class SunburstByGender:
@@ -21,7 +22,7 @@ class SunburstByGender:
     def __init__(
         self,
         df_olympic_medals: pd.DataFrame,
-        gender_colors: GenderCategoryColorMap = None,
+        gender_colors: Optional[GenderCategoryColorMap] = None,
     ):
         """
         Initialize the SunburstByGender class.
