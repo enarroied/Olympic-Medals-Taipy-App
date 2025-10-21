@@ -1,21 +1,13 @@
+from algorithms.callbacks import on_selector_medals_by_committee
+from page_modules.page_functions import create_text_from_file
+
 import taipy.gui.builder as tgb
 
-from algorithms.callbacks import on_selector_medals_by_committee
-
 with tgb.Page() as committee_medals:
-    tgb.text("## Medals Awarded to Committees", mode="md")
-    tgb.text(
-        "This dashboard presents aggregated data for the medals awarded to\
-              committees."
-    )
-    tgb.text(
-        "Compare as many committees as needed with multiple selections. You can\
-              choose to compare all medals or just one medal color."
-    )
-    tgb.text(
-        "Results can be shown as total medals or as a percentage of total medals\
-              per Olympic Games."
-    )
+    # TODO: rename this and make it a module call:
+    create_text_from_file(
+        "./pages/info_medals_by_committee.md"
+    )  # TODO: make this a parameter
 
     with tgb.layout("1 1 1"):
         with tgb.part():
@@ -45,26 +37,20 @@ with tgb.Page() as committee_medals:
     with tgb.layout("1 1"):
         with tgb.part():
             tgb.chart(
-                figure=lambda medals_by_country,
-                committees,
-                medal_type,
-                display_percent: medals_by_country.create_medals_by_country_summer(
+                figure=lambda medals_by_country, committees, medal_type, display_percent: medals_by_country.create_medals_by_country_summer(
                     committees, medal_type, display_percent
                 )
             )
         with tgb.part():
             tgb.chart(
-                figure=lambda medals_by_country,
-                committees,
-                medal_type,
-                display_percent: medals_by_country.create_medals_by_country_winter(
+                figure=lambda medals_by_country, committees, medal_type, display_percent: medals_by_country.create_medals_by_country_winter(
                     committees, medal_type, display_percent
                 )
             )
 
     ########################################################
 
-    tgb.text("Detailed information by committee", class_name="h2")
+    tgb.text("## Detailed information by committee", mode="md")
     tgb.text(
         "Select a country to see total medals and how they distribute accross\
               Olympics and disciplines."
@@ -117,15 +103,13 @@ with tgb.Page() as committee_medals:
     with tgb.layout("1 1"):
         with tgb.part():
             tgb.chart(
-                figure=lambda medals_by_olympic_and_discipline,
-                committee_detail: medals_by_olympic_and_discipline.plot_medals_grid_summer(
+                figure=lambda medals_by_olympic_and_discipline, committee_detail: medals_by_olympic_and_discipline.plot_medals_grid_summer(
                     committee_detail
                 )
             )
         with tgb.part():
             tgb.chart(
-                figure=lambda medals_by_olympic_and_discipline,
-                committee_detail: medals_by_olympic_and_discipline.plot_medals_grid_winter(
+                figure=lambda medals_by_olympic_and_discipline, committee_detail: medals_by_olympic_and_discipline.plot_medals_grid_winter(
                     committee_detail
                 )
             )
