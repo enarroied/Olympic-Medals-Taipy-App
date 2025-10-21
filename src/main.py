@@ -1,7 +1,4 @@
 import pandas as pd
-import taipy.gui.builder as tgb
-from taipy.gui import Gui
-
 from algorithms.callbacks import (
     get_last_olympic,
     init_total_medals,
@@ -18,6 +15,9 @@ from algorithms.create_sunburst import SunburstByGender
 from algorithms.read_parameters import yaml_to_list
 from pages.all_time_medals import all_time_medals
 from pages.medals_by_committee import committee_medals
+
+import taipy.gui.builder as tgb
+from taipy.gui import Gui
 
 ###########################################################
 ###                       Run App                       ###
@@ -109,9 +109,10 @@ if __name__ == "__main__":
     summer_medal_grid, winter_medal_grid = None, None
 
     gui_multi_pages.run(
-        use_reloader=True,
         title="Olympic medals 🥇",
         dark_mode=False,
+        favicon="./img/favicon.ico",
+        use_reloader=True,
     )
 
 # gui_multi_pages.run(run_server=False, title="Olympic medals 🥇")
