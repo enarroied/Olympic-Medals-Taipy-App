@@ -66,13 +66,12 @@ class MedalsByOlympicAndDiscipline:
 
         # And then only filter the DataFrame by committee
         df_filtered = df_filtered[(df_filtered["Committee"] == committee)]
-
-        df_grouped = (
-            df_filtered.groupby(
-                ["Olympiad", "Olympic_year", "Discipline"], observed=True
-            )
-            .size()
-            .unstack(fill_value=0)
+        df_grouped = df_filtered.pivot_table(
+            index=["Olympiad", "Olympic_year"],
+            columns="Discipline",
+            aggfunc="size",
+            fill_value=0,
+            observed=True,
         )
 
         df_grouped = df_grouped.sort_index(level=1)
