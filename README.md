@@ -7,6 +7,7 @@
 
 - [🥇🥈🥉 Olympic medals](#-olympic-medals)
   - [Note About Medium Article](#note-about-medium-article)
+  - [Changes made in October 2025 (WIP)](#changes-made-in-october-2025-wip)
   - [Changes Made in September 2025](#changes-made-in-september-2025)
   - [Changes Made in June 2025](#changes-made-in-june-2025)
   - [Introduction and Context](#introduction-and-context)
@@ -20,6 +21,12 @@
 ## Note About Medium Article
 
 If you came here from [this Medium article I wrote about Taipy 3.1](https://medium.com/gitconnected/discover-taipys-3-1-application-builder-5b8333f2c184), I've changed (improved and refactored) the code ever since. For reference, I keep [this branch](https://github.com/enarroied/Olympic-Medals-Taipy-App/tree/taipy_3.1), but I recommend you take the current version as a reference. **The structure of the dashboard didn't change** (except the table with data by Olympics).
+
+## Changes made in October 2025 (WIP)
+
+- I'm experimenting with an object-oriented approach, where all the charts come from objects that hold the original pandas DataFrame as an attribute. I'm unsure of this being the right approach, but I'm liking how it looks. The code seems to be a bit slower.
+- I'm also experimenting with defining functions that "fix" some variables fopr the `Page` objects. The goal here is to reduce the number of arguments when I reuse them constantly, and make the code in the `Page` blocks smalles.
+- I'm also using this approach to extend the visual element capabilities, such as with the `create_text_from_file` function.
 
 ## Changes Made in September 2025
 
