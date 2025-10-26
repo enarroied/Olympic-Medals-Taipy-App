@@ -22,23 +22,21 @@ class MedalsByOlympicAndDiscipline:
         """Initialize MedalsBySeason with medal data and optional color mapping."""
         self.df_olympic_medals = df_olympic_medals.copy()
 
-    # TODO: Season should only be ONE argument
-    def _plot_grid_for_country(self, df_grouped, committee, season, ordered_olympiads):
+    def _plot_grid_for_country(self, df_grouped, title, ordered_olympiads):
         fig = px.imshow(
             df_grouped,
             labels=dict(x="Discipline", y="Olympiad", color="Total Medals"),
             x=df_grouped.columns,
             y=ordered_olympiads,
             color_continuous_scale="plasma",
-            title=f"Medals by Olympiad and discipline for {committee} | {season}",
+            title=title,
         )
         # reduce font size:
+        small_tick_font = dict(tickfont=dict(size=9))
         fig.update_layout(
-            xaxis=dict(tickfont=dict(size=9)),
-            yaxis=dict(tickfont=dict(size=9)),
-            coloraxis_colorbar=dict(
-                tickfont=dict(size=9),
-            ),
+            xaxis=small_tick_font,
+            yaxis=small_tick_font,
+            coloraxis_colorbar=small_tick_font,
         )
         return fig
 
@@ -91,14 +89,12 @@ class MedalsByOlympicAndDiscipline:
         df_grouped, ordered_olympiads = self.create_medals_grid(
             committee=committee, season="summer"
         )
-        return self._plot_grid_for_country(
-            df_grouped, committee, "summer", ordered_olympiads
-        )
+        title = (f"Medals by Olympiad and discipline for {committee} | summer",)
+        return self._plot_grid_for_country(df_grouped, title, ordered_olympiads)
 
     def plot_medals_grid_winter(self, committee):
         df_grouped, ordered_olympiads = self.create_medals_grid(
             committee=committee, season="winter"
         )
-        return self._plot_grid_for_country(
-            df_grouped, committee, "winter", ordered_olympiads
-        )
+        title = (f"Medals by Olympiad and discipline for {committee} | winter",)
+        return self._plot_grid_for_country(df_grouped, title, ordered_olympiads)
