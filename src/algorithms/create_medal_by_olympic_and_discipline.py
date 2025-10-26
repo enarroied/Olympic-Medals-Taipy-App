@@ -89,12 +89,12 @@ class MedalsByOlympicAndDiscipline:
         df_grouped, ordered_olympiads = self.create_medals_grid(
             committee=committee, season="summer"
         )
-        title = (f"Medals by Olympiad and discipline for {committee} | summer",)
+        title = f"Medals by Olympiad and discipline for {committee} | summer"
         return self._plot_grid_for_country(df_grouped, title, ordered_olympiads)
 
     def plot_medals_grid_winter(self, committee):
         df_grouped, ordered_olympiads = self.create_medals_grid(
             committee=committee, season="winter"
         )
-        title = (f"Medals by Olympiad and discipline for {committee} | winter",)
+        title = f"Medals by Olympiad and discipline for {committee} | winter"
         return self._plot_grid_for_country(df_grouped, title, ordered_olympiads)
