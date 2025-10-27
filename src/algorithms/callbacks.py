@@ -27,10 +27,10 @@ def init_total_medals(state):
     with state as s:
         # Important to create new object:
         s.medal_totals = MedalTotals(
-            int(len(df_olympic_medals)),
-            _count_medals(df_olympic_medals, "Gold"),
-            _count_medals(df_olympic_medals, "Silver"),
-            _count_medals(df_olympic_medals, "Bronze"),
+            int(len(s.df_olympic_medals)),
+            _count_medals(s.df_olympic_medals, "Gold"),
+            _count_medals(s.df_olympic_medals, "Silver"),
+            _count_medals(s.df_olympic_medals, "Bronze"),
         )
 
 
