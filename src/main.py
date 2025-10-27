@@ -7,6 +7,7 @@ from algorithms.callbacks import (
     init_total_medals,
     on_selector_medals_by_committee,
 )
+from algorithms.context import MedalTotals
 from algorithms.create_medal_by_olympic_and_discipline import (
     MedalsByOlympicAndDiscipline,
 )
@@ -66,10 +67,7 @@ if __name__ == "__main__":
 
     latest_olympiad = ""
 
-    total_medals = 0
-    total_gold_medals = 0
-    total_silver_medals = 0
-    total_bronze_medals = 0
+    medal_totals = MedalTotals()
 
     list_olympiads = yaml_to_list("./parameters/list_olympiads.yml")
 

@@ -25,3 +25,11 @@ class MedalColorMap:
 
     def as_dict(self):
         return {"Gold": self.gold, "Silver": self.silver, "Bronze": self.bronze}
+
+
+@dataclass
+class MedalTotals:
+    total: int = 0
+    gold: int = 0
+    silver: int = 0
+    bronze: int = 0

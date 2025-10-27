@@ -1,3 +1,4 @@
+from algorithms.context import MedalTotals
 from algorithms.medal_details import create_medals_detail
 
 
@@ -24,12 +25,13 @@ def _count_medals(df_olympic_medals, medal_type):
 
 def init_total_medals(state):
     with state as s:
-        df_olympic_medals = s.df_olympic_medals
-
-        s.total_medals = int(len(df_olympic_medals))
-        s.total_gold_medals = _count_medals(df_olympic_medals, "Gold")
-        s.total_silver_medals = _count_medals(df_olympic_medals, "Silver")
-        s.total_bronze_medals = _count_medals(df_olympic_medals, "Bronze")
+        # Important to create new object:
+        s.medal_totals = MedalTotals(
+            int(len(df_olympic_medals)),
+            _count_medals(df_olympic_medals, "Gold"),
+            _count_medals(df_olympic_medals, "Silver"),
+            _count_medals(df_olympic_medals, "Bronze"),
+        )
 
 
 def get_last_olympic(state):

@@ -13,7 +13,7 @@ with tgb.Page() as all_time_medals:
                 mode="md",
             )
             tgb.text(
-                "#### {total_gold_medals}",
+                "#### {medal_totals.gold}",
                 mode="md",
             )
         with tgb.part("card card-bg"):
@@ -22,7 +22,7 @@ with tgb.Page() as all_time_medals:
                 mode="md",
             )
             tgb.text(
-                "#### {total_silver_medals}",
+                "#### {medal_totals.silver}",
                 mode="md",
             )
         with tgb.part("card card-bg"):
@@ -31,7 +31,7 @@ with tgb.Page() as all_time_medals:
                 mode="md",
             )
             tgb.text(
-                "#### {total_bronze_medals}",
+                "#### {medal_totals.bronze}",
                 mode="md",
             )
         with tgb.part("card card-bg"):
@@ -40,7 +40,7 @@ with tgb.Page() as all_time_medals:
                 mode="md",
             )
             tgb.text(
-                "#### {total_medals}",
+                "#### {medal_totals.total}",
                 mode="md",
             )
 
