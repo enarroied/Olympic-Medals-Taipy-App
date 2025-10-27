@@ -27,8 +27,6 @@ class MedalsByOlympicAndDiscipline:
         self.df_winter = self._filter_olympic_season(df_olympic_medals, "winter")
         self.summer_disciplines = self.df_summer["Discipline"].unique()
         self.winter_disciplines = self.df_winter["Discipline"].unique()
-        # Bind convenience callables that only require committee
-        # Note: self._create_medals_grid_core is a bound method; partial binds the next args.
         self._create_summer_grid = partial(
             self._create_medals_grid, self.df_summer, self.summer_disciplines
         )
