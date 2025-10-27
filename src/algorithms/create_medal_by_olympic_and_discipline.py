@@ -84,15 +84,15 @@ class MedalsByOlympicAndDiscipline:
             columns=all_disciplines, fill_value=0
         )
 
-    # TODO: Add a grouped abstraction to reduce repetition
+    def _plot_medals_grid_common(self, df_grouped, committee, season):
+        ordered_olympiads = list(df_grouped.index.get_level_values("Olympiad").unique())
+        title = f"Medals by Olympiad and discipline for {committee} | {season}"
+        return self._plot_grid_for_country(df_grouped, title, ordered_olympiads)
+
     def plot_medals_grid_summer(self, committee):
         df_grouped = self._create_summer_grid(committee=committee)
-        ordered_olympiads = list(df_grouped.index.get_level_values("Olympiad").unique())
-        title = f"Medals by Olympiad and discipline for {committee} | summer"
-        return self._plot_grid_for_country(df_grouped, title, ordered_olympiads)
+        return self._plot_medals_grid_common(df_grouped, committee, "summer")
 
     def plot_medals_grid_winter(self, committee):
         df_grouped = self._create_winter_grid(committee=committee)
-        ordered_olympiads = list(df_grouped.index.get_level_values("Olympiad").unique())
-        title = f"Medals by Olympiad and discipline for {committee} | winter"
-        return self._plot_grid_for_country(df_grouped, title, ordered_olympiads)
+        return self._plot_medals_grid_common(df_grouped, committee, "winter")
