@@ -14,26 +14,22 @@ def on_selector_medals_by_committee(state):
         ) = create_medals_detail(df_grouped_medals_olympics, selected_committe)
 
 
+def _count_medals(df_olympic_medals, medal_type):
+    return int(
+        df_olympic_medals[df_olympic_medals["Medal_type"] == medal_type][
+            "Medal_type"
+        ].count()
+    )
+
+
 def init_total_medals(state):
     with state as s:
         df_olympic_medals = s.df_olympic_medals
 
         s.total_medals = int(len(df_olympic_medals))
-        s.total_gold_medals = int(
-            df_olympic_medals[df_olympic_medals["Medal_type"] == "Gold"][
-                "Medal_type"
-            ].count()
-        )
-        s.total_silver_medals = int(
-            df_olympic_medals[df_olympic_medals["Medal_type"] == "Silver"][
-                "Medal_type"
-            ].count()
-        )
-        s.total_bronze_medals = int(
-            df_olympic_medals[df_olympic_medals["Medal_type"] == "Bronze"][
-                "Medal_type"
-            ].count()
-        )
+        s.total_gold_medals = _count_medals(df_olympic_medals, "Gold")
+        s.total_silver_medals = _count_medals(df_olympic_medals, "Silver")
+        s.total_bronze_medals = _count_medals(df_olympic_medals, "Bronze")
 
 
 def get_last_olympic(state):
