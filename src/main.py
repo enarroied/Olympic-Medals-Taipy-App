@@ -2,11 +2,7 @@ import pandas as pd
 import taipy.gui.builder as tgb
 from taipy.gui import Gui
 
-from algorithms.callbacks import (
-    get_last_olympic,
-    init_total_medals,
-    on_selector_medals_by_committee,
-)
+from algorithms.callbacks import init_total_medals, on_selector_medals_by_committee
 from algorithms.context import MedalTotals
 from algorithms.create_medal_by_olympic_and_discipline import (
     MedalsByOlympicAndDiscipline,
@@ -28,18 +24,10 @@ with tgb.Page() as root_page:
         tgb.text("# Olympic medals 🥇🥈🥉", mode="md")
     tgb.navbar()
 
-pages = {
-    "/": root_page,
-    "all_time_medals": all_time_medals,
-    "medals_awarded_to_committees": committee_medals,
-}
-gui_multi_pages = Gui(pages=pages)
-
 
 def on_init(state):
     init_total_medals(state)
     on_selector_medals_by_committee(state)
-    get_last_olympic(state)
 
 
 if __name__ == "__main__":
@@ -65,7 +53,9 @@ if __name__ == "__main__":
     medals_by_olimpics = MedalsByOlympics(df_grouped_medals_olympics)
     medals_by_season = MedalsBySeason(df_medals_by_olympiad)
 
-    latest_olympiad = ""
+    latest_olympiad = df_olympic_medals.loc[
+        df_olympic_medals["Olympic_year"].idxmax(), "Olympiad"
+    ]
 
     medal_totals = MedalTotals()
 
@@ -104,8 +94,12 @@ if __name__ == "__main__":
         None,
     )
 
-    summer_medal_grid, winter_medal_grid = None, None
-
+    pages = {
+        "/": root_page,
+        "all_time_medals": all_time_medals,
+        "medals_awarded_to_committees": committee_medals,
+    }
+    gui_multi_pages = Gui(pages=pages)
     gui_multi_pages.run(
         title="Olympic medals 🥇",
         dark_mode=False,
