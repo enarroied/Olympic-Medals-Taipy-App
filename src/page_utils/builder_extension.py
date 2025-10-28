@@ -4,9 +4,29 @@ import taipy.gui.builder as tgb
 
 
 def text_from_file(path: str | Path):
+    """Creates a Taipy markdown text element from a file address directly"""
     text = read_text_file(path)
     tgb.text(text, mode="md")
-    pass
+
+
+def drop_down_selector(value, lov, label, on_change=None, multiple=False):
+    """Create a selector element with a drod-down default anc class 'fullwidth'
+    It accepts "multiple" argument and defaults to False (as original)
+    It accepts `on_change` argument, but `None` value raises a waring, so it's not
+        passed unless it's a function.
+    """
+    kwargs = {
+        "value": value,
+        "lov": lov,
+        "dropdown": True,
+        "label": label,
+        "class_name": "fullwidth",
+        "multiple": multiple,
+    }
+    # If on_change = None, we get a warning:
+    if on_change is not None:
+        kwargs["on_change"] = on_change
+    tgb.selector(**kwargs)
 
 
 def read_text_file(path: str | Path, encoding: str = "utf-8") -> str:
