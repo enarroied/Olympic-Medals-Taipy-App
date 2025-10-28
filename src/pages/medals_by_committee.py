@@ -1,14 +1,10 @@
 import taipy.gui.builder as tgb
 
 from algorithms import on_selector_medals_by_committee
-from page_modules import create_text_from_file
+from page_utils import builder_extension as tgb_ext
 
 with tgb.Page() as committee_medals:
-    # TODO: rename this and make it a module call:
-    create_text_from_file(
-        "./pages/info_medals_by_committee.md"
-    )  # TODO: make this a parameter
-
+    tgb_ext.text_from_file("./pages/info_medals_by_committee.md")
     with tgb.layout("1 1 1"):
         with tgb.part():
             tgb.selector(

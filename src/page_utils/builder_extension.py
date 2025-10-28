@@ -3,7 +3,7 @@ from pathlib import Path
 import taipy.gui.builder as tgb
 
 
-def create_text_from_file(path: str | Path):
+def text_from_file(path: str | Path):
     text = read_text_file(path)
     tgb.text(text, mode="md")
     pass

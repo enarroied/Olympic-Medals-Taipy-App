@@ -1,1 +1,0 @@
-from page_modules.page_functions import create_text_from_file as create_text_from_file
