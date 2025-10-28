@@ -27,17 +27,19 @@ def create_medals_detail(df_grouped_medals_olympiads, committee_detail):
         committee_detail (str): The committee name to look up.
 
     Returns:
-        tuple: (Total, Gold, Silver, Bronze) medal counts as integers.
+        MedalTotals: medal counts as integers.
     """
-    df_grouped_medals = df_grouped_medals_olympiads.copy()
-    df_grouped_medals = df_grouped_medals.query(
-        "Olympiad == 'All' and Committee == @committee_detail"
-    ).drop(columns="Olympiad")
+    medal_row = df_grouped_medals_olympiads.loc[
+        (df_grouped_medals_olympiads["Olympiad"] == "All")
+        & (df_grouped_medals_olympiads["Committee"] == committee_detail)
+    ]
+    row_data = medal_row.iloc[0]
+
     return MedalTotals(
-        _get_medal_count(df_grouped_medals, "Total"),
-        _get_medal_count(df_grouped_medals, "Gold"),
-        _get_medal_count(df_grouped_medals, "Silver"),
-        _get_medal_count(df_grouped_medals, "Bronze"),
+        row_data["Total"],
+        row_data["Gold"],
+        row_data["Silver"],
+        row_data["Bronze"],
     )
 
 
@@ -48,7 +50,3 @@ def create_total_medal_cards(df):
 
 def _count_medals(df, medal_type):
     return int((df["Medal_type"] == medal_type).sum())
-
-
-def _get_medal_count(df_grouped_medals, medal_type):
-    return int(df_grouped_medals[medal_type].iloc[0])
