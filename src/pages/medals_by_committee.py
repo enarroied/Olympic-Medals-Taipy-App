@@ -60,42 +60,8 @@ with tgb.Page() as committee_medals:
             label="Select committee for detail",
             on_change=on_selector_medals_by_committee,
         )
-        with tgb.part("card"):
-            tgb.text(
-                "#### Gold Medals 🥇",
-                mode="md",
-            )
-            tgb.text(
-                "#### {medal_details.gold}",
-                mode="md",
-            )
-        with tgb.part("card"):
-            tgb.text(
-                "#### Silver Medals 🥈",
-                mode="md",
-            )
-            tgb.text(
-                "#### {medal_details.silver}",
-                mode="md",
-            )
-        with tgb.part("card"):
-            tgb.text(
-                "#### Bronze Medals 🥉",
-                mode="md",
-            )
-            tgb.text(
-                "#### {medal_details.bronze}",
-                mode="md",
-            )
-        with tgb.part("card"):
-            tgb.text(
-                "#### Total Medals 🏟",
-                mode="md",
-            )
-            tgb.text(
-                "#### {medal_details.total}",
-                mode="md",
-            )
+        tgb_ext.medal_cards("medal_details")
+
     with tgb.layout("1 1"):
         with tgb.part():
             tgb.chart(

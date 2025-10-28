@@ -32,6 +32,29 @@ def drop_down_selector(value, lov, label, on_change=None, multiple=False):
     tgb.selector(**kwargs)
 
 
+def medal_cards(state_variable_name: str):
+    """Creates a set of 4 cards with Olympic medals"""
+
+    medal_card("{" + state_variable_name + ".gold}", "Gold", "🥇")
+    medal_card("{" + state_variable_name + ".silver}", "Silver", "🥈")
+    medal_card("{" + state_variable_name + ".bronze}", "Bronze", "🥉")
+    medal_card("{" + state_variable_name + ".total}", "Total", "🏟")
+
+
+def medal_card(medal_agregate, metal, emoji):
+    title = f"#### Total {metal} Medals {emoji} "
+    agrgate_text = f"#### {medal_agregate}"
+    with tgb.part("card card-bg"):
+        tgb.text(
+            title,
+            mode="md",
+        )
+        tgb.text(
+            agrgate_text,
+            mode="md",
+        )
+
+
 def _read_text_file(path: str | Path, encoding: str = "utf-8") -> str:
     """
     Utility function, reads a text file and returns its contents as a string.

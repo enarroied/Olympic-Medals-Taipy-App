@@ -9,43 +9,8 @@ with tgb.Page() as all_time_medals:
               the Olympics, from Athens 1896 to {latest_olympiad}."
     )
     with tgb.layout("1 1 1 1"):
-        with tgb.part("card card-bg"):
-            tgb.text(
-                "#### Total Gold Medals 🥇 ",
-                mode="md",
-            )
-            tgb.text(
-                "#### {medal_totals.gold}",
-                mode="md",
-            )
-        with tgb.part("card card-bg"):
-            tgb.text(
-                "#### Total Silver Medals 🥈",
-                mode="md",
-            )
-            tgb.text(
-                "#### {medal_totals.silver}",
-                mode="md",
-            )
-        with tgb.part("card card-bg"):
-            tgb.text(
-                "#### Total Bronze Medals 🥉",
-                mode="md",
-            )
-            tgb.text(
-                "#### {medal_totals.bronze}",
-                mode="md",
-            )
-        with tgb.part("card card-bg"):
-            tgb.text(
-                "#### Total Medals 🏟",
-                mode="md",
-            )
-            tgb.text(
-                "#### {medal_totals.total}",
-                mode="md",
-            )
-
+        # tgb_ext.medal_card("{medal_totals.gold}", "Gold", "🥇")
+        tgb_ext.medal_cards("medal_totals")
     # Bar chart of all medals:
     with tgb.layout("1 1"):
         with tgb.part():
