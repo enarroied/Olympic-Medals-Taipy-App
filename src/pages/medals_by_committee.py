@@ -76,7 +76,7 @@ with tgb.Page() as committee_medals:
                 mode="md",
             )
             tgb.text(
-                "#### {gold_medals_detail}",
+                "#### {medal_details.gold}",
                 mode="md",
             )
         with tgb.part("card"):
@@ -85,7 +85,7 @@ with tgb.Page() as committee_medals:
                 mode="md",
             )
             tgb.text(
-                "#### {silver_medals_detail}",
+                "#### {medal_details.silver}",
                 mode="md",
             )
         with tgb.part("card"):
@@ -94,7 +94,7 @@ with tgb.Page() as committee_medals:
                 mode="md",
             )
             tgb.text(
-                "#### {bronze_medals_detail}",
+                "#### {medal_details.bronze}",
                 mode="md",
             )
         with tgb.part("card"):
@@ -103,7 +103,7 @@ with tgb.Page() as committee_medals:
                 mode="md",
             )
             tgb.text(
-                "#### {total_medals_detail}",
+                "#### {medal_details.total}",
                 mode="md",
             )
     with tgb.layout("1 1"):

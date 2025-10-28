@@ -2,7 +2,7 @@ import pandas as pd
 import taipy.gui.builder as tgb
 from taipy.gui import Gui
 
-from algorithms.callbacks import init_total_medals, on_selector_medals_by_committee
+from algorithms.callbacks import init_total_medals
 from algorithms.context import MedalTotals
 from algorithms.create_medal_by_olympic_and_discipline import (
     MedalsByOlympicAndDiscipline,
@@ -26,8 +26,8 @@ with tgb.Page() as root_page:
 
 
 def on_init(state):
-    init_total_medals(state)
-    on_selector_medals_by_committee(state)
+    with state as s:
+        init_total_medals(s)
 
 
 if __name__ == "__main__":
@@ -81,18 +81,7 @@ if __name__ == "__main__":
     medal_type = "All"
     display_percent = "Total"
 
-    # For detail cards
-    (
-        total_medals_detail,
-        gold_medals_detail,
-        silver_medals_detail,
-        bronze_medals_detail,
-    ) = (
-        None,
-        None,
-        None,
-        None,
-    )
+    medal_details = MedalTotals()
 
     pages = {
         "/": root_page,
