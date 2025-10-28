@@ -7,21 +7,17 @@ with tgb.Page() as committee_medals:
     tgb_ext.text_from_file("./pages/info_medals_by_committee.md")
     with tgb.layout("1 1 1"):
         with tgb.part():
-            tgb.selector(
+            tgb_ext.drop_down_selector(
                 value="{committees}",
                 lov="{list_committees}",
-                dropdown=True,
-                multiple=True,
                 label="Select committees",
-                class_name="fullwidth",
+                multiple=True,
             )
         with tgb.part():
-            tgb.selector(
+            tgb_ext.drop_down_selector(
                 value="{medal_type}",
                 lov="{list_medal_types}",
-                dropdown=True,
                 label="Select medal type",
-                class_name="fullwidth",
             )
         with tgb.part():
             tgb.toggle(
@@ -58,12 +54,10 @@ with tgb.Page() as committee_medals:
               Olympics and disciplines."
     )
     with tgb.layout("1 1 1 1 1"):
-        tgb.selector(
+        tgb_ext.drop_down_selector(
             value="{committee_detail}",
             lov="{list_committees}",
-            dropdown=True,
             label="Select committee for detail",
-            class_name="fullwidth",
             on_change=on_selector_medals_by_committee,
         )
         with tgb.part("card"):
