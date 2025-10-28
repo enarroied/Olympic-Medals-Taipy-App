@@ -1,3 +1,6 @@
+"""Holds variants of the taipy gui builder visual elements, with different default
+values, or with extra functionalities."""
+
 from pathlib import Path
 
 import taipy.gui.builder as tgb
@@ -5,7 +8,7 @@ import taipy.gui.builder as tgb
 
 def text_from_file(path: str | Path):
     """Creates a Taipy markdown text element from a file address directly"""
-    text = read_text_file(path)
+    text = _read_text_file(path)
     tgb.text(text, mode="md")
 
 
@@ -29,7 +32,7 @@ def drop_down_selector(value, lov, label, on_change=None, multiple=False):
     tgb.selector(**kwargs)
 
 
-def read_text_file(path: str | Path, encoding: str = "utf-8") -> str:
+def _read_text_file(path: str | Path, encoding: str = "utf-8") -> str:
     """
     Utility function, reads a text file and returns its contents as a string.
 
