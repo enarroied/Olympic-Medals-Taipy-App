@@ -3,7 +3,7 @@ from algorithms.context import MedalTotals
 
 def init_total_medals(state):
     with state as s:
-        s.medal_totals = create_total_medal_cards(s.df_olympic_medals)
+        s.medal_totals = _create_total_medal_cards(s.df_olympic_medals)
         on_selector_medals_by_committee(s)
 
 
@@ -15,6 +15,11 @@ def on_selector_medals_by_committee(state):
         s.medal_details = create_medals_detail(
             df_grouped_medals_olympics, selected_committe
         )
+
+
+def _create_total_medal_cards(df):
+    counts = {m.lower(): _count_medals(df, m) for m in ["Gold", "Silver", "Bronze"]}
+    return MedalTotals(len(df), **counts)
 
 
 def create_medals_detail(df_grouped_medals_olympiads, committee_detail):
@@ -41,11 +46,6 @@ def create_medals_detail(df_grouped_medals_olympiads, committee_detail):
         row_data["Silver"],
         row_data["Bronze"],
     )
-
-
-def create_total_medal_cards(df):
-    counts = {m.lower(): _count_medals(df, m) for m in ["Gold", "Silver", "Bronze"]}
-    return MedalTotals(len(df), **counts)
 
 
 def _count_medals(df, medal_type):

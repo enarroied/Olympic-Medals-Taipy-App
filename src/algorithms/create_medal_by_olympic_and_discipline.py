@@ -34,8 +34,31 @@ class MedalsByOlympicAndDiscipline:
             self._create_medals_grid, self.df_winter, self.winter_disciplines
         )
 
-    def _filter_olympic_season(self, df, season):
-        return df[(df["Olympic_season"] == season)].copy()
+    def plot_medals_grid_summer(self, committee):
+        df_grouped = self._create_summer_grid(committee=committee)
+        return self._plot_medals_grid_common(df_grouped, committee, "summer")
+
+    def plot_medals_grid_winter(self, committee):
+        df_grouped = self._create_winter_grid(committee=committee)
+        return self._plot_medals_grid_common(df_grouped, committee, "winter")
+
+    def _create_medals_grid(self, df_medals, all_disciplines, committee):
+        """
+        Plot medals won by a committee across different disciplines and Olympiads.
+
+        Parameters:
+        - df_medals (DataFrame): DataFrame containing medal data.
+        - all_disciplines (list): All the disciplines for the Olympic season.
+        - committee (str): Name of the committee.
+
+        Returns:
+        - fig: Plotly figure object showing medals by Olympiad and discipline for
+        the committee.
+        """
+        df_medals = df_medals[(df_medals["Committee"] == committee)]
+        return self._pivot_olympic_by_discipline(df_medals).reindex(
+            columns=all_disciplines, fill_value=0
+        )
 
     def _plot_grid_for_country(self, df_grouped, title, ordered_olympiads):
         fig = px.imshow(
@@ -64,33 +87,10 @@ class MedalsByOlympicAndDiscipline:
             observed=True,
         ).sort_index(level=1)
 
-    def _create_medals_grid(self, df_medals, all_disciplines, committee):
-        """
-        Plot medals won by a committee across different disciplines and Olympiads.
-
-        Parameters:
-        - df_medals (DataFrame): DataFrame containing medal data.
-        - all_disciplines (list): All the disciplines for the Olympic season.
-        - committee (str): Name of the committee.
-
-        Returns:
-        - fig: Plotly figure object showing medals by Olympiad and discipline for
-        the committee.
-        """
-        df_medals = df_medals[(df_medals["Committee"] == committee)]
-        return self._pivot_olympic_by_discipline(df_medals).reindex(
-            columns=all_disciplines, fill_value=0
-        )
+    def _filter_olympic_season(self, df, season):
+        return df[(df["Olympic_season"] == season)].copy()
 
     def _plot_medals_grid_common(self, df_grouped, committee, season):
         ordered_olympiads = list(df_grouped.index.get_level_values("Olympiad").unique())
         title = f"Medals by Olympiad and discipline for {committee} | {season}"
         return self._plot_grid_for_country(df_grouped, title, ordered_olympiads)
-
-    def plot_medals_grid_summer(self, committee):
-        df_grouped = self._create_summer_grid(committee=committee)
-        return self._plot_medals_grid_common(df_grouped, committee, "summer")
-
-    def plot_medals_grid_winter(self, committee):
-        df_grouped = self._create_winter_grid(committee=committee)
-        return self._plot_medals_grid_common(df_grouped, committee, "winter")

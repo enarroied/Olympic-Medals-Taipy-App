@@ -36,23 +36,23 @@ class SunburstByGender:
         self.gender_colors = gender_colors or GenderCategoryColorMap()
         self.df_sunburst = self._make_initial_sunburst(df_olympic_medals)
 
-    def _make_initial_sunburst(self, df_olympic_medals: pd.DataFrame) -> pd.DataFrame:
+    def create_sunburst_medals(
+        self, selected_olympiad_for_sunburst: str = "All"
+    ) -> Figure:
         """
-        Prepare a DataFrame suitable for sunburst visualization.
+        Creates a sunburst chart that breaks data for a Olympic game (or "ALl" of
+        them) by gender and by event.
 
         Args:
-            df_olympic_medals (pd.DataFrame): Raw Olympic medals DataFrame containing
-                at least ['Olympiad', 'Gender', 'Discipline', 'Event'] columns.
+            selected_olympiad_for_sunburst (str, optional): Olympiad name to
+            visualize. Defaults to "All" to include all Olympiads.
 
         Returns:
-            pd.DataFrame: Processed DataFrame containing string representations of
-            the necessary columns for building the sunburst chart.
+            plotly.graph_objs.Figure: Sunburst chart showing medal distribution by
+            gender, discipline, and event.
         """
-        return (
-            df_olympic_medals[["Olympiad", "Gender", "Discipline", "Event"]]
-            .astype(str)
-            .copy()
-        )
+        df_filtered = self._compute_sunburst_data(selected_olympiad_for_sunburst)
+        return self._plot_sunburst_medals(df_filtered, selected_olympiad_for_sunburst)
 
     def _compute_sunburst_data(
         self, selected_olympiad_for_sunburst: str = "All"
@@ -99,20 +99,20 @@ class SunburstByGender:
         )
         return fig
 
-    def create_sunburst_medals(
-        self, selected_olympiad_for_sunburst: str = "All"
-    ) -> Figure:
+    def _make_initial_sunburst(self, df_olympic_medals: pd.DataFrame) -> pd.DataFrame:
         """
-        Creates a sunburst chart that breaks data for a Olympic game (or "ALl" of
-        them) by gender and by event.
+        Prepare a DataFrame suitable for sunburst visualization.
 
         Args:
-            selected_olympiad_for_sunburst (str, optional): Olympiad name to
-            visualize. Defaults to "All" to include all Olympiads.
+            df_olympic_medals (pd.DataFrame): Raw Olympic medals DataFrame containing
+                at least ['Olympiad', 'Gender', 'Discipline', 'Event'] columns.
 
         Returns:
-            plotly.graph_objs.Figure: Sunburst chart showing medal distribution by
-            gender, discipline, and event.
+            pd.DataFrame: Processed DataFrame containing string representations of
+            the necessary columns for building the sunburst chart.
         """
-        df_filtered = self._compute_sunburst_data(selected_olympiad_for_sunburst)
-        return self._plot_sunburst_medals(df_filtered, selected_olympiad_for_sunburst)
+        return (
+            df_olympic_medals[["Olympiad", "Gender", "Discipline", "Event"]]
+            .astype(str)
+            .copy()
+        )

@@ -29,23 +29,21 @@ class MedalsByOlympics:
         self.df_grouped_medals_olympiads = df_grouped_medals_olympiads.copy()
         self.medal_colors = medal_colors or MedalColorMap()
 
-    def _compute_data_by_olympics(self, olympiad: str) -> pd.DataFrame:
+    def create_medals_by_olympics(self, olympiad: str) -> Figure:
         """
-        Filters the aggregated medals DataFrame for a specific Olympiad and
-        cleans the resulting data for plotting.
+        Generates a Plotly bar chart displaying the count of Gold, Silver, and
+        Bronze medals won by each Committee (Nation) for a specific Olympiad.
 
         Args:
-            olympiad (str): The name of the Olympiad to filter by.
+            olympiad (str): Olympic event to visualize (e.g., 'Rio 2016').
+                            Pass the special string "All" to include all Olympiads.
 
         Returns:
-            pd.DataFrame: A filtered DataFrame containing medal counts ('Gold',
-                         'Silver', 'Bronze') grouped by 'Committee' for the
-                         specified Olympiad, with the 'Olympiad' column dropped.
+            plotly.graph_objects.Figure: An interactive Plotly bar chart figure object.
+                                         Returns empty fig if data retrieval fails.
         """
-        df_medals_to_plot = self.df_grouped_medals_olympiads.copy()
-        df_medals_to_plot = df_medals_to_plot[df_medals_to_plot["Olympiad"] == olympiad]
-        df_medals_to_plot = df_medals_to_plot.drop(columns="Olympiad")
-        return df_medals_to_plot
+        df_medals_to_plot = self._generate_data_by_olympics(olympiad)
+        return self._plot_by_committee(df_medals_to_plot)
 
     def _generate_data_by_olympics(self, olympiad: str) -> pd.DataFrame:
         """
@@ -80,18 +78,20 @@ class MedalsByOlympics:
         fig.update_layout(xaxis={"title": "Committee"}, yaxis={"title": "Count"})
         return fig
 
-    def create_medals_by_olympics(self, olympiad: str) -> Figure:
+    def _compute_data_by_olympics(self, olympiad: str) -> pd.DataFrame:
         """
-        Generates a Plotly bar chart displaying the count of Gold, Silver, and
-        Bronze medals won by each Committee (Nation) for a specific Olympiad.
+        Filters the aggregated medals DataFrame for a specific Olympiad and
+        cleans the resulting data for plotting.
 
         Args:
-            olympiad (str): Olympic event to visualize (e.g., 'Rio 2016').
-                            Pass the special string "All" to include all Olympiads.
+            olympiad (str): The name of the Olympiad to filter by.
 
         Returns:
-            plotly.graph_objects.Figure: An interactive Plotly bar chart figure object.
-                                         Returns empty fig if data retrieval fails.
+            pd.DataFrame: A filtered DataFrame containing medal counts ('Gold',
+                         'Silver', 'Bronze') grouped by 'Committee' for the
+                         specified Olympiad, with the 'Olympiad' column dropped.
         """
-        df_medals_to_plot = self._generate_data_by_olympics(olympiad)
-        return self._plot_by_committee(df_medals_to_plot)
+        df_medals_to_plot = self.df_grouped_medals_olympiads.copy()
+        df_medals_to_plot = df_medals_to_plot[df_medals_to_plot["Olympiad"] == olympiad]
+        df_medals_to_plot = df_medals_to_plot.drop(columns="Olympiad")
+        return df_medals_to_plot
