@@ -1,5 +1,7 @@
 import taipy.gui.builder as tgb
 
+from page_utils import builder_extension as tgb_ext
+
 with tgb.Page() as all_time_medals:
     tgb.text("## Medals awarded at all Olympic games", mode="md")
     tgb.text(
@@ -47,12 +49,10 @@ with tgb.Page() as all_time_medals:
     # Bar chart of all medals:
     with tgb.layout("1 1"):
         with tgb.part():
-            tgb.selector(
+            tgb_ext.drop_down_selector(
                 value="{season}",
                 lov="{list_seasons}",
-                dropdown=True,
                 label="Select season",
-                class_name="fullwidth",
             )
             tgb.chart(
                 figure=lambda medals_by_season,
@@ -60,12 +60,10 @@ with tgb.Page() as all_time_medals:
             )
 
         with tgb.part():
-            tgb.selector(
+            tgb_ext.drop_down_selector(
                 value="{selected_olympiad}",
                 lov="{list_olympiads}",
-                dropdown=True,
                 label="Select Olympiad",
-                class_name="fullwidth",
             )
             tgb.chart(
                 figure=lambda medals_by_olimpics,
@@ -99,12 +97,10 @@ with tgb.Page() as all_time_medals:
                 )
             )
         with tgb.part():
-            tgb.selector(
+            tgb_ext.drop_down_selector(
                 value="{selected_olympiad_for_sunburst}",
                 lov="{list_olympiads}",
-                dropdown=True,
                 label="Select Olympiad",
-                class_name="fullwidth",
             )
             tgb.chart(
                 figure=lambda sunburnst_by_gender,
