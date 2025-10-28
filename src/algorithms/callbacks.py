@@ -1,4 +1,4 @@
-from algorithms.context import MedalTotals
+from context import MedalTotals
 
 
 def init_total_medals(state):

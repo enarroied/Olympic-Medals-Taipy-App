@@ -14,7 +14,7 @@ import pandas as pd
 import plotly.express as px
 from plotly.graph_objs import Figure
 
-from algorithms.context import MedalColorMap
+from context import MedalColorMap
 
 
 class MedalsByOlympics:

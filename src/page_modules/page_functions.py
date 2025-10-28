@@ -3,9 +3,15 @@ from pathlib import Path
 import taipy.gui.builder as tgb
 
 
+def create_text_from_file(path: str | Path):
+    text = read_text_file(path)
+    tgb.text(text, mode="md")
+    pass
+
+
 def read_text_file(path: str | Path, encoding: str = "utf-8") -> str:
     """
-    Reads a text file and returns its contents as a string.
+    Utility function, reads a text file and returns its contents as a string.
 
     Args:
         path: Path to the text file (str or pathlib.Path).
@@ -16,9 +22,3 @@ def read_text_file(path: str | Path, encoding: str = "utf-8") -> str:
     """
     file_path = Path(path)
     return file_path.read_text(encoding=encoding)
-
-
-def create_text_from_file(path: str | Path):
-    text = read_text_file(path)
-    tgb.text(text, mode="md")
-    pass

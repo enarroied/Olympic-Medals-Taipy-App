@@ -1,7 +1,7 @@
 import taipy.gui.builder as tgb
 
-from algorithms.callbacks import on_selector_medals_by_committee
-from page_modules.page_functions import create_text_from_file
+from algorithms import on_selector_medals_by_committee
+from page_modules import create_text_from_file
 
 with tgb.Page() as committee_medals:
     # TODO: rename this and make it a module call:
