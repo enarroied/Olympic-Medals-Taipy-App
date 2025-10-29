@@ -24,9 +24,12 @@ If you came here from [this Medium article I wrote about Taipy 3.1](https://medi
 
 ## Changes made in October 2025 (WIP)
 
-- I'm experimenting with an object-oriented approach, where all the charts come from objects that hold the original pandas DataFrame as an attribute. I'm unsure of this being the right approach, but I'm liking how it looks. The code seems to be a bit slower.
-- I'm also experimenting with defining functions that "fix" some variables fopr the `Page` objects. The goal here is to reduce the number of arguments when I reuse them constantly, and make the code in the `Page` blocks smalles.
+- I'm experimenting with an object-oriented and "clean code" approach, where all the charts come from objects that hold the original pandas DataFrame as an attribute. I'm unsure of this being the right approach, but I'm liking how it looks. The code seems to be a bit slower.
+- I'm also experimenting with defining functions that "fix" some variables fopr the `Page` objects. The goal here is to reduce the number of arguments when I reuse them constantly, and make the code in the `Page` blocks smaller.
 - I'm also using this approach to extend the visual element capabilities, such as with the `create_text_from_file` function.
+- To follow clean code principles, I've consistently named functions, and organized them in top-down narrative style (put higher levels of abstraction first, and lower levels of abstraction last)
+- I added a favicon to the app
+- I simplified imports using `__init__.py` files
 
 ## Changes Made in September 2025
 
