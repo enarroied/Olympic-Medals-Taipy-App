@@ -12,9 +12,8 @@ from typing import Optional
 
 import pandas as pd
 import plotly.express as px
-from plotly.graph_objs import Figure
-
 from context import GenderCategoryColorMap
+from plotly.graph_objs import Figure
 
 
 class SunburstByGender:
@@ -69,7 +68,6 @@ class SunburstByGender:
         """
         df_filtered = self.df_sunburst
 
-        # Apply filtering by Olympiad if specified
         if selected_olympiad_for_sunburst != "All":
             df_filtered = df_filtered[
                 df_filtered["Olympiad"] == selected_olympiad_for_sunburst

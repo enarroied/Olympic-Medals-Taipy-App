@@ -30,6 +30,7 @@ If you came here from [this Medium article I wrote about Taipy 3.1](https://medi
 - To follow clean code principles, I've consistently named functions, and organized them in top-down narrative style (put higher levels of abstraction first, and lower levels of abstraction last)
 - I added a favicon to the app
 - I simplified imports using `__init__.py` files
+- Removed unnecesary comments
 
 ## Changes Made in September 2025
 

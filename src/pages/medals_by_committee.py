@@ -1,7 +1,7 @@
-import taipy.gui.builder as tgb
-
 from algorithms import on_selector_medals_by_committee
 from page_utils import builder_extension as tgb_ext
+
+import taipy.gui.builder as tgb
 
 with tgb.Page() as committee_medals:
     tgb_ext.text_from_file("./pages/info_medals_by_committee.md")
@@ -45,9 +45,7 @@ with tgb.Page() as committee_medals:
                     committees, medal_type, display_percent
                 )
             )
-
-    ########################################################
-
+            
     tgb.text("## Detailed information by committee", mode="md")
     tgb.text(
         "Select a country to see total medals and how they distribute accross\
