@@ -1,6 +1,6 @@
-from page_utils import builder_extension as tgb_ext
-
 import taipy.gui.builder as tgb
+
+from page_utils import builder_extension as tgb_ext
 
 with tgb.Page() as all_time_medals:
     tgb.text("## Medals awarded at all Olympic games", mode="md")
@@ -9,7 +9,7 @@ with tgb.Page() as all_time_medals:
               the Olympics, from Athens 1896 to {latest_olympiad}."
     )
     with tgb.layout("1 1 1 1"):
-       tgb_ext.medal_cards("medal_totals")
+        tgb_ext.medal_cards("medal_totals")
     with tgb.layout("1 1"):
         with tgb.part():
             tgb_ext.drop_down_selector(
