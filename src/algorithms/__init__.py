@@ -1,7 +1,3 @@
-from algorithms.callbacks import init_total_medals as init_total_medals
-from algorithms.callbacks import (
-    on_selector_medals_by_committee as on_selector_medals_by_committee,
-)
 from algorithms.create_medal_by_olympic_and_discipline import (
     MedalsByOlympicAndDiscipline as MedalsByOlympicAndDiscipline,
 )

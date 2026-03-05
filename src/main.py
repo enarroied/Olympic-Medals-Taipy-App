@@ -9,9 +9,9 @@ from algorithms import (
     MedalsByOlympics,
     MedalsBySeason,
     SunburstByGender,
-    init_total_medals,
     yaml_to_list,
 )
+from callbacks import init_total_medals
 from context import MedalTotals
 from pages.all_time_medals import all_time_medals
 from pages.medals_by_committee import committee_medals
