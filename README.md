@@ -10,6 +10,7 @@
 
 - [🥇🥈🥉 Olympic medals](#-olympic-medals)
   - [Note About Medium Article](#note-about-medium-article)
+  - [Changes made in March 2026](#changes-made-in-march-2026)
   - [Changes made in October 2025 (WIP)](#changes-made-in-october-2025-wip)
   - [Changes Made in September 2025](#changes-made-in-september-2025)
   - [Changes Made in June 2025](#changes-made-in-june-2025)
@@ -24,6 +25,14 @@
 ## Note About Medium Article
 
 If you came here from [this Medium article I wrote about Taipy 3.1](https://medium.com/gitconnected/discover-taipys-3-1-application-builder-5b8333f2c184), I've changed (improved and refactored) the code ever since. For reference, I keep [this branch](https://github.com/enarroied/Olympic-Medals-Taipy-App/tree/taipy_3.1), but I recommend you take the current version as a reference. **The structure of the dashboard didn't change** (except the table with data by Olympics).
+
+## Changes made in March 2026
+
+- I added tests
+- I upgraded the app to Taipy 4.1.1
+- I moved callbacks to a dedicated repo to further separate concerns
+- I added actions (security audits, format and test checks)
+- I added pre-commit hooks
 
 ## Changes made in October 2025 (WIP)
 
