@@ -3,7 +3,10 @@
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 ![License](https://img.shields.io/badge/License-MIT-blue.svg)
 ![Python Version](https://img.shields.io/badge/Python-3.12%2B-blue.svg)
-![Taipy Version](https://img.shields.io/badge/Taipy-4.1-blue.svg)
+![Taipy](https://img.shields.io/badge/taipy-4.1.1-orange.svg)
+[![codecov](https://codecov.io/github/enarroied/Olympic-Medals-Taipy-App/branch/master/graph/badge.svg?token=HLZVB6WFMT)](https://codecov.io/github/enarroied/Olympic-Medals-Taipy-App)
+![Tests](https://github.com/enarroied/Olympic-Medals-Taipy-App/actions/workflows/tests.yml/badge.svg)
+
 
 - [🥇🥈🥉 Olympic medals](#-olympic-medals)
   - [Note About Medium Article](#note-about-medium-article)
