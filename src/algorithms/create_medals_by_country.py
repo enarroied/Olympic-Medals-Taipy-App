@@ -142,7 +142,7 @@ class MedalsByCountry:
     ) -> pd.DataFrame:
         """Compute percentage of medals per committee based on total medals."""
         for committee in committee_list:
-            df_to_plot.loc[:, committee] = (
-                df_to_plot[committee] * 100 / df_to_plot["Total_medals"]
+            df_to_plot[committee] = (
+                df_to_plot[committee].astype(float) * 100 / df_to_plot["Total_medals"]
             ).fillna(0)
         return df_to_plot
