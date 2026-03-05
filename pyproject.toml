@@ -3,15 +3,18 @@ name = "olympic-medals-taipy-app"
 version = "0.1.0"
 description = "A Dashboard showing Olympic Medals accross Olympics, Nations, genders in between others"
 readme = "README.md"
-requires-python = ">=3.9, <3.13"
+requires-python = ">=3.10, <3.13"
 dependencies = [
     "pandas==2.2.2",
     "plotly==6.0.1",
-    "taipy==4.1.0",
+    "taipy==4.1.1",
 ]
 
 [dependency-groups]
 dev = [
-    "pip-audit>=2.9.0",
+    "pip-audit>=2.10.0",
+    "pre-commit>=4.5.1",
+    "pytest>=8.4.2",
+    "pytest-cov>=7.0.0",
     "ruff>=0.13.1",
 ]
