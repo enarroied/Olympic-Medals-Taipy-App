@@ -13,10 +13,9 @@ def text_from_file(path: str | Path):
 
 
 def drop_down_selector(value, lov, label, on_change=None, multiple=False):
-    """Create a selector element with a drod-down default anc class 'fullwidth'
+    """Selector element with a drod-down default anc class 'fullwidth'
     It accepts "multiple" argument and defaults to False (as original)
-    It accepts `on_change` argument, but `None` value raises a waring, so it's not
-        passed unless it's a function.
+    It accepts `on_change` optional argument
     """
     kwargs = {
         "value": value,
